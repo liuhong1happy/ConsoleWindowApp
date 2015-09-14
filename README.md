@@ -2,10 +2,11 @@
 DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用和用户选择使用的应用
 
 ## 技术栈
-1. 后端语言golang
-2. 前端框架react
-3. web框架beego
-4. 数据库 mongodb
+1. 后端语言 golang
+2. 前端框架 react + flux + react-router
+3. 前端打包 webpack
+4. web框架 beego
+5. 数据库 mongodb
 
 ## 需求介绍
 
