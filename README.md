@@ -31,3 +31,8 @@ DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用�
 - [ ] 管理员审核推广应用。11.9
 - [ ] 使用者收到推广应用消息。11.9
 
+## 快速开始
+
+git clone https://github.com/liuhong1happy/ConsoleWindowApp.git
+cd ConsoleWindowApp
+npm install
