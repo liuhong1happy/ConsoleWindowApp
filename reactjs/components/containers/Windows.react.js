@@ -1,4 +1,5 @@
 var React = require('react');
+var WinSettingsStore = require('../../stores/WinSettingsStore');
 var Windows = React.createClass({
   getInitialState: function() {
     return { 
@@ -14,7 +15,6 @@ var Windows = React.createClass({
             width:"100%",
             height:"100%"
         };
-    
         return (
             <div style={divStyle}>
                 {

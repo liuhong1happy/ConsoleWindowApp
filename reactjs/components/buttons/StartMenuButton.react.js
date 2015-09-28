@@ -1,15 +1,15 @@
 var React = require('react');
-var IconButton = React.createClass({
+var Button = require('../base/Button.react');
+// View
+var StartMenuButton = React.createClass({
     getInitialState: function() {
         return { 
             hover:false,
-            size:32,
             display:{
-                height:this.props.height?this.props.height:36,
-                width:this.props.width?this.props.width:200
+                height:this.props.height?this.props.height:30,
+                width:this.props.width?this.props.width:140
             },
-            image:this.props.image?this.props.image:"images/winlogo.png",
-            name:this.props.name?this.props.name:"windows 7"
+            content:this.props.name
         };
     },
     handleHover: function() {
@@ -35,14 +35,7 @@ var IconButton = React.createClass({
         };
         var pStyle={
             margin:"0px",
-            verticalAlign:"middle",
-            color:"#000",
-            padding:"0px 5px"
-        }
-        var imgStyle={
-            verticalAlign:"middle",
-            width:this.state.size,
-            height:this.state.size
+            paddingLeft:"10px"
         }
         return (
             <Button style={parentStyle} 
@@ -50,12 +43,10 @@ var IconButton = React.createClass({
                         onMouseLeave={this.handleUnhover} 
                         onClick={this.props.onClick}
             >
-                <p style={pStyle}>
-                    <img src={this.state.image} style={imgStyle} />
-                    <span style={pStyle}>{this.state.name}</span>
-                </p>
+                <p style={pStyle}>{this.state.content}</p>
             </Button>
         );
     }
 });
-module.exports = IconButton;
+
+module.exports = StartMenuButton;

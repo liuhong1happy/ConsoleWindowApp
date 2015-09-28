@@ -1,4 +1,6 @@
 var React = require('react');
+var StartMenu = require('../buttons/StartMenu.react');
+var TaskBarButtons = require('./TaskBarButtons.react');
 var TaskBar  = React.createClass({
   getInitialState: function() {
     return { 

@@ -1,4 +1,5 @@
 var React = require('react');
+var Button = require('../base/Button.react');
 var CloseSystemButton = React.createClass({
     getInitialState: function() {
         return { 

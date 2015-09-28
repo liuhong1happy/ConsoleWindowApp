@@ -1,4 +1,5 @@
 var React = require('react');
+var Widget = require('../base/Widget.react');
 var StartMenuWidget = React.createClass({
     getInitialState: function() {
         return { 

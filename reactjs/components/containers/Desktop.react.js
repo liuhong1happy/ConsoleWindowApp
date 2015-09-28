@@ -1,4 +1,6 @@
 var React = require('react');
+var DesktopButtons = require('./DesktopButtons.react');
+var Windows = require('./Windows.react');
 var Desktop = React.createClass({
   getInitialState: function() {
     return { 

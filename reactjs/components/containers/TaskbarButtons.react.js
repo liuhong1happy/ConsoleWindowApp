@@ -1,4 +1,6 @@
 var React = require('react');
+var WinSettingsStore = require('../../stores/WinSettingsStore');
+var TaskBarButton = require('../buttons/TaskBarButton.react');
 var TaskBarButtons = React.createClass({
   getInitialState: function() {
     return { 
