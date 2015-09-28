@@ -6,7 +6,7 @@ var TaskBarButton = React.createClass({
             hover:false,
             order:this.props.order,
             button:this.props.button,
-            hoverBackground:"url(images/taskbarhover.png)",
+            hoverBackground:"url(static/images/taskbarhover.png)",
             display:{
                 height:41,
                 width:57

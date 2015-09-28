@@ -1,5 +1,6 @@
 var React = require('react');
-var WinSettingsStore = require('../../stores/WinSettingsStore');
+var StartMenuWidget = require('../widgets/StartMenuWidget.react');
+var WinSettingsStore =require('../../stores/WinSettingsStore');
 var Windows = React.createClass({
   getInitialState: function() {
     return { 

@@ -93,7 +93,7 @@ var StartMenuWidget = React.createClass({
                         }
                 </div>
                 <Widget where={["bottom","left"]} position={{x:340,y:520}} width="64" height="64" >
-                    <img src="images/user.png" />
+                    <img src="static/images/user.png" />
                 </Widget>
             </div>
         );

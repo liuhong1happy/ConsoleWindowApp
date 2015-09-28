@@ -12,7 +12,7 @@ var WinApp = React.createClass({
            }  
         },
         background:{
-            image:"url(images/win7bg.jpg)",
+            image:"url(static/images/win7bg.jpg)",
             size:"100%"
         },
         display:{
