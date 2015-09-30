@@ -32,6 +32,60 @@ DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用�
 - [ ] 管理员审核推广应用。11.9
 - [ ] 使用者收到推广应用消息。11.9
 
+## 依赖环境
+
+#### Golang
+    
+0. 环境要求
+
+        ubuntu14.04
+        
+        python 2.7
+        
+        gcc等编译工具
+
+1.  golang ppa方式安装
+
+        sudo apt-get install python-dev python-pip
+        
+        sudo apt-get install -y python-software-properties software-properties-common
+        
+        sudo add-apt-repository -y ppa:gophers/go
+        
+        sudo apt-get update
+        
+        sudo apt-get install -y golang-stable
+
+2. gccgo 方式安装
+
+        sudo apt-get install -y gccgo
+
+3. 长久保存golang环境变量
+
+        # 创建开发路径
+        
+        sudo mkdir $HOME/golang 
+        
+        # 编辑/etc/environment
+        
+        PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/lrong/home/golang/bin"
+        
+        GOPATH="/lrong/home/golang/bin"
+
+#### node和npm
+
+    apt-get update && apt-get install -y python-software-properties software-properties-common
+    add-apt-repository -y ppa:chris-lea/node.js
+    apt-get update && apt-get install -y nodejs 
+    npm config set registry "http://registry.npm.taobao.org"
+    npm install -g n && n 4.0.0
+    npm install -g npm@3.3.3
+
+#### beego
+
+    go get github.com/astaxie/beego
+    go get github.com/beego/bee
+
 ## 快速开始
     
     # 获取代码 
