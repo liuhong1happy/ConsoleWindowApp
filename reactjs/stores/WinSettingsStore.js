@@ -76,8 +76,8 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
         return bars;
     },
     getStartMenuBars:function(){
-        var sysApps = this.SystemApps;
-        var cusApps = this.CustomApps;
+        var sysApps = WinSettings.SystemApps;
+        var cusApps = WinSettings.CustomApps;
         var bars = [];
         for(var i=0;i<sysApps.length;i++){
             var appWhere = sysApps[i].where;
@@ -133,4 +133,17 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
         return findObj;
     }
 });
+
+
+WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
+    switch(action.type) {
+        case ActionTypes.RECEIVE_WIN_SETTINGS:
+          WinSettings = action.data;
+          WinSettingsStore.emitChange(WinAppConstants.EventTypes.WIN_SETTINS);
+          break;
+        default:
+          // do nothing
+    }
+});
+
 module.exports = WinSettingsStore;

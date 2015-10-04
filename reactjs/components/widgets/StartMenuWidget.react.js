@@ -1,5 +1,10 @@
 var React = require('react');
 var Widget = require('../base/Widget.react');
+var WinSettingsStore = require('../../stores/WinSettingsStore');
+var CloseSystemButton = require('../buttons/CloseSystemButton.react');
+var StartMenuButton = require('../buttons/StartMenuButton.react');
+var IconButton = require('../buttons/IconButton.react');
+var Splitter = require('../base/Splitter.react');
 var StartMenuWidget = React.createClass({
     getInitialState: function() {
         return { 
@@ -22,8 +27,8 @@ var StartMenuWidget = React.createClass({
     render: function() {
         var parentStyle = {
             cursor:"pointer",
-            borderRadius:"10px",
-            backgroundColor:"rgba(0,120,240,0.5)",
+            borderRadius:"10px 10px 0px 0px",
+            backgroundColor:"rgba(0,120,240,0.9)",
             zIndex:1000,
             position:"absolute",
             width:this.state.display.width,
@@ -31,7 +36,6 @@ var StartMenuWidget = React.createClass({
             padding:"10px",
             border:"1px solid #333",
             boxShadow:"inset 0px 0px 3px #fff",
-            
         };
         parentStyle[this.props.where[0]] = this.props.position.y;
         parentStyle[this.props.where[1]] = this.props.position.x;
@@ -58,7 +62,8 @@ var StartMenuWidget = React.createClass({
             <div style={parentStyle}>
                 <div style={contentStyle}>
                         {
-                            this.state.apps.map(function(result) {                                
+                            this.state.apps.map(function(result) {     
+            
                                 return React.createElement(
                                        IconButton,  {
                                             where:result.where,
@@ -78,7 +83,9 @@ var StartMenuWidget = React.createClass({
                         {
                             this.state.buttons.map(function(result) {
                                 var name = result.name;
-                                
+                                if(result.render=="StartMenuButton") result.render=StartMenuButton;
+                                if(result.render=="CloseSystemButton") result.render=CloseSystemButton;
+                                if(result.render=="Splitter") result.render=Splitter;
                                 return React.createElement(
                                         result.render,  {
                                             where:result.where,

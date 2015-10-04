@@ -1,6 +1,7 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var DesktopButton = require('../buttons/DesktopButton.react');
+var WinAppConstants = require('../../constants/WinAppConstants');
 var DesktopButtons = React.createClass({
   getInitialState: function() {
     return { 
@@ -11,8 +12,17 @@ var DesktopButtons = React.createClass({
         }
     };
   },
+  componentDidMount: function() {
+    WinSettingsStore.addChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
+  },
+  componentWillUnmount: function() {
+    WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
+  },
+  _onChange:function(){
+    this.setState({buttons:WinSettingsStore.getDesktopBars()});
+  },
   render: function() {
-        var taskStyle = {
+        var buttonStyle = {
             height:this.props.height?this.props.height : this.state.display.height,
             width:this.props.width?this.props.width:this.state.display.width, 
             position:"absolute",
@@ -24,8 +34,11 @@ var DesktopButtons = React.createClass({
         var order = -1;
         var parentWidth=this.state.display.width;
         var parentHeight=this.state.display.height;
+        if(this.state.buttons.length==0){
+            return ( <div style={buttonStyle}></div> );
+        }
         return (
-            <ul style={taskStyle}>
+            <ul style={buttonStyle}>
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;

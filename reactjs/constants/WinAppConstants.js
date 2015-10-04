@@ -3,10 +3,8 @@ var keyMirror = require('keymirror');
 module.exports = {
 
   ActionTypes: keyMirror({
-    CLICK_THREAD: null,
-    CREATE_MESSAGE: null,
-    RECEIVE_RAW_CREATED_MESSAGE: null,
-    RECEIVE_RAW_MESSAGES: null
+    RECEIVE_WIN_SETTINGS: null,
+    SAVE_WIN_SETTINGS: null
   }),
   EventTypes:keyMirror({
     WIN_SETTINS: null,
