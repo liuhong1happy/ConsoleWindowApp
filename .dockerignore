@@ -1,0 +1,7 @@
+node_modules/
+reactjs/
+*~
+static/js/app.js
+.git
+.gitignore
+
