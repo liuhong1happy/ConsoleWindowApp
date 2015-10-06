@@ -42,3 +42,7 @@ DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用�
 #### 运行容器
 
     docker run -it -d --restart=always --name winapp -p 8080:8080 liuhong1happy/docker-winapp:latest
+
+#### 访问网站
+
+    http://localhost:8080
