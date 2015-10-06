@@ -2,7 +2,7 @@ var React = require('react');
 var StartMenuWidget = require('../widgets/StartMenuWidget.react');
 var WinSettingsStore =require('../../stores/WinSettingsStore');
 var Widget = require('../base/Widget.react');
-
+var Window = require('../base/Window.react');
 var Windows = React.createClass({
   getInitialState: function() {
     return { 
@@ -26,6 +26,7 @@ var Windows = React.createClass({
                         var Child = result.content?React.createElement(content.render, content.config, content.children):null;
                         if(result.render=="StartMenuWidget") result.render=StartMenuWidget;
                         if(result.render=="Widget") result.render=Widget;
+                        if(result.render=="Window") result.render=Window;
                         return React.createElement(
                                 result.render,  {position:result.position,where:result.where,height:result.height,width:result.width,key:result.id},  Child
                         );

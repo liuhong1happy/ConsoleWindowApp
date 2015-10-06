@@ -28,7 +28,7 @@ module.exports = {
     ],
     CustomWins:[
        { 
-            id:1,name:"百度一下，你就知道了",image:"", where:["top","left"],render:"Widget",fixed:true,type:"CustomWin",
+            id:1,name:"百度一下，你就知道了",image:"", where:["top","left"],render:"Window",fixed:true,type:"CustomWin",
             position:{y:100,x:100}, width:1024,height:700, 
             content:{ 
                 render:"iframe",config:{ 
