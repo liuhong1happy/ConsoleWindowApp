@@ -1,9 +1,3 @@
-var StartMenuWidget = require('./components/widgets/StartMenuWidget.react');
-var Widget = require('./components/base/Widget.react');
-var StartMenuButton = require('./components/buttons/StartMenuButton.react');
-var CloseSystemButton = require('./components/buttons/CloseSystemButton.react');
-var Splitter = require('./components/base/Splitter.react');
-
 module.exports = {
   init: function() {
     localStorage.clear();
