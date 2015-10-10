@@ -7,6 +7,7 @@ var IconButton = require('../buttons/IconButton.react');
 var Splitter = require('../base/Splitter.react');
 var StartMenuWidget = React.createClass({
     getInitialState: function() {
+        
         return { 
             buttons: WinSettingsStore.getStartMenuButtons(),
             apps:WinSettingsStore.getStartMenuBars(),
@@ -20,6 +21,9 @@ var StartMenuWidget = React.createClass({
             },
             where:this.props.where?this.props.where:["bottom","left"]
         };
+    },
+    componentWillUpdate:function(){
+      var state = this.props.show;
     },
     handleClick:function(){
         alert("H");
@@ -36,6 +40,7 @@ var StartMenuWidget = React.createClass({
             padding:"10px",
             border:"1px solid #333",
             boxShadow:"inset 0px 0px 3px #fff",
+            display:this.props.show?"inline-block":"none"
         };
         parentStyle[this.props.where[0]] = this.props.position.y;
         parentStyle[this.props.where[1]] = this.props.position.x;
@@ -47,7 +52,7 @@ var StartMenuWidget = React.createClass({
             boxShadow:"0px 0px 3px #fff",
             display:"inline-block",
             borderRadius:"5px",
-            overflow:"hidden"
+            overflow:"hidden",
         };
         var buttonsStyle = {
             backgroundColor:"transparent",
@@ -63,7 +68,6 @@ var StartMenuWidget = React.createClass({
                 <div style={contentStyle}>
                         {
                             this.state.apps.map(function(result) {     
-            
                                 return React.createElement(
                                        IconButton,  {
                                             where:result.where,

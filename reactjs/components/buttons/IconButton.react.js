@@ -23,15 +23,16 @@ var IconButton = React.createClass({
         var parentStyle = {
             cursor:"pointer",
             borderRadius:"5px",
-            backgroundColor:this.state.hover?"rgba(255,255,255,0.1)":"transparent",
-            width:this.state.display.width,
+            backgroundColor:this.state.hover?"rgba(0,120,240,0.3)":"transparent",
+            width:this.state.display.width-4,
             height:this.state.display.height,
             padding:"0px",
-            border:this.state.hover?"1px solid #333":"1px solid transparent",
-            boxShadow:this.state.hover?"inset 0px 0px 3px #fff":"",
+            border:this.state.hover?"1px solid rgba(0,120,240,0.7)":"1px solid transparent",
+            boxShadow:this.state.hover?"inset 0px 0px 30px rgba(0,120,240,0.1), 0px 0px 3px rgba(0,120,240,0.3)":"",
             overflow:"hidden",
             marginBottom:"5px",
             color:"#fff",
+            margin:"2px",
             lineHeight:this.state.display.height+"px"
         };
         var pStyle={

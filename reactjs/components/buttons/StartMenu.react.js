@@ -1,5 +1,6 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 var StartMenu = React.createClass({
     getInitialState: function() {
     return { 
@@ -17,6 +18,9 @@ var StartMenu = React.createClass({
     handleUnhover: function() {
         this.setState({hover: false});
     },
+    handleClick:function(){
+        WinSettingsActionCreators.toggleSystemWindow(this.state.button.window);
+    },
     render: function() {
         var defaultStyle = {
             height:this.props.height?this.props.height : this.state.display.height,
@@ -31,7 +35,9 @@ var StartMenu = React.createClass({
         return (
             <div   style={defaultStyle} 
                       onMouseEnter={this.handleHover}
-                      onMouseLeave={this.handleUnhover}>
+                      onMouseLeave={this.handleUnhover}
+                      onClick={this.handleClick}
+            >
             </div>
         );
     }

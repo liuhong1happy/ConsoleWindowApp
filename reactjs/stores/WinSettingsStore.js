@@ -141,6 +141,15 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
           WinSettings = action.data;
           WinSettingsStore.emitChange(WinAppConstants.EventTypes.WIN_SETTINS);
           break;
+        case ActionTypes.TOGGLE_SYSTEM_WINDOW:
+            var window = action.data;
+            var findWins = WinSettings.SystemWins.filter(function(ele,pos){
+                return ele.id = window.id;
+            });
+            if(findWins.length>0){
+                findWins[0].show = !findWins[0].show;
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
+            }
         default:
           // do nothing
     }

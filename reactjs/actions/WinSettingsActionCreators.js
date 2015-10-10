@@ -15,5 +15,17 @@ module.exports = {
       type: ActionTypes.SAVE_WIN_SETTINGS,
       data: winSettings
     });
-  }
+  },
+  openSystemWindow:function(window){
+    WinAppDispatcher.dispatch({
+      type: ActionTypes.OPEN_SYSTEM_WINDOW,
+      data: window
+    });
+  },
+  toggleSystemWindow:function(window){
+    WinAppDispatcher.dispatch({
+      type: ActionTypes.TOGGLE_SYSTEM_WINDOW,
+      data: window
+    });
+  },
 };

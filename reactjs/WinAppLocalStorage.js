@@ -6,7 +6,11 @@ module.exports = {
         { id:0,name:"计算机",image:"static/images/computer.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp" },
         { id:1,name:"回收站",image:"static/images/recycle.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp"},
         { id:2,name:"我的网络",image:"static/images/network.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp"},
-        { id:3,name:"开始菜单",image:"static/images/start.png",where:["taskbar"],render:"StartMenu",fixed:true,type:"SystemApp"}
+        { 
+            id:"StartMenu",name:"开始菜单",image:"static/images/start.png",
+            where:["taskbar"],render:"StartMenu",fixed:true,type:"SystemApp",
+            window:{id:"StartMenu"}
+        }
     ],
     CustomApps:[
         { id:0,name:"IE",image:"static/images/ie.png", where:["taskbar","startmenu"],render:"Button",fixed:true,type:"CustomApp"},
@@ -15,8 +19,8 @@ module.exports = {
     ],
     SystemWins:[
         { 
-            id:0,name:"开始菜单",image:"", where:["bottom","left"],render:"StartMenuWidget",fixed:true,type:"SystemWin",
-            position:{y:0,x:0}, width:440,height:540,content:null
+            id:"StartMenu",name:"开始菜单",image:"", where:["bottom","left"],render:"StartMenuWidget",fixed:true,
+            type:"SystemWin",position:{y:0,x:0}, width:440,height:540,content:null,show:false,app_id:3
         },
         //{ id:1,name:"控制面板",image:"", where:["top","left"],render:"ControlPanel",fixed:false,type:"SystemWin"}
     ],

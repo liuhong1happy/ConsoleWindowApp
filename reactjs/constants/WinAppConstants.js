@@ -4,7 +4,11 @@ module.exports = {
 
   ActionTypes: keyMirror({
     RECEIVE_WIN_SETTINGS: null,
-    SAVE_WIN_SETTINGS: null
+    SAVE_WIN_SETTINGS: null,
+    OPEN_SYSTEM_WINDOW:null,
+    TOGGLE_SYSTEM_WINDOW:null,
+    HIDE_SYSTEM_WINDOW:null,
+    CLOSE_SYSTEM_WINDOW:null
   }),
   EventTypes:keyMirror({
     WIN_SETTINS: null,
