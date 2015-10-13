@@ -1,4 +1,5 @@
 var React = require('react');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 var Window = React.createClass({
         getInitialState: function() {
             return { 
@@ -28,6 +29,42 @@ var Window = React.createClass({
             hover[e.target.className] = false;
             this.setState({hover:hover});
         },
+        onClick:function(e){
+            switch(e.target.className){
+                case "minbutton":
+                    // 生成snapshot
+                    var winDom = this.refs.window.getDOMNode();
+                    var winHtml = winDom.outerHTML;
+                    var height = winDom.clientHeight;
+                    var width = winDom.clientWidth;
+                    var snapshot = "data:image/svg+xml," +
+                            "<svg xmlns='http://www.w3.org/2000/svg' width='"+width+"' height='"+height+"'>" +
+                            "<foreignObject width='100%' height='100%'>" +
+                            "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:16px;font-family:Helvetica'>" +
+                                winHtml +
+                            "</div>" +
+                            "</foreignObject>" +
+                            "</svg>";
+                    // 传递事件
+                    WinSettingsActionCreators.minCustomWindow({
+                        show:false,
+                        snapshot:snapshot,
+                        app_id:this.props.app_id,
+                        id:this.props.id,
+                        height:this.state.display.height,
+                        width:this.state.display.width,
+                        position:{
+                            x:this.state.position.x,
+                            y:this.state.position.y
+                        }
+                    });
+                    break;
+                case "maxbutton":
+                    break;
+                case "closebutton":
+                    break;
+            }
+        },
         render: function() {
             var parentStyle = {
                 cursor:"pointer",
@@ -42,7 +79,8 @@ var Window = React.createClass({
                 boxShadow:"inset 0px 0px 3px #fff",
                 overflow:"hidden",
                 top:this.state.position.y,
-                left:this.state.position.x
+                left:this.state.position.x,
+                display:this.props.show?"inline-block":"none"
             };
             var contentStyle = {
                 backgroundColor:"#fff",
@@ -104,13 +142,13 @@ var Window = React.createClass({
                 :"0px 0px 3px #fff,inset 0px 0px 3px #fff",
                 background:"linear-gradient(rgba(240,0,120,0.8) 0%,rgba(240,0,120,0.6) 40%,rgba(240,0,120,1) 41%,rgba(240,0,120,0.6) 100%)"
             };
-            
             return (
-                <div style={parentStyle}>
+                <div style={parentStyle} ref="window">
                     <div style={buttonsStyle}>
                         <div style={minButtonStyle} ref="minbutton" className="minbutton"
                             onMouseEnter={this.onMouseEnter} 
                             onMouseLeave={this.onMouseLeave} 
+                            onClick={this.onClick}
                         >一</div>
                         <div style={maxButtonStyle} ref="maxbutton" className="maxbutton"
                             onMouseEnter={this.onMouseEnter} 

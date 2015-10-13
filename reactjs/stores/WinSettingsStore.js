@@ -149,7 +149,32 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             if(findWins.length>0){
                 findWins[0].show = !findWins[0].show;
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
+            };
+            break;
+        case ActionTypes.MIN_CUSTOM_WINDOW:
+            var window = action.data;
+            var findWins = WinSettings.CustomWins.filter(function(ele,pos){
+                return ele.id = window.id;
+            });
+            var findApps = WinSettings.CustomApps.filter(function(ele,pos){
+                return ele.id = window.app_id;
+            });
+            if(findWins.length>0 && findApps.length>0){
+                findWins[0].show = false;
+                if(findApps[0].window){
+                    findApps[0].window.snapshot = window.snapshot;
+                }else{
+                    findApps[0].windows[window.id].snapshot = window.snapshot;
+                }
+                if(findApps[0].config) findApps[0].config = {}
+                findApps[0].config ={
+                    position:{y:window.position.y,x:window.position.x}, 
+                    width:window.width,
+                    height:window.height
+                }
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
             }
+            break;
         default:
           // do nothing
     }

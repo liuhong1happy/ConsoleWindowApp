@@ -28,4 +28,10 @@ module.exports = {
       data: window
     });
   },
+  minCustomWindow:function(window){
+        WinAppDispatcher.dispatch({
+          type: ActionTypes.MIN_CUSTOM_WINDOW,
+          data: window
+        });
+  }
 };

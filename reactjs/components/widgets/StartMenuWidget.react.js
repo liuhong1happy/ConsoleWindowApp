@@ -7,7 +7,6 @@ var IconButton = require('../buttons/IconButton.react');
 var Splitter = require('../base/Splitter.react');
 var StartMenuWidget = React.createClass({
     getInitialState: function() {
-        
         return { 
             buttons: WinSettingsStore.getStartMenuButtons(),
             apps:WinSettingsStore.getStartMenuBars(),
