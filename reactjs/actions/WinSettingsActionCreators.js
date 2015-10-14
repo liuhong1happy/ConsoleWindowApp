@@ -33,5 +33,17 @@ module.exports = {
           type: ActionTypes.MIN_CUSTOM_WINDOW,
           data: window
         });
+  },
+  maxCustomWindow:function(window){
+        WinAppDispatcher.dispatch({
+          type: ActionTypes.MAX_CUSTOM_WINDOW,
+          data: window
+        });
+  },
+  closeCustomWindow:function(window){
+        WinAppDispatcher.dispatch({
+          type: ActionTypes.CLOSE_CUSTOM_WINDOW,
+          data: window
+        });
   }
 };
