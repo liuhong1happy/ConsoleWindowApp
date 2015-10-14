@@ -29,39 +29,52 @@ var Window = React.createClass({
             hover[e.target.className] = false;
             this.setState({hover:hover});
         },
+        genSnapShot:function(){
+            // 生成snapshot
+            var winDom = this.refs.window.getDOMNode();
+            var winHtml = winDom.outerHTML;
+            var height = winDom.clientHeight;
+            var width = winDom.clientWidth;
+            var snapshot = "data:image/svg+xml," +
+                    "<svg xmlns='http://www.w3.org/2000/svg' width='"+width+"' height='"+height+"'>" +
+                    "<foreignObject width='100%' height='100%'>" +
+                    "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:16px;font-family:Helvetica'>" +
+                        winHtml +
+                    "</div>" +
+                    "</foreignObject>" +
+                    "</svg>";
+            return snapshot;
+        },
+        getEventData:function(){
+            return {
+                app_id:this.props.app_id,
+                id:this.props.id,
+                height:this.state.display.height,
+                width:this.state.display.width,
+                position:{
+                    x:this.state.position.x,
+                    y:this.state.position.y
+                }
+            }
+        },
         onClick:function(e){
             switch(e.target.className){
                 case "minbutton":
-                    // 生成snapshot
-                    var winDom = this.refs.window.getDOMNode();
-                    var winHtml = winDom.outerHTML;
-                    var height = winDom.clientHeight;
-                    var width = winDom.clientWidth;
-                    var snapshot = "data:image/svg+xml," +
-                            "<svg xmlns='http://www.w3.org/2000/svg' width='"+width+"' height='"+height+"'>" +
-                            "<foreignObject width='100%' height='100%'>" +
-                            "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:16px;font-family:Helvetica'>" +
-                                winHtml +
-                            "</div>" +
-                            "</foreignObject>" +
-                            "</svg>";
+                    var snapshot = this.genSnapShot();
+                    var data = this.getEventData();
+                    data.show = false;
+                    data.snapshot = snapshot;
                     // 传递事件
-                    WinSettingsActionCreators.minCustomWindow({
-                        show:false,
-                        snapshot:snapshot,
-                        app_id:this.props.app_id,
-                        id:this.props.id,
-                        height:this.state.display.height,
-                        width:this.state.display.width,
-                        position:{
-                            x:this.state.position.x,
-                            y:this.state.position.y
-                        }
-                    });
+                    WinSettingsActionCreators.minCustomWindow(data);
                     break;
                 case "maxbutton":
                     break;
                 case "closebutton":
+                    var snapshot = this.genSnapShot();
+                    var data = this.getEventData();
+                    data.snapshot = snapshot;
+                    // 传递事件
+                    WinSettingsActionCreators.closeCustomWindow(data);
                     break;
             }
         },
