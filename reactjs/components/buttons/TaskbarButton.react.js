@@ -40,8 +40,7 @@ var TaskBarButton = React.createClass({
             backgroundColor:"",
         }
 
-        if(this.state.button.window || this.state.button.windows || this.state.focus){
-            divStyle.backgroundImage = "";
+        if(this.state.button.window || this.state.button.windows){
             divStyle.borderRadius = "5px";
             divStyle.backgroundColor = this.state.hover?"rgba(255,255,255,0.7)":"rgba(255,255,255,0.4)";
             divStyle.boxShadow=this.state.hover?"inset 0px 0px 3px #fff":"inset 0px -1px 3px #fff";
@@ -52,8 +51,7 @@ var TaskBarButton = React.createClass({
             width:33,
             height:32
         }
-        
-        
+
         return (
                 <div style={divStyle} 
                       onMouseEnter={this.handleHover}

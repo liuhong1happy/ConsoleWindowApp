@@ -12,7 +12,8 @@ module.exports = {
       
     MIN_CUSTOM_WINDOW:null,
     MAX_CUSTOM_WINDOW:null,
-    CLOSE_CUSTOM_WINDOW:null
+    CLOSE_CUSTOM_WINDOW:null,
+    SNAPSHOT_CUSTOM_WINDOW:null,
   }),
   EventTypes:keyMirror({
     WIN_SETTINS: null,

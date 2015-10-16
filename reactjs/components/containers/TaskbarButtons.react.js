@@ -19,9 +19,11 @@ var TaskBarButtons = React.createClass({
   },
   componentDidMount: function() {
     WinSettingsStore.addChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
+    WinSettingsStore.addChangeListener(WinAppConstants.EventTypes.TASK_BARS,this._onChange);
   },
   componentWillUnmount: function() {
     WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
+    WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.TASK_BARS,this._onChange);
   },
   _onChange:function(){
     this.setState({buttons:WinSettingsStore.getTaskBars()});

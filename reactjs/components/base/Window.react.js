@@ -54,7 +54,8 @@ var Window = React.createClass({
                 position:{
                     x:this.state.position.x,
                     y:this.state.position.y
-                }
+                },
+                render:"window"
             }
         },
         onClick:function(e){
@@ -170,6 +171,7 @@ var Window = React.createClass({
                         <div style={closeButtonStyle} ref="closebutton" className="closebutton"
                             onMouseEnter={this.onMouseEnter} 
                             onMouseLeave={this.onMouseLeave} 
+                            onClick={this.onClick}
                         >X</div> 
                     </div>
                     <div style={contentStyle}>

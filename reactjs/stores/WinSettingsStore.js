@@ -134,7 +134,6 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
     }
 });
 
-
 WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {
         case ActionTypes.RECEIVE_WIN_SETTINGS:
@@ -154,10 +153,10 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
         case ActionTypes.MIN_CUSTOM_WINDOW:
             var window = action.data;
             var findWins = WinSettings.CustomWins.filter(function(ele,pos){
-                return ele.id = window.id;
+                return ele.id == window.id;
             });
             var findApps = WinSettings.CustomApps.filter(function(ele,pos){
-                return ele.id = window.app_id;
+                return ele.id == window.app_id;
             });
             if(findWins.length>0 && findApps.length>0){
                 findWins[0].show = false;
@@ -177,22 +176,31 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             break;
         case ActionTypes.CLOSE_CUSTOM_WINDOW:
             var window = action.data;
-            var pos = -1;
+            var m_pos = -1;
             var findWins = WinSettings.CustomWins.filter(function(ele,pos){
-                pos = pos;
-                return ele.id = window.id;
+                if(ele.id == window.id) m_pos=pos;
+                return ele.id == window.id;
             });
             var findApps = WinSettings.CustomApps.filter(function(ele,pos){
-                return ele.id = window.app_id;
+                return ele.id == window.app_id;
             });
             if(findWins.length>0 && findApps.length>0){
+                var isNull = function(obj){
+                    for(var k in obj){
+                        return false;
+                    }
+                    return true;
+                }
+                
                 if(window.render=="window"){
                     delete findApps[0].windows[window.id];
-                    WinSettings.CustomWins.splice(pos,1);
+                    if(isNull(findApps[0].windows)){
+                        findApps[0].windows = null;
+                    }
                 }else{
                     findApps[0].window = null;
-                    WinSettings.CustomWins.splice(pos,1);
                 }
+                WinSettings.CustomWins.splice(m_pos,1);
                 if(findApps[0].config) findApps[0].config = {}
                 findApps[0].config ={
                     position:{y:window.position.y,x:window.position.x}, 
@@ -200,6 +208,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                     height:window.height
                 }
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
             }
             break;
         default:
