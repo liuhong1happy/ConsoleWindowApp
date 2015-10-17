@@ -50,3 +50,29 @@ DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用�
 #### 访问网站
 
     http://localhost:8080
+    
+## 快速部署开发环境
+
+#### Ubuntu
+
+    # 安装GCCGO
+    sudo apt-get install gccgo-go
+    echo PATH="$PATH:$HOME/golang/bin" > /etc/environment
+    echo GOPATH="$HOME/golang" >> /etc/environment
+    # 注销后继续执行
+    # 克隆代码
+    go get github.com/liuhong1happy/ConsoleWindowApp
+    cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
+    # 安装npm包
+    npm install
+    # 安装beego
+    go get github.com/astaxie/beego
+    go get github.com/beego/bee
+    # *运行*
+    bee run
+    # *打包JS*
+    npm start
+    # *压缩*
+    npm run build
+
+
