@@ -1,6 +1,7 @@
 var React = require('react');
 var Desktop = require('./containers/Desktop.react');
 var TaskBar = require('./containers/TaskBar.react');
+
 var WinApp = React.createClass({
   getInitialState: function() {
     return { 

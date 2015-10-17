@@ -1,8 +1,6 @@
 var WinAppDispatcher = require('../dispatcher/WinAppDispatcher');
 var WinAppConstants = require('../constants/WinAppConstants');
-
 var ActionTypes = WinAppConstants.ActionTypes;
-
 module.exports = {
   receiveWinSettings: function(winSettings) {
     WinAppDispatcher.dispatch({
@@ -45,5 +43,11 @@ module.exports = {
           type: ActionTypes.CLOSE_CUSTOM_WINDOW,
           data: window
         });
+  },
+  showSnapshot:function(snapshot){
+      WinAppDispatcher.dispatch({
+        type:ActionTypes.SHOW_SNAP_SHOT,
+        data:snapshot
+      });
   }
 };

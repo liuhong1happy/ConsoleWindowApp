@@ -4,6 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
 var WinAppWebApiUtils = require('../utils/WinAppWebApiUtils');
+var WinAppObjectUtils = require('../utils/WinAppObjectUtils');
 var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
 
@@ -12,6 +13,7 @@ var WinSettings = {
     CustomApps:[],
     SystemWins:[],
     CustomWins:[],
+    SnapShot:{}
 }
 var WinSettingsStore = assign({},EventEmitter.prototype,{
     emitChange: function(event) {
@@ -131,8 +133,20 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
                 break;
         }
         return findObj;
+    },
+    getSnapShot:function(){
+        if(!isNull(WinSettings.SnapShot)){
+            return WinSettings.SnapShot;
+        }else{
+            return {
+                app:{},
+                snapshots:[]
+            };
+        }
     }
 });
+
+var isNull = WinAppObjectUtils.isNull;
 
 WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {
@@ -185,13 +199,6 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                 return ele.id == window.app_id;
             });
             if(findWins.length>0 && findApps.length>0){
-                var isNull = function(obj){
-                    for(var k in obj){
-                        return false;
-                    }
-                    return true;
-                }
-                
                 if(window.render=="window"){
                     delete findApps[0].windows[window.id];
                     if(isNull(findApps[0].windows)){
@@ -210,6 +217,24 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
             }
+            break;
+        case ActionTypes.SHOW_SNAP_SHOT:
+            var snapShots = [];
+            var window = action.data.window,windows =action.data.windows,app=action.data.app;
+            if(!isNull(window)){
+                snapShots.push(window);
+            }
+            if(!isNull(windows)){
+                for(var w in windows){
+                    windows[w].id = w;
+                    snapShots.push(windows[w]);
+                }
+            }
+            WinSettings.SnapShot ={
+                snapshots:snapShots,
+                app:app
+            }
+            WinSettingsStore.emitChange(WinAppConstants.EventTypes.SNAPSHOTS);
             break;
         default:
           // do nothing

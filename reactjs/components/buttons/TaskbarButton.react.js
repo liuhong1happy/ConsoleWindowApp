@@ -1,4 +1,6 @@
 var React = require('react');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
+
 var TaskBarButton = React.createClass({
     getInitialState: function() {
         return { 
@@ -18,7 +20,18 @@ var TaskBarButton = React.createClass({
         };
     },
     handleHover: function() {
-        this.setState({hover: true});
+            if(this.state.hover || this.state.button.window || this.state.button.windows ){
+                WinSettingsActionCreators.showSnapshot({
+                    app:{
+                        image:this.state.button.image,
+                        name:this.state.button.name,
+                        position:this.state.position
+                    },
+                    window:this.state.button.window,
+                    windows:this.state.button.windows
+                });
+            }
+            this.setState({hover: true});
     },
     handleUnhover: function() {
         this.setState({hover: false});
@@ -38,20 +51,21 @@ var TaskBarButton = React.createClass({
             backgroundImage:this.state.hover?this.state.hoverBackground:"",
             borderRadius:"0px",
             backgroundColor:"",
-        }
+        };
 
         if(this.state.button.window || this.state.button.windows){
             divStyle.borderRadius = "5px";
             divStyle.backgroundColor = this.state.hover?"rgba(255,255,255,0.7)":"rgba(255,255,255,0.4)";
             divStyle.boxShadow=this.state.hover?"inset 0px 0px 3px #fff":"inset 0px -1px 3px #fff";
             divStyle.border = "1px solid rgba(255,255,255,0.4)";
+            
+
         }
         var imgStyle = {
             margin:"4px 12px",
             width:33,
             height:32
-        }
-
+        };
         return (
                 <div style={divStyle} 
                       onMouseEnter={this.handleHover}
