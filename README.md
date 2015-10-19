@@ -1,6 +1,6 @@
 # ConsoleWindowApp
 
-DockerConsoleApp PaaS平台深度集成产品，用于管理开发者的应用和用户选择使用的应用
+无论你是开发者还是应用使用者，让你管理你的云端应用成为可能。
 
 ## 技术栈
 1. 后端语言 golang
