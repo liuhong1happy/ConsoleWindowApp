@@ -55,7 +55,9 @@ var Windows = React.createClass({
                                     key:result.id,
                                     id:result.id,
                                     show:result.show,
-                                    app_id:result.app_id
+                                    app_id:result.app_id,
+                                    image:result.image,
+                                    name:result.name
                                 },  Child
                         );
                     })

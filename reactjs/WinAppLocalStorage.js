@@ -33,6 +33,9 @@ module.exports = {
             windows:{
                 "IE1":{
                     snapshot:null
+                },
+                "IE2":{
+                    snapshot:null
                 }
             }
             
@@ -48,9 +51,25 @@ module.exports = {
         //{ id:1,name:"控制面板",image:"", where:["top","left"],render:"ControlPanel",fixed:false,type:"SystemWin"}
     ],
     CustomWins:[
-       { 
+        { 
             id:"IE1",name:"百度一下，你就知道了",image:"", where:["top","left"],render:"Window",fixed:true,type:"CustomWin",
             position:{y:100,x:100}, width:1024,height:700, show:true,app_id:"IE",
+            content:{ 
+                render:"iframe",
+                config:{ 
+                    src:"http://www.baidu.com",
+                    width:"100%",
+                    height:"100%",                       
+                    style:{
+                        border:"0px solid transparent"
+                    }
+                },
+                children:null 
+            }  
+        },
+        { 
+            id:"IE2",name:"百度一下，你就知道了",image:"", where:["top","left"],render:"Window",fixed:true,type:"CustomWin",
+            position:{y:0,x:0}, width:1024,height:700, show:true,app_id:"IE",
             content:{ 
                 render:"iframe",
                 config:{ 

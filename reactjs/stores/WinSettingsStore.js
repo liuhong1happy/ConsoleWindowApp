@@ -109,6 +109,24 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
         }
         return windows;
     },
+    getWindowById:function(id){
+        var SystemWins = WinSettings.SystemWins;
+        var CustomWins = WinSettings.CustomWins;
+        var wins = SystemWins.filter(function(ele,pos){
+            return ele.id == id;   
+        })
+        if(wins.length>0){
+            return wins[0];
+        }
+        var wins = CustomWins.filter(function(ele,pos){
+            return ele.id == id;   
+        })
+        if(wins.length>0){
+            return wins[0];
+        }else{
+            return null;
+        }
+    },
     getStartMenuButtons:function(){
         return WinSettings.StartMenuButtons
     },

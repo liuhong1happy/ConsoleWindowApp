@@ -22,6 +22,7 @@ var SnapShots = React.createClass({
     };
   },
   setTimeOut:function(){
+      return;
       var _self = this;
       if(this.state.timeout){
           clearTimeout(this.state.timeout);
@@ -75,7 +76,8 @@ var SnapShots = React.createClass({
             border:"1px solid #333",
             boxShadow:"inset 0px 0px 3px #fff",
             borderRadius:"5px",
-            display:this.state.show?"block":"none"
+            display:this.state.show?"block":"none",
+            boxSizing:"border-box"
         }
         var order = -1;
         return (
@@ -83,6 +85,8 @@ var SnapShots = React.createClass({
                 {
                     this.state.snapshot.snapshots.map(function(result) {
                         order+=1;
+                        result.name = result.name?result.name:data.app.name;
+                        result.image = result.image?result.image:data.app.image;
                         return <SnapShot key={ result.id }  order={order} snapshot={result} />;
                     })
                 }

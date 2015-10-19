@@ -13,8 +13,8 @@ var Window = React.createClass({
                     width:this.props.width?this.props.width:100
                 },
                 position:{
-                    x:100,
-                    y:100
+                    x:this.props.position.x?this.props.position.x:0,
+                    y:this.props.position.y?this.props.position.y:0
                 },
                 where:this.props.where?this.props.where:["top","left"]
             };
@@ -31,12 +31,13 @@ var Window = React.createClass({
         },
         genSnapShot:function(){
             // 生成snapshot
-            var winDom = this.refs.window.getDOMNode();
-            var winHtml = winDom.outerHTML;
-            var height = winDom.clientHeight;
-            var width = winDom.clientWidth;
+            var winDom = this.refs.content.getDOMNode();
+            var winHtml = winDom.outerHTML;     
+            var clientHeight = winDom.clientHeight;
+            var clientWidth = winDom.clientWidth;
             var snapshot = "data:image/svg+xml," +
-                    "<svg xmlns='http://www.w3.org/2000/svg' width='"+width+"' height='"+height+"'>" +
+                    "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 "+clientWidth+" "+clientHeight+"' width='230px' height='135px'>" +
+                    // "<svg xmlns='http://www.w3.org/2000/svg' width='"+clientWidth+"' height='"+clientHeight+"'>" +
                     "<foreignObject width='100%' height='100%'>" +
                     "<div xmlns='http://www.w3.org/1999/xhtml' style='font-size:16px;font-family:Helvetica'>" +
                         winHtml +
@@ -55,7 +56,7 @@ var Window = React.createClass({
                     x:this.state.position.x,
                     y:this.state.position.y
                 },
-                render:"window"
+                render:"window",
             }
         },
         onClick:function(e){
@@ -71,9 +72,7 @@ var Window = React.createClass({
                 case "maxbutton":
                     break;
                 case "closebutton":
-                    var snapshot = this.genSnapShot();
                     var data = this.getEventData();
-                    data.snapshot = snapshot;
                     // 传递事件
                     WinSettingsActionCreators.closeCustomWindow(data);
                     break;
@@ -157,7 +156,7 @@ var Window = React.createClass({
                 background:"linear-gradient(rgba(240,0,120,0.8) 0%,rgba(240,0,120,0.6) 40%,rgba(240,0,120,1) 41%,rgba(240,0,120,0.6) 100%)"
             };
             return (
-                <div style={parentStyle} ref="window">
+                <div style={parentStyle} ref="content">
                     <div style={buttonsStyle}>
                         <div style={minButtonStyle} ref="minbutton" className="minbutton"
                             onMouseEnter={this.onMouseEnter} 
@@ -174,7 +173,7 @@ var Window = React.createClass({
                             onClick={this.onClick}
                         >X</div> 
                     </div>
-                    <div style={contentStyle}>
+                    <div style={contentStyle} >
                             {this.props.children}
                     </div>
                 </div>
