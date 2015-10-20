@@ -14,36 +14,44 @@ module.exports = {
       data: winSettings
     });
   },
-  openSystemWindow:function(window){
+    
+  openWindow:function(app){
     WinAppDispatcher.dispatch({
-      type: ActionTypes.OPEN_SYSTEM_WINDOW,
+      type: ActionTypes.OPEN_WINDOW,
+      data: app
+    });
+  },
+  toggleWindow:function(window){
+    WinAppDispatcher.dispatch({
+      type: ActionTypes.TOGGLE_WINDOW,
       data: window
     });
   },
-  toggleSystemWindow:function(window){
-    WinAppDispatcher.dispatch({
-      type: ActionTypes.TOGGLE_SYSTEM_WINDOW,
-      data: window
-    });
-  },
-  minCustomWindow:function(window){
+  showWindow:function(window){
         WinAppDispatcher.dispatch({
-          type: ActionTypes.MIN_CUSTOM_WINDOW,
+          type: ActionTypes.SHOW_WINDOW,
           data: window
         });
   },
-  maxCustomWindow:function(window){
+  minWindow:function(window){
+        WinAppDispatcher.dispatch({
+          type: ActionTypes.MIN_WINDOW,
+          data: window
+        });
+  },
+  maxWindow:function(window){
         WinAppDispatcher.dispatch({
           type: ActionTypes.MAX_CUSTOM_WINDOW,
           data: window
         });
   },
-  closeCustomWindow:function(window){
+  closeWindow:function(window){
         WinAppDispatcher.dispatch({
-          type: ActionTypes.CLOSE_CUSTOM_WINDOW,
+          type: ActionTypes.CLOSE_WINDOW,
           data: window
         });
   },
+    
   showSnapshot:function(snapshot){
       WinAppDispatcher.dispatch({
         type:ActionTypes.SHOW_SNAP_SHOT,

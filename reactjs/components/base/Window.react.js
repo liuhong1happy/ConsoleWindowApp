@@ -56,6 +56,7 @@ var Window = React.createClass({
                     y:this.state.position.y
                 },
                 render:"window",
+                type:this.props.type
             }
         },
         onClick:function(e){
@@ -66,14 +67,14 @@ var Window = React.createClass({
                     data.show = false;
                     data.snapshot = snapshot;
                     // 传递事件
-                    WinSettingsActionCreators.minCustomWindow(data);
+                    WinSettingsActionCreators.minWindow(data);
                     break;
                 case "maxbutton":
                     break;
                 case "closebutton":
                     var data = this.getEventData();
                     // 传递事件
-                    WinSettingsActionCreators.closeCustomWindow(data);
+                    WinSettingsActionCreators.closeWindow(data);
                     break;
             }
         },

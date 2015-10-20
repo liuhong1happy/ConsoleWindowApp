@@ -1,5 +1,6 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 var SnapShot = React.createClass({
     getInitialState: function() {
         return {
@@ -14,6 +15,14 @@ var SnapShot = React.createClass({
     },
     handleUnhover: function() {
         this.setState({hover: false});
+    },
+    showWindow:function(){
+        WinSettingsActionCreators.showWindow(this.state.window)
+    },
+    closeWindow:function(){
+        WinSettingsActionCreators.closeWindow(this.state.window);
+        if(this.props.closeSnapShot) 
+            this.props.closeSnapShot(this.state.order);
     },
     render: function() {
         var snapshot = this.state.snapshot;
@@ -51,7 +60,7 @@ var SnapShot = React.createClass({
         var  titleStyle = {
             lineHeight:"30px",
             height:30,
-            width:200,
+            width:180,
             verticalAlign:"middle",
             display:"inline",
             float:"left",
@@ -63,11 +72,30 @@ var SnapShot = React.createClass({
             height:135,
             padding:"0px 5px"
         }
+        var closeStyle = {
+            display:this.state.hover?"inline":"none",
+            backgroundColor:"#B0171F",
+            color:"#fff",
+            border:"1px solid #333",
+            boxShadow:"inset 0px 0px 3px #fff,0px 0px 3px #fff",
+            height:20,
+            width:20,
+            margin:"5px",
+            lineHeight:"20px",
+            borderRadius:"5px",
+            float:"right",
+            verticalAlign:"middle",
+            textAlign:"center",
+            boxSizing:"border-box",
+            fontSize:"12px"
+        }
+        
         return (
-            <div style={parentStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover} >
+            <div style={parentStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover} onClick={this.showWindow}>
                 <div style={headerStyle}>
                     <img src={_window.image?_window.image:snapshot.image} style={imgStyle}/>
                     <div style={titleStyle}>{ _window.name?_window.name:snapshot.name }</div>
+                    <div style={closeStyle} onClick={this.closeWindow}>x</div>
                 </div>
                 <div style={bodyStyle}>
                     <img  src={snapshot.snapshot} type="image/svg+xml" style={snapshotStyle} />

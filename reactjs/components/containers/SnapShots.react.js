@@ -6,7 +6,7 @@ var WinAppObjectUtils = require('../../utils/WinAppObjectUtils');
 
 var isNull  = WinAppObjectUtils.isNull;
 var SnapShots = React.createClass({
-  getInitialState: function() {
+    getInitialState: function() {
     return { 
         show:true,
         hover:false,
@@ -20,9 +20,8 @@ var SnapShots = React.createClass({
             bottom:this.props.bottom?this.props.bottom:3
         }
     };
-  },
-  setTimeOut:function(){
-      return;
+    },
+    setTimeOut:function(){
       var _self = this;
       if(this.state.timeout){
           clearTimeout(this.state.timeout);
@@ -34,28 +33,41 @@ var SnapShots = React.createClass({
                 timeout:null
             });
         }
-    },3000);
+    },1000);
       this.setState({
         show:true,
         timeout:timeoutId
     });
-  },
-  componentDidMount: function() {
+    },
+    componentDidMount: function() {
     this.setTimeOut();
     WinSettingsStore.addChangeListener(WinAppConstants.EventTypes.SNAPSHOTS,this._onChange);
-  },
-  componentWillUnmount: function() {
+    },
+    componentWillUnmount: function() {
     WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.SNAPSHOTS,this._onChange);
-  },
-  _onChange:function(){
-    this.setTimeOut();
-    this.setState({
-        snapshot:WinSettingsStore.getSnapShot(),
-        show:true,
-        hover:false
-    });
-  },
-  render: function() {
+    },
+    _onChange:function(){
+        this.setTimeOut();
+        this.setState({
+            snapshot:WinSettingsStore.getSnapShot(),
+            show:true,
+            hover:false
+        });
+    },
+    closeSnapShot:function(order){
+     this.state.snapshot.snapshots.splice(order,1);
+     this.setState({
+         snapshot:this.state.snapshot
+     });
+    },
+    handleHover: function() {
+    this.setState({hover: true});
+    },
+    handleUnhover: function() {
+        this.setTimeOut();
+        this.setState({hover: false});
+    },
+    render: function() {
         if( isNull(this.state.snapshot.app) && this.state.snapshot.snapshots.length==0){
             return (<div style={divStyle}></div>);
         }
@@ -80,14 +92,16 @@ var SnapShots = React.createClass({
             boxSizing:"border-box"
         }
         var order = -1;
+        var closeSnapShot = this.closeSnapShot;
         return (
-            <div style={divStyle}>
+            <div style={divStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover}>
                 {
                     this.state.snapshot.snapshots.map(function(result) {
                         order+=1;
                         result.name = result.name?result.name:data.app.name;
                         result.image = result.image?result.image:data.app.image;
-                        return <SnapShot key={ result.id }  order={order} snapshot={result} />;
+                        return <SnapShot key={ order+result.id }  order={order} snapshot={result}  closeSnapShot={closeSnapShot}
+                        />;
                     })
                 }
             </div>

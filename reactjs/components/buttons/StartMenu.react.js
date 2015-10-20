@@ -19,7 +19,8 @@ var StartMenu = React.createClass({
         this.setState({hover: false});
     },
     handleClick:function(){
-        WinSettingsActionCreators.toggleSystemWindow(this.state.button.window);
+        var _window = WinSettingsStore.getWindowById(this.state.button.window.id);
+        WinSettingsActionCreators.toggleWindow(_window);
     },
     render: function() {
         var defaultStyle = {
