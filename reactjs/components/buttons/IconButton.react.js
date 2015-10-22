@@ -1,9 +1,10 @@
 var React = require('react');
 var Button = require('../base/Button.react');
+var HoverMixin = require('../mixins/HoverMixin.react');
 var IconButton = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
-            hover:false,
             size:32,
             display:{
                 height:this.props.height?this.props.height:36,
@@ -12,12 +13,6 @@ var IconButton = React.createClass({
             image:this.props.image?this.props.image:"images/winlogo.png",
             name:this.props.name?this.props.name:"windows 7"
         };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
     },
     render: function() {
         var parentStyle = {

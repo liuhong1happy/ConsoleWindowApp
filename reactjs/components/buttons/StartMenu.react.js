@@ -1,22 +1,17 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
+var HoverMixin = require('../mixins/HoverMixin.react');
 var StartMenu = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
-    return { 
-        hover:false,
-        button:WinSettingsStore.getStartMenu(),
-        display:{
-            height:46,
-            width:57
-        }
-    };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
+        return { 
+            button:WinSettingsStore.getStartMenu(),
+            display:{
+                height:46,
+                width:57
+            }
+        };
     },
     handleClick:function(){
         var _window = WinSettingsStore.getWindowById(this.state.button.window.id);
@@ -32,9 +27,11 @@ var StartMenu = React.createClass({
             left:"0",
             bottom:"0",
             cursor:"pointer"
-        }
+        };
         return (
-            <div   style={defaultStyle} 
+            <div  
+
+            style={defaultStyle} 
                       onMouseEnter={this.handleHover}
                       onMouseLeave={this.handleUnhover}
                       onClick={this.handleClick}

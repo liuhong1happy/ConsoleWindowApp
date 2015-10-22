@@ -1,11 +1,11 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-
+var HoverMixin = require('../mixins/HoverMixin.react');
 var TaskBarButton = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
             focus:false,
-            hover:false,
             order:this.props.order,
             button:this.props.button,
             hoverBackground:"url(static/images/taskbarhover.png)",
@@ -31,10 +31,6 @@ var TaskBarButton = React.createClass({
                     windows:this.state.button.windows
                 });
             }
-            this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
     },
     handleFocus:function(){
         this.setState({focus: true});
@@ -58,8 +54,6 @@ var TaskBarButton = React.createClass({
             divStyle.backgroundColor = this.state.hover?"rgba(255,255,255,0.7)":"rgba(255,255,255,0.4)";
             divStyle.boxShadow=this.state.hover?"inset 0px 0px 3px #fff":"inset 0px -1px 3px #fff";
             divStyle.border = "1px solid rgba(255,255,255,0.4)";
-            
-
         }
         var imgStyle = {
             margin:"4px 12px",

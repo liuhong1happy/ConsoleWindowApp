@@ -1,20 +1,15 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
+var HoverMixin = require('../mixins/HoverMixin.react');
 var SnapShot = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
         return {
-            hover:false,
             order:this.props.order?this.props.order:0,
             snapshot:this.props.snapshot,
             window:WinSettingsStore.getWindowById(this.props.snapshot.id)
         };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
     },
     showWindow:function(){
         WinSettingsActionCreators.showWindow(this.state.window)

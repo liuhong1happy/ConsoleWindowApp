@@ -1,21 +1,16 @@
 var React = require('react');
 var Button = require('../base/Button.react');
+var HoverMixin = require('../mixins/HoverMixin.react');
 var CloseSystemButton = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
-            hover:false,
             display:{
                 height:this.props.height?this.props.height:24,
                 width:this.props.width?this.props.width:100
             },
             content:this.props.name
         };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
     },
     render: function() {
         var parentStyle = {

@@ -1,25 +1,19 @@
 var React = require('react');
-
+var HoverMixin = require('../mixins/HoverMixin.react');
 var DesktopButton = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
-    return { 
-        hover:false,
-        button:this.props.button,
-        order:this.props.order,
-        background:{
-            color:"rgba(0,120,240,0.5)"
-        },
-        display:{
-            height:this.props.height?this.props.height:100,
-            width:this.props.width?this.props.width:80
-        }
-    };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
+        return { 
+            button:this.props.button,
+            order:this.props.order,
+            background:{
+                color:"rgba(0,120,240,0.5)"
+            },
+            display:{
+                height:this.props.height?this.props.height:100,
+                width:this.props.width?this.props.width:80
+            }
+        };
     },
     render: function() {
         var order = this.state.order;

@@ -1,22 +1,17 @@
 var React = require('react');
 var Button = require('../base/Button.react');
-// View
+var HoverMixin = require('../mixins/HoverMixin.react');
+
 var StartMenuButton = React.createClass({
+    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
-            hover:false,
             display:{
                 height:this.props.height?this.props.height:30,
                 width:this.props.width?this.props.width:140
             },
             content:this.props.name
         };
-    },
-    handleHover: function() {
-        this.setState({hover: true});
-    },
-    handleUnhover: function() {
-        this.setState({hover: false});
     },
     render: function() {
         var parentStyle = {
