@@ -1,5 +1,6 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
+
 var Window = React.createClass({
         getInitialState: function() {
             return { 
@@ -18,16 +19,6 @@ var Window = React.createClass({
                 },
                 where:this.props.where?this.props.where:["top","left"]
             };
-        },
-        onMouseEnter:function(e){
-            var hover = {};
-            hover[e.target.className] = true;
-            this.setState({hover:hover});
-        },
-        onMouseLeave:function(e){
-            var hover = {};
-            hover[e.target.className] = false;
-            this.setState({hover:hover});
         },
         genSnapShot:function(){
             // 生成snapshot
@@ -60,7 +51,7 @@ var Window = React.createClass({
             }
         },
         onClick:function(e){
-            switch(e.target.className){
+            switch(e.target.id){
                 case "minbutton":
                     var snapshot = this.genSnapShot();
                     var data = this.getEventData();
@@ -110,68 +101,12 @@ var Window = React.createClass({
                 height:20,
                 width:130
             };
-            var minButtonStyle = {
-                width:32,
-                display:"inline-block",
-                textAlign:"center",
-                lineHeight:"20px",
-                color:"#fff",
-                border:"1px solid #333",
-                borderTop:"0px solid transparent",
-                borderBottomLeftRadius:"5px",
-                boxShadow:this.state.hover.minbutton?
-                "0px 0px 20px #fff,inset 0px 0px 10px #fff"
-                :"0px 0px 3px #fff,inset 0px 0px 3px #fff",
-                background:this.state.hover.minbutton?
-                "linear-gradient(rgba(0,120,240,0.3) 0%,rgba(0,120,240,0.1) 40%,rgba(0,120,240,1) 41%,rgba(0,120,240,0.6) 100%)"
-                :"linear-gradient(rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.1) 40%,rgba(0,120,240,0.7) 41%,rgba(0,120,240,0.3) 100%)"
-            };
-            var maxButtonStyle = {
-                width:32,
-                display:"inline-block",
-                textAlign:"center",
-                lineHeight:"20px",
-                color:"#fff",
-                margin:"1px",
-                borderBottom:"1px solid #333",
-                 boxShadow:this.state.hover.maxbutton?
-                "0px 0px 20px #fff,inset 0px 0px 10px #fff"
-                :"0px 0px 3px #fff,inset 0px 0px 3px #fff",
-                background:this.state.hover.maxbutton?
-                "linear-gradient(rgba(0,120,240,0.3) 0%,rgba(0,120,240,0.1) 40%,rgba(0,120,240,1) 41%,rgba(0,120,240,0.6) 100%)"
-                :"linear-gradient(rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.1) 40%,rgba(0,120,240,0.7) 41%,rgba(0,120,240,0.3) 100%)"
-            };
-            var closeButtonStyle = {
-                width:60,
-                display:"inline-block",
-                textAlign:"center",
-                lineHeight:"20px",
-                color:"#fff",
-                border:"1px solid #333",
-                borderTop:"0px solid transparent",
-                borderBottomRightRadius:"5px",
-                boxShadow:this.state.hover.closebutton?
-                "0px 0px 20px #fff,inset 0px 0px 10px #fff"
-                :"0px 0px 3px #fff,inset 0px 0px 3px #fff",
-                background:"linear-gradient(rgba(240,0,120,0.8) 0%,rgba(240,0,120,0.6) 40%,rgba(240,0,120,1) 41%,rgba(240,0,120,0.6) 100%)"
-            };
             return (
                 <div style={parentStyle} ref="content">
                     <div style={buttonsStyle}>
-                        <div style={minButtonStyle} ref="minbutton" className="minbutton"
-                            onMouseEnter={this.onMouseEnter} 
-                            onMouseLeave={this.onMouseLeave} 
-                            onClick={this.onClick}
-                        >一</div>
-                        <div style={maxButtonStyle} ref="maxbutton" className="maxbutton"
-                            onMouseEnter={this.onMouseEnter} 
-                            onMouseLeave={this.onMouseLeave} 
-                        >口</div>
-                        <div style={closeButtonStyle} ref="closebutton" className="closebutton"
-                            onMouseEnter={this.onMouseEnter} 
-                            onMouseLeave={this.onMouseLeave} 
-                            onClick={this.onClick}
-                        >X</div> 
+                        <div ref="minbutton" id="minbutton" className="btn btn-win btn-win-min" onClick={this.onClick}>一</div>
+                        <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max">口</div>
+                        <div ref="closebutton" id="closebutton" className="btn btn-win btn-win-close" onClick={this.onClick}>X</div> 
                     </div>
                     <div style={contentStyle} >
                             {this.props.children}

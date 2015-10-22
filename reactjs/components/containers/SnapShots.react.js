@@ -60,7 +60,7 @@ var SnapShots = React.createClass({
          snapshot:this.state.snapshot
      });
     },
-    handleUnhover: function() {
+    _handleUnhover: function() {
         this.setTimeOut();
     },
     render: function() {

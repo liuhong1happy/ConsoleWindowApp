@@ -19,7 +19,7 @@ var TaskBarButton = React.createClass({
             }
         };
     },
-    handleHover: function() {
+    _handleHover: function() {
             if(this.state.hover || this.state.button.window || this.state.button.windows ){
                 WinSettingsActionCreators.showSnapshot({
                     app:{
