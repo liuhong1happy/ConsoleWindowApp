@@ -71,44 +71,24 @@ var Window = React.createClass({
         },
         render: function() {
             var parentStyle = {
-                cursor:"pointer",
-                borderRadius:"10px 10px 5px 5px",
-                backgroundColor:"rgba(0,120,240,0.5)",
-                zIndex:999,
-                position:"absolute",
                 width:this.state.display.width,
                 height:this.state.display.height,
-                padding:"40px 10px 10px 10px",
-                border:"1px solid #333",
-                boxShadow:"inset 0px 0px 3px #fff",
-                overflow:"hidden",
                 top:this.state.position.y,
                 left:this.state.position.x,
-                display:this.props.show?"inline-block":"none"
+                display:this.props.show?"inline-block":"none",
             };
             var contentStyle = {
-                backgroundColor:"#fff",
                 width:this.state.display.width,
                 height:this.state.display.height,
-                border:"1px solid #666",
-                boxShadow:"0px 0px 3px #fff"
-            };
-            var buttonsStyle = {
-                position:"absolute",
-                top:0,
-                left:this.state.display.width-120,
-                backgroundColor:"rgba(0,120,240,0.3)",
-                height:20,
-                width:130
             };
             return (
-                <div style={parentStyle} ref="content">
-                    <div style={buttonsStyle}>
+                <div style={parentStyle} ref="content" className="win window">
+                    <div className="win-btns">
                         <div ref="minbutton" id="minbutton" className="btn btn-win btn-win-min" onClick={this.onClick}>一</div>
                         <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max">口</div>
                         <div ref="closebutton" id="closebutton" className="btn btn-win btn-win-close" onClick={this.onClick}>X</div> 
                     </div>
-                    <div style={contentStyle} >
+                    <div style={contentStyle} className="win-content">
                             {this.props.children}
                     </div>
                 </div>

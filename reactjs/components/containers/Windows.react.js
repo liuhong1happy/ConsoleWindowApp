@@ -22,7 +22,6 @@ var Windows = React.createClass({
         WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
         WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WINDOWS,this._onChange);
   },
-
     _onChange:function(){
         this.setState({ 
             windows:WinSettingsStore.getWindows(),

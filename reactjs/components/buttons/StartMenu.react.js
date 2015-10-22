@@ -1,9 +1,8 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-var HoverMixin = require('../mixins/HoverMixin.react');
+
 var StartMenu = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
             button:WinSettingsStore.getStartMenu(),
@@ -32,8 +31,6 @@ var StartMenu = React.createClass({
             <div  
 
             style={defaultStyle} 
-                      onMouseEnter={this.handleHover}
-                      onMouseLeave={this.handleUnhover}
                       onClick={this.handleClick}
             >
             </div>

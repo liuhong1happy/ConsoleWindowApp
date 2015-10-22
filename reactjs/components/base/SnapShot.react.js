@@ -1,9 +1,7 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-var HoverMixin = require('../mixins/HoverMixin.react');
 var SnapShot = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
         return {
             order:this.props.order?this.props.order:0,
@@ -18,6 +16,13 @@ var SnapShot = React.createClass({
         WinSettingsActionCreators.closeWindow(this.state.window);
         if(this.props.closeSnapShot) 
             this.props.closeSnapShot(this.state.order);
+    },
+    handleHover:function(){
+        this.setState({hover:true});
+    },
+    handleUnhover: function() {
+        this.setTimeOut();
+        this.setState({hover:false});
     },
     render: function() {
         var snapshot = this.state.snapshot;

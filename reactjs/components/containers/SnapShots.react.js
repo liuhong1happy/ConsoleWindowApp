@@ -3,12 +3,11 @@ var WinSettingsStore = require('../../stores/WinSettingsStore');
 var SnapShot = require('../base/SnapShot.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
 var WinAppObjectUtils = require('../../utils/WinAppObjectUtils');
-var HoverMixin = require('../mixins/HoverMixin.react');
 var isNull  = WinAppObjectUtils.isNull;
 var SnapShots = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
     return { 
+        hover:false,
         show:true,
         snapshot:WinSettingsStore.getSnapShot(),
         display:{
@@ -60,8 +59,12 @@ var SnapShots = React.createClass({
          snapshot:this.state.snapshot
      });
     },
-    _handleUnhover: function() {
+    handleHover:function(){
+        this.setState({hover:true});
+    },
+    handleUnhover: function() {
         this.setTimeOut();
+        this.setState({hover:false});
     },
     render: function() {
         if( isNull(this.state.snapshot.app) && this.state.snapshot.snapshots.length==0){

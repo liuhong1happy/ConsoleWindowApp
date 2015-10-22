@@ -1,7 +1,5 @@
 var React = require('react');
-var HoverMixin = require('../mixins/HoverMixin.react');
 var DesktopButton = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
             button:this.props.button,
@@ -59,9 +57,7 @@ var DesktopButton = React.createClass({
         };
         return (
             <li style={liStyle}>
-                <div style={divStyle}
-                        onMouseEnter={this.handleHover}
-                        onMouseLeave={this.handleUnhover} >
+                <div style={divStyle}>
                     <div style={imgStyle}></div>
                     <div style={pStyle}>{this.state.button.name}</div>
                 </div>

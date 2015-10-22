@@ -1,8 +1,6 @@
 var React = require('react');
 var Button = require('../base/Button.react');
-var HoverMixin = require('../mixins/HoverMixin.react');
 var IconButton = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
             size:32,

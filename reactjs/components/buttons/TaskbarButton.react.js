@@ -1,8 +1,6 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-var HoverMixin = require('../mixins/HoverMixin.react');
 var TaskBarButton = React.createClass({
-    mixins:[HoverMixin],
     getInitialState: function() {
         return { 
             focus:false,
@@ -62,8 +60,6 @@ var TaskBarButton = React.createClass({
         };
         return (
                 <div style={divStyle} 
-                      onMouseEnter={this.handleHover}
-                      onMouseLeave={this.handleUnhover}
                       onClick={this.handleFocus}
                 >
                 <img src={this.state.button.image} style={imgStyle} />

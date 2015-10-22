@@ -2,7 +2,6 @@ var React = require('react');
 var DesktopButtons = require('./DesktopButtons.react');
 var Windows = require('./Windows.react');
 var SnapShots = require('./SnapShots.react');
-
 var Desktop = React.createClass({
   getInitialState: function() {
     return { 
@@ -22,7 +21,8 @@ var Desktop = React.createClass({
             width:this.props.width?this.props.width:this.state.display.width, 
             position:"absolute",
             left:"0",
-            top:"0"
+            top:"0",
+            overflow:"hidden"
         }
         return (
             <div style={divStyle}>
