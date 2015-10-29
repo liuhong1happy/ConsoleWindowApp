@@ -88,6 +88,75 @@
     padding:40px 10px 10px 10px;
 }
 
+
+/*window resize*/
+
+.resize-ns-n{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 100%;
+    height: 10px;
+    cursor: ns-resize;
+}
+.resize-ns-s{
+    position: absolute;
+    left: 0px;
+    bottom:0px;
+    width: 100%;
+    height: 10px;
+    cursor: ns-resize;
+}
+.resize-ew-e{
+    position: absolute;
+    left: 0px;
+    top:0px;
+    width: 10px;
+    height: 100%;
+    cursor: ew-resize;
+}
+.resize-ew-w{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 10px;
+    height: 100%;
+    cursor: ew-resize;
+}
+.resize-ne{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 10px;
+    height: 10px;
+    cursor: nw-resize;
+}
+.resize-nw{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 10px;
+    height: 10px;
+    cursor: ne-resize;
+}
+
+.resize-se{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 10px;
+    height: 10px;
+    cursor: sw-resize;
+}
+.resize-sw{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 10px;
+    height: 10px;
+    cursor: se-resize;
+}
+
 /*buttons*/
 .btn-start-menu{
         border-radius:5px;

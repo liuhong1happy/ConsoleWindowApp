@@ -69,6 +69,26 @@ var Window = React.createClass({
                     break;
             }
         },
+        onRezie:function(e){
+            var $window = this.refs.content.getDOMNode();
+            $window.style.width = e.width;
+            $window.style.height = e.height;
+            $window.style[this.state.where[0]] = e.position.x;
+            $window.style[this.state.where[1]] = e.position.y;
+            // resize完毕
+            if(e.up==true && e.down==false){
+                this.setState({
+                    display:{
+                        height:e.height,
+                        width:e.width
+                    },
+                    position:{
+                        x:e.position.x,
+                        y: e.position.y
+                    }
+                });
+            }
+        },
         render: function() {
             var parentStyle = {
                 width:this.state.display.width,
@@ -81,6 +101,9 @@ var Window = React.createClass({
                 width:this.state.display.width,
                 height:this.state.display.height,
             };
+            var resizeStyle = {
+                
+            }
             return (
                 <div style={parentStyle} ref="content" className="win window">
                     <div className="win-btns">
@@ -91,6 +114,7 @@ var Window = React.createClass({
                     <div style={contentStyle} className="win-content">
                             {this.props.children}
                     </div>
+                    <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} where={this.state.where}/>
                 </div>
             );
         }
