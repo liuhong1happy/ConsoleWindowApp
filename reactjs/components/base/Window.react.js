@@ -1,6 +1,6 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-
+var Resize = require('./Resize.react');
 var Window = React.createClass({
         getInitialState: function() {
             return { 
@@ -69,12 +69,16 @@ var Window = React.createClass({
                     break;
             }
         },
-        onRezie:function(e){
-            var $window = this.refs.content.getDOMNode();
-            $window.style.width = e.width;
-            $window.style.height = e.height;
-            $window.style[this.state.where[0]] = e.position.x;
-            $window.style[this.state.where[1]] = e.position.y;
+        onResize:function(e){
+            var $window = this.refs.winborder.getDOMNode();
+            var $content = this.refs.wincontent.getDOMNode();
+            $window.style.width = e.width+"px";
+            $window.style.height = e.height+"px";
+            $window.style[this.state.where[1]] = e.position.x+"px";
+            $window.style[this.state.where[0]] = e.position.y+"px";
+            
+            $content.style.width = e.width+"px";
+            $content.style.height = e.height+"px";
             // resize完毕
             if(e.up==true && e.down==false){
                 this.setState({
@@ -105,16 +109,17 @@ var Window = React.createClass({
                 
             }
             return (
-                <div style={parentStyle} ref="content" className="win window">
+                <div style={parentStyle} ref="winborder" className="win window">
+                    <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} where={this.state.where}/>
                     <div className="win-btns">
                         <div ref="minbutton" id="minbutton" className="btn btn-win btn-win-min" onClick={this.onClick}>一</div>
                         <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max">口</div>
                         <div ref="closebutton" id="closebutton" className="btn btn-win btn-win-close" onClick={this.onClick}>X</div> 
                     </div>
-                    <div style={contentStyle} className="win-content">
+                    <div ref="wincontent" style={contentStyle} className="win-content">
                             {this.props.children}
                     </div>
-                    <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} where={this.state.where}/>
+                    
                 </div>
             );
         }

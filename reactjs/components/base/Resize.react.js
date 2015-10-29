@@ -1,10 +1,11 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 
+
 var Resize = React.createClass({
         getInitialState: function() {
             return { 
-                resizeEvent:{
+                resizeEvent : {
                     down:false,
                     up:false,
                     downClassName:"",
@@ -30,9 +31,8 @@ var Resize = React.createClass({
             };
         },
         onResize:function(){
-            var eve = this.state.resizeEvent;
             if(this.props.onResize)
-                this.props.onResize(eve);
+                this.props.onResize(this.state.resizeEvent);
         },
         getTargetByEvent:function(e){
             e = e || window.event;
@@ -47,75 +47,91 @@ var Resize = React.createClass({
             var y = e.pageY || e.clientY +scrollY;
             return {x:x,y:y};
         },
+        stopPropagation:function(e){
+              if(e.stopPropagation)
+                    e.stopPropagation();
+              else
+                    e.cancelBubble = true;
+        },
         moveToTop:function(offsetY){
+            var resizeEve = this.state.resizeEvent;
             if(this.state.where[0]=="top"){
-                // 改变top也改变height
-                this.setState({resizeEvent:{position:{y:this.state.position.y + offsetY}}});
+                resizeEve.position.y = this.state.position.y + offsetY;
+            }else{
+                resizeEve.height = this.state.display.height - offsetY;
             }
-            this.setState({resizeEvent:{height:this.state.display.height + offsetY}});
+            this.setState({resizeEvent:resizeEve});
         },
         moveToBottom:function(offsetY){
+            var resizeEve = this.state.resizeEvent;
             if(this.state.where[0]=="bottom"){
-                // 改变bottom也改变height
-                this.setState({resizeEvent:{position:{y:this.state.position.y - offsetY}}});
+                resizeEve.position.y = this.state.position.y - offsetY;
+            }else{
+                 resizeEve.height = this.state.display.height + offsetY;
             }
-             this.setState({resizeEvent:{height:this.state.display.height + offsetY}});
+             this.setState({resizeEvent:resizeEve});
         },
         moveToLeft:function(offsetX){
+            var resizeEve = this.state.resizeEvent;
             if(this.state.where[1]=="left"){
-                // 改变left也改变width
-                this.setState({resizeEvent:{position:{x:this.state.position.x + offsetX}}});
+                resizeEve.position.x = this.state.position.x + offsetX;
             }
-            this.setState({resizeEvent:{width:this.state.display.width + offsetX}});
-          
+            resizeEve.width = this.state.display.width - offsetX;  
+            this.setState({resizeEvent:resizeEve});
         },
         moveToRight:function(offsetX){
+            var resizeEve = this.state.resizeEvent;
             if(this.state.where[1]=="right"){
-                // 改变left也改变width
-                this.setState({resizeEvent:{position:{x:this.state.position.x - offsetX}}});
+                 resizeEve.position.x = this.state.position.x - offsetX;
             }
-            this.setState({resizeEvent:{width:this.state.display.width + offsetX}});
+             resizeEve.width = this.state.display.width + offsetX;
+             this.setState({resizeEvent:resizeEve});
         },
         moveToPositoin:function(e){
-            if(this.state.down){
-                var className = this.state.downClassName;
+            if(this.state.resizeEvent.down){
+                var className = this.state.resizeEvent.downClassName;
+                var downPosition = this.state.resizeEvent.downPosition;
+                
                 var upPosition = this.getMousePosition(e);
-                this.setState({upPosition:upPosition});
+                this.state.resizeEvent.upPosition = upPosition;
                 switch(className){
                     case "resize-ns-n":
-                        this.moveToTop(upPosition.y - this.state.downPosition.y);
+                        this.moveToTop(upPosition.y - downPosition.y);
                         break;
                     case "resize-ns-s":
-                        this.moveToBottom(upPosition.y - this.state.downPosition.y);
+                        this.moveToBottom(upPosition.y - downPosition.y);
                         break;
                     case "resize-ew-e":
-                        this.moveToLeft(upPosition.x - this.state.downPosition.x);
+                        this.moveToLeft(upPosition.x - downPosition.x);
                         break;
                     case "resize-ew-w":
-                        this.moveToRight(upPosition.x - this.state.downPosition.x);
+                        this.moveToRight(upPosition.x - downPosition.x);
                         break;
                     case "resize-se":
-                        this.moveToLeft(upPosition.x - this.state.downPosition.x);
-                        this.moveToBottom(upPosition.y - this.state.downPosition.y);
+                        this.moveToLeft(upPosition.x - downPosition.x);
+                        this.moveToBottom(upPosition.y - downPosition.y);
                         break;
                     case "resize-sw":
-                        this.moveToRight(upPosition.x - this.state.downPosition.x);
-                        this.moveToBottom(upPosition.y - this.state.downPosition.y);
+                        this.moveToRight(upPosition.x - downPosition.x);
+                        this.moveToBottom(upPosition.y - downPosition.y);
                         break;
                     case "resize-ne":
-                        this.moveToLeft(upPosition.x - this.state.downPosition.x);
-                        this.moveToTop(upPosition.y - this.state.downPosition.y);
+                        this.moveToLeft(upPosition.x - downPosition.x);
+                        this.moveToTop(upPosition.y - downPosition.y);
                         break;
                     case "resize-nw":
-                        this.moveToRight(upPosition.x - this.state.downPosition.x);
-                        this.moveToTop(upPosition.y - this.state.downPosition.y);
+                        this.moveToRight(upPosition.x - downPosition.x);
+                        this.moveToTop(upPosition.y - downPosition.y);
                         break;
-
+                }
+                if(className.indexOf("resize")==0){
+                    this.onResize();
                 }
             }
         },
         onMouseDown:function(e){
             var target = this.getTargetByEvent(e);
+            var resizeEve = this.state.resizeEvent;
             switch(target.className){
                 case "resize-ns-n":
                 case "resize-ns-s":
@@ -125,41 +141,50 @@ var Resize = React.createClass({
                 case "resize-sw":
                 case "resize-ne":
                 case "resize-nw":
-                    this.setState({
-                        down:true,
-                        up:false,
-                        downClassName:target.className,
-                        downPosition:this.getMousePosition(e)
-                    });
+                    resizeEve.down = true;
+                    resizeEve.up = false;
+                    resizeEve.downClassName = target.className;
+                    resizeEve.downPosition = this.getMousePosition(e);
                     break;
                 default:
-                    this.setState({
-                        down:false,
-                        up:false,
-                        downClassName:""
-                    });
+                    resizeEve.down = false;
+                    resizeEve.up = false;
+                    resizeEve.downClassName = "";
                     break;
             }
+            this.setState({resizeEvent:resizeEve});
+            this.stopPropagation(e);
         },
         onMouseUp:function(e){
             this.moveToPositoin(e);
-            this.setState({resizeEvent:{down:false,up:true,downClassName:""}});
+            var resizeEve = this.state.resizeEvent;
+            resizeEve.down = false;
+            resizeEve.up = true;
+            resizeEve.downClassName = "";
+            
+            this.setState({
+                position:resizeEve.position,
+                display:{
+                    width:resizeEve.width,
+                    height:resizeEve.height
+                }
+            });
+            this.onResize();
+            this.stopPropagation(e);
         },
         onMouseMove:function(e){
             this.moveToPositoin(e);
+            this.stopPropagation(e);
         },
         componentDidMount:function(){
-                window.addEventListener("onmousedown",onMouseDown);
-                window.addEventListener("onmouseup",onMouseUp);
-                window.addEventListener("onmousemove",onMouseMove);
+                window.addEventListener("mousedown",this.onMouseDown);
+                window.addEventListener("mouseup",this.onMouseUp);
+                window.addEventListener("mousemove",this.onMouseMove);
         },
         componentWillUnmount:function(){
-                window.removeEventListener("onmousedown",onMouseDown);
-                window.removeEventListener("onmouseup",onMouseUp);
-                window.removeEventListener("onmousemove",onMouseMove);
-        },
-        componentDidUpdate:function(){
-            this.onResize();
+                window.removeEventListener("mousedown",this.onMouseDown);
+                window.removeEventListener("mouseup",this.onMouseUp);
+                window.removeEventListener("mousemove",this.onMouseMove);
         },
         render: function() {
                var resizeStyle = this.props.style?this.props.style:{};
