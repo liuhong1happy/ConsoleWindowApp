@@ -32,6 +32,6 @@
     ]
   },
   "jest": {
-    "rootDir": "./js"
+    "rootDir": "./reactjs"
   }
 }
