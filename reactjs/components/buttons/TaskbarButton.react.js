@@ -17,7 +17,11 @@ var TaskBarButton = React.createClass({
             }
         };
     },
-    _handleHover: function() {
+    handleUnhover:function(){
+        this.setState({hover:false});
+    },
+    handleHover: function() {
+            this.setState({hover:true});
             if(this.state.hover || this.state.button.window || this.state.button.windows ){
                 WinSettingsActionCreators.showSnapshot({
                     app:{
@@ -59,11 +63,9 @@ var TaskBarButton = React.createClass({
             height:32
         };
         return (
-                <div style={divStyle} 
-                      onClick={this.handleFocus}
-                >
-                <img src={this.state.button.image} style={imgStyle} />
-            </div>
+                <div style={divStyle} onClick={this.handleFocus} onMouseEnter={this.handleHover} onMouseLeave={this.handleUnhover}>
+                    <img src={this.state.button.image} style={imgStyle} />
+                </div>
         );
     }
 });

@@ -24,6 +24,24 @@ var SnapShot = React.createClass({
         this.setTimeOut();
         this.setState({hover:false});
     },
+    setTimeOut:function(){
+      var _self = this;
+      if(this.state.timeout){
+          clearTimeout(this.state.timeout);
+      }
+      var timeoutId = setTimeout(function(){
+        if(!_self.state.hover){
+            _self.setState({
+                show:false,
+                timeout:null
+            });
+        }
+    },200);
+      this.setState({
+        show:true,
+        timeout:timeoutId
+    });
+    },
     render: function() {
         var snapshot = this.state.snapshot;
         var _window = this.state.window;

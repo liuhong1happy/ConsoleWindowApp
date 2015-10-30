@@ -23,7 +23,7 @@ var Window = React.createClass({
         },
         genSnapShot:function(){
             // 生成snapshot
-            var winDom = this.refs.content.getDOMNode();
+            var winDom = this.refs.winborder.getDOMNode();
             var winHtml = winDom.outerHTML;     
             var clientHeight = winDom.clientHeight;
             var clientWidth = winDom.clientWidth;
