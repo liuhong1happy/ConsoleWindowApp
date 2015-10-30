@@ -109,8 +109,8 @@ var Window = React.createClass({
                 display:this.props.show?"inline-block":"none",
             };
             var contentStyle = {
-                width:this.state.resize?this.state.display.width:"auto",
-                height:this.state.resize?this.state.display.height:"auto",
+                width:this.state.resize?this.state.display.width:"100%",
+                height:this.state.resize?this.state.display.height:"100%",
             };
             var resizeStyle = {
                 display:this.state.resize?"block":"none"
