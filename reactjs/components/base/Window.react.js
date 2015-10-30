@@ -4,6 +4,7 @@ var Resize = require('./Resize.react');
 var Window = React.createClass({
         getInitialState: function() {
             return { 
+                resize:true,
                 hover:{
                     minbutton:false,
                     maxbutton:false,
@@ -93,27 +94,33 @@ var Window = React.createClass({
                 });
             }
         },
+        onToggleMax:function(e){
+                var resize = !this.state.resize;
+                this.setState({resize:resize});
+        },
         render: function() {
             var parentStyle = {
-                width:this.state.display.width,
-                height:this.state.display.height,
-                top:this.state.position.y,
-                left:this.state.position.x,
+                width:this.state.resize?this.state.display.width:"auto",
+                height:this.state.resize?this.state.display.height:"auto",
+                top:this.state.resize?this.state.position.y:0,
+                left:this.state.resize?this.state.position.x:0,
+                right:this.state.resize?"":0,
+                bottom:this.state.resize?"":0,
                 display:this.props.show?"inline-block":"none",
             };
             var contentStyle = {
-                width:this.state.display.width,
-                height:this.state.display.height,
+                width:this.state.resize?this.state.display.width:"auto",
+                height:this.state.resize?this.state.display.height:"auto",
             };
             var resizeStyle = {
-                
-            }
+                display:this.state.resize?"block":"none"
+            };
             return (
                 <div style={parentStyle} ref="winborder" className="win window">
                     <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} where={this.state.where}/>
                     <div className="win-btns">
                         <div ref="minbutton" id="minbutton" className="btn btn-win btn-win-min" onClick={this.onClick}>一</div>
-                        <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max">口</div>
+                        <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max" onClick={this.onToggleMax}>口</div>
                         <div ref="closebutton" id="closebutton" className="btn btn-win btn-win-close" onClick={this.onClick}>X</div> 
                     </div>
                     <div ref="wincontent" style={contentStyle} className="win-content">
