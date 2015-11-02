@@ -5,8 +5,14 @@ var IconButton = React.createClass({
         return { 
             size:32,
             image:this.props.image?this.props.image:"images/winlogo.png",
-            name:this.props.name?this.props.name:"windows 7"
+            name:this.props.name?this.props.name:"windows 7",
+            app_id:this.props.app_id?this.props.app_id:""
         };
+    },
+    handleClick:function(){
+        if(this.props.onClick){
+            this.props.onClick(this.state.app_id);
+        }
     },
     render: function() {
         var pStyle={
@@ -21,8 +27,7 @@ var IconButton = React.createClass({
             height:this.state.size
         }
         return (
-            <Button className="btn btn-icon" onClick={this.props.onClick}
-            >
+            <Button className="btn btn-icon" onClick={this.handleClick}>
                 <p style={pStyle}>
                     <img src={this.state.image} style={imgStyle} />
                     <span style={pStyle}>{this.state.name}</span>

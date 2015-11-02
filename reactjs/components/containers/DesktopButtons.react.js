@@ -2,6 +2,8 @@ var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var DesktopButton = require('../buttons/DesktopButton.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
+
 var DesktopButtons = React.createClass({
   getInitialState: function() {
     return { 
@@ -20,6 +22,10 @@ var DesktopButtons = React.createClass({
   },
   _onChange:function(){
     this.setState({buttons:WinSettingsStore.getDesktopBars()});
+  },
+  handleClick:function(app_id){
+      var app = WinSettingsStore.getAppById(app_id);
+      if(app) WinSettingsActionCreators.openWindow(app);
   },
   render: function() {
         var buttonStyle = {
@@ -42,9 +48,7 @@ var DesktopButtons = React.createClass({
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;
-                        return <DesktopButton parentWidth={parentWidth}
-                                parentHeight={parentHeight}
-                                key={ result.id }  order={order} button={result} />;
+                        return <DesktopButton parentWidth={parentWidth} parentHeight={parentHeight} key={ result.id }  order={order} button={result} onClick={this.handleClick}/>;
                     })
                 }
             </ul>

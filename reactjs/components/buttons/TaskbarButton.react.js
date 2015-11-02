@@ -36,6 +36,9 @@ var TaskBarButton = React.createClass({
     },
     handleFocus:function(){
         this.setState({focus: true});
+        if((this.state.button.window || this.state.button.windows) && this.props.onClick){
+            this.props.onClick(this.state.button.id)
+        }
     },
     render: function() {
         var divStyle = {

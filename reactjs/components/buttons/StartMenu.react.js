@@ -28,11 +28,7 @@ var StartMenu = React.createClass({
             cursor:"pointer"
         };
         return (
-            <div  
-
-            style={defaultStyle} 
-                      onClick={this.handleClick}
-            >
+            <div  style={defaultStyle}  onClick={this.handleClick} >
             </div>
         );
     }

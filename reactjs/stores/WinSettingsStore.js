@@ -152,6 +152,24 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
         }
         return findObj;
     },
+    getAppById:function(id){
+        var SystemApps = WinSettings.SystemApps;
+        var CustomApps = WinSettings.CustomApps;
+        var apps = SystemApps.filter(function(ele,pos){
+            return ele.id == id;   
+        })
+        if(apps.length>0){
+            return apps[0];
+        }
+        var apps = CustomApps.filter(function(ele,pos){
+            return ele.id == id;   
+        })
+        if(apps.length>0){
+            return apps[0];
+        }else{
+            return null;
+        }
+    },
     getSnapShot:function(){
         if(!isNull(WinSettings.SnapShot)){
             return WinSettings.SnapShot;
@@ -160,6 +178,15 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
                 app:{},
                 snapshots:[]
             };
+        }
+    },
+    addWindow:function(win){
+        win.id = win.app_id+"-"+Math.round(Math.random()*1000);
+        if(win.type=="CustomWin"){
+            WinSettings.CustomWins.push(win);
+        }
+        if(win.type=="SystemWin"){
+            WinSettings.SystemWins.push(win);
         }
     }
 });
@@ -315,6 +342,20 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                     WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
                     WinSettingsStore.emitChange(WinAppConstants.EventTypes.SNAPSHOTS);
                 }
+            }
+            break;
+        case ActionTypes.OPEN_WINDOW:
+            var app = action.data;
+            if(app.config){
+                var config = app.config;
+                config.app_id = app.id;
+                config.image = app.image;
+                config.show = true;
+                config.fixed = app.fixed;
+                WinSettingsStore.addWindow(config);
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.SNAPSHOTS);
             }
             break;
         case ActionTypes.SHOW_SNAP_SHOT:

@@ -16,7 +16,7 @@ module.exports = {
         { 
             id:"IE",name:"IE",image:"static/images/ie.png", where:["taskbar","startmenu"],render:"Button",fixed:true,type:"CustomApp",
             config:{
-                render:"Window",position:{y:100,x:100}, width:1024,height:700, 
+                render:"Window",position:{y:100,x:100}, width:1024,height:700, type:"CustomWin",
                 content:{ 
                     render:"iframe",
                     config:{ 
@@ -38,7 +38,6 @@ module.exports = {
                     snapshot:null
                 }
             }
-            
         },
         { id:1,name:"文件浏览器",image:"static/images/library.png", where:["taskbar","startmenu"],render:"Button",fixed:true,type:"CustomApp"},
         { id:2,name:"视频播放器",image:"static/images/mp.png", where:["taskbar","startmenu"],render:"Button",fixed:true,type:"CustomApp"}

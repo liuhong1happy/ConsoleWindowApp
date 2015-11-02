@@ -5,6 +5,7 @@ var CloseSystemButton = require('../buttons/CloseSystemButton.react');
 var StartMenuButton = require('../buttons/StartMenuButton.react');
 var IconButton = require('../buttons/IconButton.react');
 var Splitter = require('../base/Splitter.react');
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators')
 var StartMenuWidget = React.createClass({
     getInitialState: function() {
         return { 
@@ -24,8 +25,9 @@ var StartMenuWidget = React.createClass({
     componentWillUpdate:function(){
       var state = this.props.show;
     },
-    handleClick:function(){
-        alert("H");
+    handleClick:function(app_id){
+      var app = WinSettingsStore.getAppById(app_id);
+      if(app) WinSettingsActionCreators.openWindow(app);
     },
     render: function() {
         var parentStyle = {
@@ -74,6 +76,7 @@ var StartMenuWidget = React.createClass({
                                             size:32,
                                             width:282,
                                             key:result.id,
+                                            app_id:result.id,
                                             name:result.name,
                                             image:result.image,
                                             onClick:handleClick
@@ -95,6 +98,7 @@ var StartMenuWidget = React.createClass({
                                             height:result.height,
                                             width:result.width,
                                             key:result.id,
+                                            app_id:result.id,
                                             name:name,
                                             onClick:handleClick
                                         },  null

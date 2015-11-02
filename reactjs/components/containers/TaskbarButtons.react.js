@@ -2,7 +2,7 @@ var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
 var TaskBarButton = require('../buttons/TaskbarButton.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
-
+var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 var TaskBarButtons = React.createClass({
   getInitialState: function() {
     return { 
@@ -28,6 +28,10 @@ var TaskBarButtons = React.createClass({
   _onChange:function(){
     this.setState({buttons:WinSettingsStore.getTaskBars()});
   },
+  handleClick:function(app_id){
+      var app = WinSettingsStore.getAppById(app_id);
+      if(app) WinSettingsActionCreators.openWindow(app);
+  },
   render: function() {
         var taskStyle = {
             height:this.state.display.height,
@@ -45,7 +49,7 @@ var TaskBarButtons = React.createClass({
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;
-                        return <TaskBarButton key={ result.id }  order={order} button={result} />;
+                        return <TaskBarButton key={ result.id }  order={order} button={result} onClick={this.handleClick} />;
                     })
                 }
             </div>

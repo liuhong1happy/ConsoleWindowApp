@@ -13,6 +13,11 @@ var DesktopButton = React.createClass({
             }
         };
     },
+    handleClick:function(){
+        if(this.props.onClick){
+            this.props.onClick(this.state.button.id)
+        }  
+    },
     render: function() {
         var order = this.state.order;
         var grid = {
