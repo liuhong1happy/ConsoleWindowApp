@@ -7,11 +7,7 @@ var WinAppConstants = require('../../constants/WinAppConstants');
 var Windows = React.createClass({
   getInitialState: function() {
     return { 
-        windows:WinSettingsStore.getWindows(),
-        display:{
-            height:this.props.height?this.props.height : 1080-46,
-            width:this.props.width?this.props.width : 1920
-        }
+        windows:WinSettingsStore.getWindows()
     };
   },
   componentDidMount: function() {
@@ -22,22 +18,14 @@ var Windows = React.createClass({
         WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WIN_SETTINS,this._onChange);
         WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.WINDOWS,this._onChange);
   },
-    _onChange:function(){
+  _onChange:function(){
         this.setState({ 
-            windows:WinSettingsStore.getWindows(),
-            display:{
-                height:this.props.height?this.props.height : 1080-46,
-                width:this.props.width?this.props.width : 1920
-            }
+            windows:WinSettingsStore.getWindows()
         });
     },
   render: function() {
-        var divStyle = {
-            width:"100%",
-            height:"100%"
-        };
         return (
-            <div style={divStyle}>
+            <div className="windows-container">
                 {
                     this.state.windows.map(function(result) {
                         var content = result.content;

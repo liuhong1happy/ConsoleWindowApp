@@ -7,14 +7,7 @@ var TaskBarButtons = React.createClass({
   getInitialState: function() {
     return { 
         buttons:WinSettingsStore.getTaskBars(),
-        display:{
-            height:46,
-            width:1920-57
-        },
-        position:{
-            bottom:0,
-            left:57
-        }
+        display:{width:this.props.width?this.props.width:1920-57}
     };
   },
   componentDidMount: function() {
@@ -33,19 +26,13 @@ var TaskBarButtons = React.createClass({
       if(app) WinSettingsActionCreators.openWindow(app);
   },
   render: function() {
-        var taskStyle = {
-            height:this.state.display.height,
-            width:this.state.display.width,
-            position:"absolute",
-            left:this.state.position.left,
-            bottom:this.state.position.bottom
-        }
+        var taskStyle = {width:this.state.display.width}
         var order = -1;
         if(this.state.buttons.length==0){
             return (<div style={taskStyle}></div>);
         }
         return (
-            <div style={taskStyle}>
+            <div className="taskbar-buttons" style={taskStyle}>
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;

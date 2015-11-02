@@ -22,51 +22,18 @@ var StartMenuWidget = React.createClass({
             where:this.props.where?this.props.where:["bottom","left"]
         };
     },
-    componentWillUpdate:function(){
-      var state = this.props.show;
-    },
     handleClick:function(app_id){
       var app = WinSettingsStore.getAppById(app_id);
       if(app) WinSettingsActionCreators.openWindow(app);
     },
     render: function() {
-        var parentStyle = {
-            cursor:"pointer",
-            borderRadius:"10px 10px 0px 0px",
-            backgroundColor:"rgba(0,120,240,0.9)",
-            zIndex:1000,
-            position:"absolute",
-            width:this.state.display.width,
-            height:this.state.display.height,
-            padding:"10px",
-            border:"1px solid #333",
-            boxShadow:"inset 0px 0px 3px #fff",
-            display:this.props.show?"inline-block":"none"
-        };
+        var parentStyle = { width:this.state.display.width, height:this.state.display.height, display:this.props.show?"inline-block":"none"};
         parentStyle[this.props.where[0]] = this.props.position.y;
         parentStyle[this.props.where[1]] = this.props.position.x;
-        var contentStyle = {
-            backgroundColor:"#fff",
-            width:this.state.display.width*0.6+20,
-            height:this.state.display.height,
-            border:"1px solid #666",
-            boxShadow:"0px 0px 3px #fff",
-            display:"inline-block",
-            borderRadius:"5px",
-            overflow:"hidden",
-        };
-        var buttonsStyle = {
-            backgroundColor:"transparent",
-            margin:"0px",
-            padding:"10px",
-            height:"100%",
-            display:"inline-block",
-            width:this.state.display.width*0.4-42
-        };
         var handleClick =  this.handleClick;
         return (
-            <div style={parentStyle}>
-                <div style={contentStyle}>
+            <div className="widget-startmenu" style={parentStyle}>
+                <div className="icon-buttons">
                         {
                             this.state.apps.map(function(result) {     
                                 return React.createElement(
@@ -85,7 +52,7 @@ var StartMenuWidget = React.createClass({
                             })
                         }
                 </div>
-                <div style={buttonsStyle}>
+                <div className="startmenu-buttons">
                         {
                             this.state.buttons.map(function(result) {
                                 var name = result.name;
