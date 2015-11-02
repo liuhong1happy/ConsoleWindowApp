@@ -1,7 +1,5 @@
 var React = require('react');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-
-
 var Resize = React.createClass({
         getInitialState: function() {
             return { 
@@ -57,19 +55,17 @@ var Resize = React.createClass({
             var resizeEve = this.state.resizeEvent;
             if(this.state.where[0]=="top"){
                 resizeEve.position.y = this.state.position.y + offsetY;
-            }else{
-                resizeEve.height = this.state.display.height - offsetY;
             }
+            resizeEve.height = this.state.display.height - offsetY;
             this.setState({resizeEvent:resizeEve});
         },
         moveToBottom:function(offsetY){
             var resizeEve = this.state.resizeEvent;
             if(this.state.where[0]=="bottom"){
                 resizeEve.position.y = this.state.position.y - offsetY;
-            }else{
-                 resizeEve.height = this.state.display.height + offsetY;
             }
-             this.setState({resizeEvent:resizeEve});
+            resizeEve.height = this.state.display.height + offsetY;
+            this.setState({resizeEvent:resizeEve});
         },
         moveToLeft:function(offsetX){
             var resizeEve = this.state.resizeEvent;
@@ -86,6 +82,20 @@ var Resize = React.createClass({
             }
              resizeEve.width = this.state.display.width + offsetX;
              this.setState({resizeEvent:resizeEve});
+        },
+        moveWindow:function(offsetX,offsetY){
+             var resizeEve = this.state.resizeEvent;
+            if(this.state.where[1]=="left"){
+                 resizeEve.position.x = this.state.position.x + offsetX;
+            }else{
+                resizeEve.position.x = this.state.position.x - offsetX;
+            }
+            if(this.state.where[0]=="top"){
+                resizeEve.position.y = this.state.position.y + offsetY;
+            }else{
+                resizeEve.position.y = this.state.position.y - offsetY;
+            }
+            this.setState({resizeEvent:resizeEve});
         },
         moveToPositoin:function(e){
             if(this.state.resizeEvent.down){
@@ -123,6 +133,9 @@ var Resize = React.createClass({
                         this.moveToRight(upPosition.x - downPosition.x);
                         this.moveToTop(upPosition.y - downPosition.y);
                         break;
+                    case "resize-drag":
+                        this.moveWindow(upPosition.x - downPosition.x,upPosition.y - downPosition.y);
+                        break;
                 }
                 if(className.indexOf("resize")==0){
                     this.onResize();
@@ -141,6 +154,7 @@ var Resize = React.createClass({
                 case "resize-sw":
                 case "resize-ne":
                 case "resize-nw":
+                case "resize-drag":
                     resizeEve.down = true;
                     resizeEve.up = false;
                     resizeEve.downClassName = target.className;
@@ -197,6 +211,7 @@ var Resize = React.createClass({
                         <div className="resize-sw" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ne" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-nw" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
+                        <div className="resize-drag" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                  </div>)
         }
 });
