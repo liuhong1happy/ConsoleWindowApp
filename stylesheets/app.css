@@ -211,6 +211,8 @@
     border: 1px solid rgba(0,120,240,0.7);
 }
 
+
+
 /*widget startmenu*/
 .widget-startmenu{
         cursor:pointer;
@@ -280,4 +282,84 @@
 }
 .taskbar .startmenu:hover{
     background-position: 0 -114px;
+}
+
+
+/*login page*/
+.login-form{
+        position:absolute;
+        width:100%;
+        height:100%;
+}
+.login-form-user-image{
+    height: 90px;
+    width: 90px;
+    padding: 8px;
+    border-radius: 10px;
+    border:1px solid #333;
+    box-shadow: 0px 0px 10px #333;
+    margin: 0px 60px;
+}
+.login-form-image-container{
+    width: 90px;
+    height: 90px;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.login-form-container{
+        position:absolute;
+        left:0px;
+        bottom:55%;
+        height:40px;
+        width:100%;
+}
+.login-form-row{
+        width:300px;
+        height:40px;
+        margin:0px auto;
+}
+.login-form-row.hight-row{
+        width:300px;
+        height:120px;
+        margin:10px auto;
+}
+.login-form-user{
+    font-family: Arial;
+    font-size:28px;
+    color: #fff;
+    text-align: center;
+    width: 240px;
+    display: inline-block;
+    font-weight: lighter;
+}
+.login-form-password{
+        box-sizing: border-box;
+        border: 1px solid #000;
+        box-shadow: 0px 0px 2px #fff,0px 1px 5px #333;
+        width:240px;
+        height:28px;
+        margin:6px 5px;
+        padding: 1px 5px;
+        display: inline-block;
+        float: left;
+        border-radius: 5px;
+        font-size:18px;
+}
+.login-form-submit{
+    height: 36px;
+    width: 36px;
+    margin:2px 7px;
+    box-sizing: border-box;
+    float: left;
+    border:1px solid #333;
+    box-shadow: inset 0px 0px 10px #fff,0px 1px 5px #333;
+    background: linear-gradient(rgba(0,120,240,0.1) 0%,rgba(0,120,240,0.6) 45%,rgba(0,120,240,1) 46%,rgba(0,120,240,0.7) 96%,rgba(240,240,240,0.4) 100%);
+    border-radius: 36px;
+    padding: 5px;
+}
+.login-form-submit:hover{
+    box-shadow: inset 0px 0px 10px #fff,0px 2px 5px #333,inset 0px -2px 10px #fff;
 }
