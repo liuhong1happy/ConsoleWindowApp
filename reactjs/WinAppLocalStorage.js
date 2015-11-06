@@ -2,6 +2,12 @@ module.exports = {
   init: function() {
     localStorage.clear();
     localStorage.setItem('winSettings', JSON.stringify({
+    UserInfos:{
+        login:false,
+        user_name:"",
+        email:"test@test.com",
+        telphone:"12345678910"
+    },
     SystemApps:[
         { id:0,name:"计算机",image:"static/images/computer.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp" },
         { id:1,name:"回收站",image:"static/images/recycle.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp"},

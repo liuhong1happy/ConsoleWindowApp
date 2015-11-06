@@ -9,6 +9,7 @@ var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
 
 var WinSettings = {
+    UserInfos:[],
     SystemApps:[],
     CustomApps:[],
     SystemWins:[],
@@ -201,6 +202,9 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
             apps[0].windows[win.id] = { snapshot:null };
         }
         
+    },
+    getLoginState:function(){
+        return !!WinSettings.UserInfos.login;
     }
 });
 
