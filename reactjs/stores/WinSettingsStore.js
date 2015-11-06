@@ -385,6 +385,11 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             }
             WinSettingsStore.emitChange(WinAppConstants.EventTypes.SNAPSHOTS);
             break;
+        case ActionTypes.USER_LOGIN:
+            WinSettings.UserInfos.login = true;
+            WinSettingsStore.emitChange(WinAppConstants.EventTypes.USER);
+            WinSettingsStore.emitChange(WinAppConstants.EventTypes.PAGES);
+            break;
         default:
           // do nothing
     }

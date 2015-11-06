@@ -51,11 +51,16 @@ module.exports = {
           data: window
         });
   },
-    
   showSnapshot:function(snapshot){
       WinAppDispatcher.dispatch({
         type:ActionTypes.SHOW_SNAP_SHOT,
         data:snapshot
+      });
+  },
+  loginToDesktop:function(password){
+      WinAppDispatcher.dispatch({
+        type:ActionTypes.USER_LOGIN,
+        data:password
       });
   }
 };
