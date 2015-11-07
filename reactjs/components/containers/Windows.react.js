@@ -3,6 +3,7 @@ var StartMenuWidget = require('../widgets/StartMenuWidget.react');
 var WinSettingsStore =require('../../stores/WinSettingsStore');
 var Widget = require('../base/Widget.react');
 var Window = require('../base/Window.react');
+var AppManageForm = require('../forms/AppManageForm.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
 var Windows = React.createClass({
   getInitialState: function() {
@@ -24,12 +25,18 @@ var Windows = React.createClass({
         });
     },
   render: function() {
+       var supportForm = {
+            "iframe":"iframe",
+            "AppManageForm":AppManageForm
+       };
+      
+      
         return (
             <div className="windows-container">
                 {
                     this.state.windows.map(function(result) {
                         var content = result.content;
-                        var Child = result.content?React.createElement(content.render, content.config, content.children):null;
+                        var Child = result.content?React.createElement( supportForm[content.render] , content.config, content.children):null;
                         if(result.render=="StartMenuWidget") result.render=StartMenuWidget;
                         if(result.render=="Widget") result.render=Widget;
                         if(result.render=="Window") result.render=Window;

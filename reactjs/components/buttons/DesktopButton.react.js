@@ -31,40 +31,16 @@ var DesktopButton = React.createClass({
         var liStyle = {
             height:this.state.display.height,
             width:this.state.display.width,
-            position:"absolute",
             left:position.left,
             top:position.top,
-            zIndex:1
         };
-        var divStyle = {
-            margin:"10px 4px",
-            cursor:"pointer",
-            borderRadius:"3px",
-            backgroundColor:this.state.hover?"rgba(255,255,255,0.4)":"transparent",
-            border:this.state.hover?"2px solid rgba(255,255,255,0.4)":"2px solid transparent"
-        };
-        var pStyle={
-            margin:"0px",
-            padding:"0px",
-            textAlign:"center",
-            width:"100%",
-            color:"#fff",
-            marginTop:"5px",
-            fontSize:"12px"
-        };
-        var imgStyle={
-            width:40,
-            height:40,
-            margin:"0px 14px",
-            backgroundImage:"url("+this.state.button.image+")",
-            backgroundRepeat:"no-repeat",
-            backgroundSize:"100% 100%"
-        };
+        var imgStyle={ backgroundImage:"url("+this.state.button.image+")"};
+        
         return (
-            <li style={liStyle}>
-                <div style={divStyle}>
-                    <div style={imgStyle}></div>
-                    <div style={pStyle}>{this.state.button.name}</div>
+            <li style={liStyle} className="desktop-button-container" onClick={ this.handleClick }>
+                <div className="desktop-button">
+                    <div className="desktop-button-icon" style={imgStyle}></div>
+                    <div className="desktop-button-name" >{this.state.button.name}</div>
                 </div>
             </li>
         );

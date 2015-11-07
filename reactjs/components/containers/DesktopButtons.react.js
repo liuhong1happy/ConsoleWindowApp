@@ -9,8 +9,8 @@ var DesktopButtons = React.createClass({
     return { 
         buttons:WinSettingsStore.getDesktopBars(),
         display:{
-            height:1080-46,
-            width:1920
+            height:this.props.height?this.props.height:1080-46,
+            width:this.props.width?this.props.width:1920
         }
     };
   },
@@ -28,27 +28,19 @@ var DesktopButtons = React.createClass({
       if(app) WinSettingsActionCreators.openWindow(app);
   },
   render: function() {
-        var buttonStyle = {
-            height:this.props.height?this.props.height : this.state.display.height,
-            width:this.props.width?this.props.width:this.state.display.width, 
-            position:"absolute",
-            left:"0",
-            top:"0",
-            margin:"0px",
-            padding:"0px"
-        }
         var order = -1;
         var parentWidth=this.state.display.width;
         var parentHeight=this.state.display.height;
         if(this.state.buttons.length==0){
-            return ( <div style={buttonStyle}></div> );
+            return ( <div  className="desktop-buttons"></div> );
         }
+       var handleClick =  this.handleClick;
         return (
-            <ul style={buttonStyle}>
+            <ul  className="desktop-buttons">
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;
-                        return <DesktopButton parentWidth={parentWidth} parentHeight={parentHeight} key={ result.id }  order={order} button={result} onClick={this.handleClick}/>;
+                        return <DesktopButton parentWidth={parentWidth} parentHeight={parentHeight} key={ result.id }  order={order} button={result} onClick={ handleClick }/>;
                     })
                 }
             </ul>

@@ -8,10 +8,6 @@ var Desktop = React.createClass({
         display:{
             height:1080-46,
             width:1920
-        },
-        position:{
-            bottom:50,
-            left:0
         }
     };
   },
@@ -19,13 +15,9 @@ var Desktop = React.createClass({
         var divStyle = {
             height:this.props.height?this.props.height : this.state.display.height,
             width:this.props.width?this.props.width:this.state.display.width, 
-            position:"absolute",
-            left:"0",
-            top:"0",
-            overflow:"hidden"
         }
         return (
-            <div style={divStyle}>
+            <div style={divStyle} className="desktop">
                 <DesktopButtons height={this.state.display.height} width={this.state.display.width} />
                 <Windows height={this.state.display.height} width={this.state.display.width} />
                 <SnapShots />
