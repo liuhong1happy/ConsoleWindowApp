@@ -6,8 +6,8 @@
 package services
 
 import (
-	"github.com/goinggo/beego-mgo/utilities/helper"
-	"github.com/goinggo/beego-mgo/utilities/mongo"
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/helper"
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/mongo"
 	log "github.com/goinggo/tracelog"
 	"gopkg.in/mgo.v2"
 )

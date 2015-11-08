@@ -5,8 +5,5 @@ export MGO_PASSWORD=123456
 export WINAPP_DATABASE=winapp
 
 
-cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
-go clean -i
-go build
-
-bee run watchall
+cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp/tests/serviceTests
+go test -v

@@ -13,9 +13,9 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/validation"
-	"github.com/goinggo/beego-mgo/localize"
-	"github.com/goinggo/beego-mgo/services"
-	"github.com/goinggo/beego-mgo/utilities/mongo"
+	"github.com/liuhong1happy/ConsoleWindowApp/localize"
+	"github.com/liuhong1happy/ConsoleWindowApp/services"
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/mongo"
 	log "github.com/goinggo/tracelog"
 )
 

@@ -6,8 +6,8 @@
 package controllers
 
 import (
-	bc "github.com/goinggo/beego-mgo/controllers/baseController"
-	"github.com/goinggo/beego-mgo/services/buoyService"
+	bc "github.com/liuhong1happy/ConsoleWindowApp/controllers/baseController"
+	"github.com/liuhong1happy/ConsoleWindowApp/services/buoyService"
 	log "github.com/goinggo/tracelog"
 )
 

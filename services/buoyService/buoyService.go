@@ -6,10 +6,10 @@
 package buoyService
 
 import (
-	"github.com/goinggo/beego-mgo/models/buoyModels"
-	"github.com/goinggo/beego-mgo/services"
-	"github.com/goinggo/beego-mgo/utilities/helper"
-	"github.com/goinggo/beego-mgo/utilities/mongo"
+	"github.com/liuhong1happy/ConsoleWindowApp/models/buoyModels"
+	"github.com/liuhong1happy/ConsoleWindowApp/services"
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/helper"
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/mongo"
 	log "github.com/goinggo/tracelog"
 	"github.com/kelseyhightower/envconfig"
 	"gopkg.in/mgo.v2"
