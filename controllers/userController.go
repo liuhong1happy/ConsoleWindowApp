@@ -27,6 +27,11 @@ func (controller *UserController) UserLogin() {
 		return
 	}
 
+    // set session
+    if len(userInfo.ID)>0{
+        log.Trace("UserController","UserLogin","userID[%s]",userInfo.ID.Hex())
+        controller.SetSession("UserID", userInfo.ID.Hex())
+    }
 	controller.Data["json"] = userInfo
 	controller.ServeJson()
 }

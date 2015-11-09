@@ -32,7 +32,6 @@ func init() {
 	if err := envconfig.Process("winapp", &Config); err != nil {
 		log.CompletedError(err, helper.MainGoRoutine, "Init")
 	}
-
 }
 
 func FindUserById(service *services.Service,userID string) (*userModel.UserInfo,error){

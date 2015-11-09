@@ -29,19 +29,20 @@ var Windows = React.createClass({
             "iframe":"iframe",
             "AppManageForm":AppManageForm
        };
-      
-      
+      var supportWindow = {
+          "Window":Window,
+          "StartMenuWidget":StartMenuWidget,
+          "Widget":Widget
+      }
+
         return (
             <div className="windows-container">
                 {
                     this.state.windows.map(function(result) {
                         var content = result.content;
                         var Child = result.content?React.createElement( supportForm[content.render] , content.config, content.children):null;
-                        if(result.render=="StartMenuWidget") result.render=StartMenuWidget;
-                        if(result.render=="Widget") result.render=Widget;
-                        if(result.render=="Window") result.render=Window;
                         return React.createElement(
-                                result.render,  {
+                               supportWindow[result.render],  {
                                     position:result.position,
                                     where:result.where,
                                     height:result.height,

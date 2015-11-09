@@ -33,13 +33,12 @@ type (
 
 // Prepare is called prior to the baseController method.
 func (baseController *BaseController) Prepare() {
-	baseController.UserID = baseController.GetString("userID")
-	if baseController.UserID == "" {
-		baseController.UserID = baseController.GetString(":userID")
+    
+    UserID := baseController.GetSession("UserID")
+	if UserID == nil {
+		UserID = "Unknown"
 	}
-	if baseController.UserID == "" {
-		baseController.UserID = "Unknown"
-	}
+    baseController.UserID = UserID.(string)
 
 	if err := baseController.Service.Prepare(); err != nil {
 		log.Errorf(err, baseController.UserID, "BaseController.Prepare", baseController.Ctx.Request.URL.Path)
@@ -118,6 +117,12 @@ func (baseController *BaseController) ParseAndValidate(params interface{}) bool 
 	}
 
 	return true
+}
+
+
+func (baseController *BaseController) AuthUser() bool{
+    v := baseController.GetSession("UserID")
+    return v != nil
 }
 
 //** EXCEPTIONS

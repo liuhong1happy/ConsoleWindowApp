@@ -10,6 +10,7 @@ var ActionTypes = WinAppConstants.ActionTypes;
 
 var WinSettings = {
     UserInfos:[],
+    Preloads:[],
     SystemApps:[],
     CustomApps:[],
     SystemWins:[],
@@ -214,7 +215,6 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {
         case ActionTypes.RECEIVE_WIN_SETTINGS:
           WinSettings = action.data;
-          WinSettingsStore.emitChange(WinAppConstants.EventTypes.WIN_SETTINS);
           break;
         case ActionTypes.TOGGLE_WINDOW:
             var window = action.data;
@@ -351,6 +351,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                     WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
                 }
             }
+            WinAppWebApiUtils.saveWinSettings(WinSettings);
             break;
         case ActionTypes.OPEN_WINDOW:
             var app = action.data;
@@ -364,6 +365,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
             }
+            WinAppWebApiUtils.saveWinSettings(WinSettings);
             break;
         case ActionTypes.SHOW_SNAP_SHOT:
             var snapShots = [];
@@ -387,12 +389,17 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             break;
         case ActionTypes.USER_LOGIN:
             WinSettings.UserInfos.login = true;
-            WinSettingsStore.emitChange(WinAppConstants.EventTypes.USER);
+            localStorage.setItem('winSettings',JSON.stringify(WinSettings));
+            WinAppWebApiUtils.saveWinSettings(WinSettings);
+//            WinSettingsStore.emitChange(WinAppConstants.EventTypes.USER);
             WinSettingsStore.emitChange(WinAppConstants.EventTypes.PAGES);
+            
             break;
         default:
           // do nothing
     }
+    
+    
 });
 
 module.exports = WinSettingsStore;
