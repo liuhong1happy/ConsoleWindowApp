@@ -110,6 +110,7 @@
     # 安装beego
     go get github.com/astaxie/beego
     go get github.com/beego/bee
+    # 修改bee-run.sh里的session和mongodb配置信息
     # *运行*
     ./bee-run.sh
     
