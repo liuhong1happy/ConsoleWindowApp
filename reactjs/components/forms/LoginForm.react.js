@@ -53,7 +53,12 @@ var LoginForm = React.createClass({
                                 <img src={this.state.submit.image} /> 
                             </Button>
                     </div>
-            
+                    <div className="login-form-row">
+                        <span className="first-loading">
+                          首次加载，需要等几秒钟才能进入系统。
+                        </span>
+                        <span className="css3-loading"></span>
+                    </div>
                 </div>
             </div>
         );
