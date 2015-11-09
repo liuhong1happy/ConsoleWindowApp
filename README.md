@@ -85,16 +85,33 @@
     # 克隆代码
     go get github.com/liuhong1happy/ConsoleWindowApp
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
+    
     # 安装npm包
     npm install
-    # 安装beego
-    go get github.com/astaxie/beego
-    go get github.com/beego/bee
-    # *运行*
-    bee run
     # *打包JS*
     npm start
     # *压缩*
     npm run build
+
+    # 安装docker
+    wget -qO- https://get.docker.com/ | sh
+    # 安装redis
+    docker run -it -d --name redis --restart=always -p 6379:6379 liuhong1happy/docker-redis:pro
+    # 安装mongodb
+    docker run -it -d --name mongodb -v /var/data/mongodb:/data/db -p 27017:27017  liuhong1happy/docker-mongodb:pro
+    # 添加mongodb管理员
+    docker exec -it mongodb /bin/bash
+    mongo
+    use admin
+    db.createUser({user: "mongo",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
+    db.auth("mongo","123456")
+    exit
+    
+    # 安装beego
+    go get github.com/astaxie/beego
+    go get github.com/beego/bee
+    # *运行*
+    ./bee-run.sh
+    
 
 
