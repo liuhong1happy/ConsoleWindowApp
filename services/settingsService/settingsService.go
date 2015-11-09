@@ -59,10 +59,12 @@ func FindSettings(service *services.Service, userID string) (*settingsModel.WinS
 func SaveSettings(service *services.Service,settings settingsModel.WinSettings) (*settingsModel.WinSettings,error){
     log.Startedf(service.UserID, "SaveSettings", "UserID[%s]", settings.UserID)
 	f := func(collection *mgo.Collection) error {
-		log.Trace(service.UserID, "SaveSettings", "MGO : db.win_settings.insert(%s)", mongo.ToString(settings))
+		
         if len(settings.ID)>0{
-            return collection.Update(bson.M{"_id": settings.ID.Hex()}, &settings)
+            log.Trace(service.UserID, "SaveSettings", "MGO : db.win_settings.update(%s)", mongo.ToString(settings))
+            return collection.Update(bson.M{"_id": settings.ID}, &settings)
         }else{
+            log.Trace(service.UserID, "SaveSettings", "MGO : db.win_settings.insert(%s)", mongo.ToString(settings))
             return collection.Insert(&settings)
         }
 		
