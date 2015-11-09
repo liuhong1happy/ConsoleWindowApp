@@ -14,6 +14,14 @@ var LoginForm = React.createClass({
         }
     };
   },
+  handleKeyPress:function(e){
+    e = e || event;
+    var keyCode = e.keyCode ||  e.which;
+    if(keyCode==13){
+      this.submitLoginForm();
+      return false; 
+    }
+  },
   submitLoginForm:function(){
       var $password = this.refs.password.getDOMNode();
       
@@ -40,7 +48,7 @@ var LoginForm = React.createClass({
                             <span className="login-form-user">Administrator</span>
                     </div>
                     <div className="login-form-row">
-                            <input  type="password" className="login-form-password" ref="password" />
+                            <input  type="password" className="login-form-password" ref="password" onKeyPress={this.handleKeyPress}/>
                             <Button  className="btn login-form-submit" onClick={this.submitLoginForm}>
                                 <img src={this.state.submit.image} /> 
                             </Button>
