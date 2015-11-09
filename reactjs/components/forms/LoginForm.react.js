@@ -24,16 +24,27 @@ var LoginForm = React.createClass({
   },
   submitLoginForm:function(){
       var $password = this.refs.password.getDOMNode();
-      
+      var $loading = $(this.refs.loading.getDOMNode());
       WinAppWebApiUtils.userLogin("admin",$password.value,function(type,data,error){
           if(type=="success" && data.ID){
               WinSettingsActionCreators.loginToDesktop($password.value);
           }else{
-              alert("user login error");
+              $loading.html("error user's password").show();
+              $loading.css({ color : "#881000"});
+              setTimeout(function(){
+                  $loading.hide();
+              },2000)
           }
       })
   },
   render: function() {
+        var loadingStyle = {
+            display:"none",
+            width:240,
+            verticalAlign:"middle",
+            lineHeight: "40px",
+            paddingLeft:"5px"
+        };
         return (
             <div className="login-form">
                 <div className="login-form-container">
@@ -53,8 +64,8 @@ var LoginForm = React.createClass({
                                 <img src={this.state.submit.image} /> 
                             </Button>
                     </div>
-                    <div className="login-form-row" refs="loading" style={"display":"none"}>
-                        <span className="css3-loading"></span>
+                    <div className="login-form-row">
+                        <span ref="loading" style={loadingStyle} className="css3-loading"></span>
                     </div>
                 </div>
             </div>

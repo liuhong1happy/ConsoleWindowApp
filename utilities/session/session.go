@@ -11,18 +11,18 @@ type (
 		Provider string
 		SavePath string
 	}
-}
+)
 
-func getSessionConfig(sessionType string) SessionConfiguration{
-	log.Started(sessionType, "getSessionConfig")
+func GetSessionConfig(sessionType string) (*SessionConfiguration,error) {
+	log.Started(sessionType, "GetSessionConfig")
 
 	// Pull in the configuration.
 	var config SessionConfiguration
 	if err := envconfig.Process(sessionType, &config); err != nil {
-		log.CompletedError(err, sessionType, "getSessionConfig")
-		return err
+		log.CompletedError(err, sessionType, "GetSessionConfig")
+		return nil, err
 	}
 	
-	log.Completed(sessionType, "getSessionConfig")
-	return config
+	log.Completed(sessionType, "GetSessionConfig")
+	return &config, nil
 }
