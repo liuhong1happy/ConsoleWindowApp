@@ -31,6 +31,12 @@ var StartMenuWidget = React.createClass({
         parentStyle[this.props.where[0]] = this.props.position.y;
         parentStyle[this.props.where[1]] = this.props.position.x;
         var handleClick =  this.handleClick;
+        var supportButtons = {
+            "StartMenuButton":StartMenuButton,
+            "CloseSystemButton":CloseSystemButton,
+            "Splitter":Splitter
+        }
+        
         return (
             <div className="widget-startmenu" style={parentStyle}>
                 <div className="icon-buttons">
@@ -56,11 +62,8 @@ var StartMenuWidget = React.createClass({
                         {
                             this.state.buttons.map(function(result) {
                                 var name = result.name;
-                                if(result.render=="StartMenuButton") result.render=StartMenuButton;
-                                if(result.render=="CloseSystemButton") result.render=CloseSystemButton;
-                                if(result.render=="Splitter") result.render=Splitter;
                                 return React.createElement(
-                                        result.render,  {
+                                        supportButtons[result.render],  {
                                             where:result.where,
                                             height:result.height,
                                             width:result.width,
