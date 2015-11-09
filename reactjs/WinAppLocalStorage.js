@@ -5,8 +5,8 @@ module.exports = {
     UserInfos:{
         login:false,
         user_name:"",
-        email:"test@test.com",
-        telphone:"12345678910"
+        user_email:"test@test.com",
+        user_mobile:"12345678910"
     },
     SystemApps:[
         { id:0,name:"计算机",image:"static/images/computer.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp" },
