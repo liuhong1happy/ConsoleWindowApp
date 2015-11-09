@@ -77,9 +77,9 @@
 
 #### Ubuntu
 
-    # 安装GCCGO
+    # 安装GCCGO[这里只是简便安装的Go，推荐大家还是安装Golang]
     sudo apt-get install gccgo-go
-    echo PATH="$PATH:$HOME/golang/bin" > /etc/environment
+    echo PATH="$PATH:$HOME/golang/bin" >> /etc/environment
     echo GOPATH="$HOME/golang" >> /etc/environment
     # 注销后继续执行
     # 克隆代码
