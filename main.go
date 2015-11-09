@@ -6,10 +6,12 @@ import (
 	_ "github.com/liuhong1happy/ConsoleWindowApp/routers"
 	"github.com/liuhong1happy/ConsoleWindowApp/utilities/helper"
 	"github.com/liuhong1happy/ConsoleWindowApp/utilities/mongo"
-    "github.com/goinggo/tracelog"
-    _ "github.com/astaxie/beego/session/redis" 
+	_ "github.com/astaxie/beego/session/redis" 
+	"github.com/liuhong1happy/ConsoleWindowApp/utilities/session"
+    	"github.com/goinggo/tracelog"
 	"os"
 )
+
 
 func main() {
 	tracelog.Start(tracelog.LevelTrace)
@@ -25,9 +27,11 @@ func main() {
 	// Load message strings
 	localize.Init("en-US")
     
-    beego.SessionOn = true
-    beego.SessionProvider = "redis"
-    beego.SessionSavePath = "192.168.1.10:6379"
+    	SessionConfig := session.getSessionConfig()
+    
+    	beego.SessionOn = SessionConfig.On
+    	beego.SessionProvider = SessionConfig.Provider
+    	beego.SessionSavePath = SessionConfig.SavePath
     
 	beego.Run()
 
