@@ -215,6 +215,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {
         case ActionTypes.RECEIVE_WIN_SETTINGS:
           WinSettings = action.data;
+            WinSettingsStore.emitChange(WinAppConstants.EventTypes.PAGES);
           break;
         case ActionTypes.TOGGLE_WINDOW:
             var window = action.data;
