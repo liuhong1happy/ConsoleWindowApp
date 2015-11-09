@@ -27,7 +27,7 @@ func main() {
 	// Load message strings
 	localize.Init("en-US")
     
-    	SessionConfig := session.getSessionConfig()
+    	SessionConfig := session.getSessionConfig("session")
     
     	beego.SessionOn = SessionConfig.On
     	beego.SessionProvider = SessionConfig.Provider
