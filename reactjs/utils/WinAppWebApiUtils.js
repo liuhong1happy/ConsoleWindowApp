@@ -17,7 +17,7 @@ module.exports = {
           },
           error:function(e,err){
                 var winSettings = JSON.parse(localStorage.getItem('winSettings'));
-                winSettings.login = false;
+                winSettings.UserInfos.login = false;
                 WinSettingsActionCreators.receiveWinSettings(winSettings);
           }
       });
@@ -31,10 +31,11 @@ module.exports = {
               "win_settings":JSON.stringify(settings)
           },
           success:function(res){
-              alert("自动保存成功");
+              console.log("autosave:"+new Date())
           },
           error:function(e,err){
-              alert("自动保存失败");
+                settings.UserInfos.login = false;
+                WinSettingsActionCreators.receiveWinSettings(winSettings);
           }
       });
   },

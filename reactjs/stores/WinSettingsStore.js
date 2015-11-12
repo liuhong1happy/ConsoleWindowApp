@@ -206,6 +206,12 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
     },
     getLoginState:function(){
         return !!WinSettings.UserInfos.login;
+    },
+    getSystemApps:function(){
+        return WinSettings.SystemApps;
+    },
+    getCustomApps:function(){
+        return WinSettings.CustomApps;
     }
 });
 

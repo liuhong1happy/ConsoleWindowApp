@@ -45,6 +45,9 @@ var SnapShot = React.createClass({
     render: function() {
         var snapshot = this.state.snapshot;
         var _window = this.state.window;
+        if(!_window || !snapshot){
+            return (<div></div>)
+        }
         var parentStyle = {
             backgroundColor:this.state.hover?"rgba(0,120,240,0.7)":"transparent",
             margin:"10px 5px 5px 5px",
