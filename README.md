@@ -87,6 +87,7 @@
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
     
     # 安装npm包
+    sudo apt-get install npm
     npm install
     # *打包JS*
     npm start
