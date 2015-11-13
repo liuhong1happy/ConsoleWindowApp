@@ -92,6 +92,8 @@
     npm start
     # *压缩*
     npm run build
+    # less转css
+    lessc less/winapp.less static/css/winapp.css
 
     # 安装docker
     wget -qO- https://get.docker.com/ | sh
