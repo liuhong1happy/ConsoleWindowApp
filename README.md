@@ -86,8 +86,12 @@
     go get github.com/liuhong1happy/ConsoleWindowApp
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
     
-    # 安装npm包
+    # 安装npm和nodejs
     sudo apt-get install npm
+    npm config set registry "http://registry.npm.taobao.org"
+    npm install -g npm@3.3.12 n
+    n 4.2.1
+    # 安装npm包
     npm install
     # *打包JS*
     npm start
