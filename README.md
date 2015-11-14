@@ -124,6 +124,9 @@
     use admin
     db.createUser({user: "mongo",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
     db.auth("mongo","123456")
+    # 添加winapp应用管理员
+    use winapp
+    db.user_infos.insert({"user_name":"admin","user_pwd":"123456"})
     exit
     # 修改bee-run.sh里的session和mongodb配置信息
 
