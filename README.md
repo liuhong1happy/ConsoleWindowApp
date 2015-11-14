@@ -64,10 +64,30 @@
 #### 安装docker
 
     wget -qO- https://get.docker.com/ | sh
+    
+#### 安装mongodb和redis
 
+    # 安装redis
+    docker run -it -d --name redis --restart=always -p 6379:6379 liuhong1happy/docker-redis:pro
+    # 安装mongodb
+    docker run -it -d --name mongodb -v /var/data/mongodb:/data/db -p 27017:27017  liuhong1happy/docker-mongodb:pro
+    # 添加mongodb管理员
+    docker exec -it mongodb /bin/bash
+    mongo
+    use admin
+    db.createUser({user: "mongo",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
+    db.auth("mongo","123456")
+    # 添加winapp应用管理员
+    use winapp
+    db.user_infos.insert({"user_name":"admin","user_pwd":"123456"})
+    exit
+    # 修改bee-run.sh里的session和mongodb配置信息
+    
 #### 运行容器
 
-    docker run -it -d --restart=always --name winapp -p 8080:8080 liuhong1happy/docker-winapp:latest
+    docker run -it -d --restart=always --name winapp \
+        --link=redis:redis_server --link=mongodb:mongo_server \
+        -p 8080:8080 liuhong1happy/docker-winapp:latest
 
 #### 访问网站
 
