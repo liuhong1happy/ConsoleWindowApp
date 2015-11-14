@@ -267,39 +267,32 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             break;
         case ActionTypes.MIN_WINDOW:
             var window = action.data;
+            var findWins = [],findApps=[];
             if(window.type=="SystemWin"){
-                var findWins = WinSettings.CustomWins.filter(function(ele,pos){
+                findWins = WinSettings.SystemWins.filter(function(ele,pos){
                     return ele.id == window.id;
                 });
-                var findApps = WinSettings.CustomApps.filter(function(ele,pos){
+                findApps = WinSettings.SystemApps.filter(function(ele,pos){
                     return ele.id == window.app_id;
                 });
-                if(findWins.length>0 && findApps.length>0){
-                    findWins[0].show = false;
-                    findApps[0].windows[window.id].snapshot = window.snapshot;
-                    if(!findApps[0].config) findApps[0].config = {}
-                    findApps[0].config.position={y:window.position.y,x:window.position.x};
-                    findApps[0].width=window.width;
-                    findApps[0].height=window.height;
-                    WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
-                }
             }
             if(window.type=="CustomWin"){
-                var findWins = WinSettings.CustomWins.filter(function(ele,pos){
+                findWins = WinSettings.CustomWins.filter(function(ele,pos){
                     return ele.id == window.id;
                 });
-                var findApps = WinSettings.CustomApps.filter(function(ele,pos){
+                findApps = WinSettings.CustomApps.filter(function(ele,pos){
                     return ele.id == window.app_id;
                 });
-                if(findWins.length>0 && findApps.length>0){
-                    findWins[0].show = false;
-                    findApps[0].windows[window.id].snapshot = window.snapshot;
-                    if(!findApps[0].config) findApps[0].config = {}
-                    findApps[0].config.position={y:window.position.y,x:window.position.x};
-                    findApps[0].width=window.width;
-                    findApps[0].height=window.height;
-                    WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
-                }
+            }
+            if(findWins.length>0 && findApps.length>0){
+                findWins[0].show = false;
+                if(!findApps[0].windows[window.id]) findApps[0].windows[window.id] = findWins[0];
+                findApps[0].windows[window.id].snapshot = window.snapshot;
+                if(!findApps[0].config) findApps[0].config = {}
+                findApps[0].config.position={y:window.position.y,x:window.position.x};
+                findApps[0].width=window.width;
+                findApps[0].height=window.height;
+                WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
             }
             break;
         case ActionTypes.CLOSE_WINDOW:

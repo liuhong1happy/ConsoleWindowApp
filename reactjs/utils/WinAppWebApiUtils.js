@@ -35,7 +35,7 @@ module.exports = {
           },
           error:function(e,err){
                 settings.UserInfos.login = false;
-                WinSettingsActionCreators.receiveWinSettings(winSettings);
+                WinSettingsActionCreators.receiveWinSettings(settings);
           }
       });
   },

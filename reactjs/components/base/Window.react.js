@@ -82,7 +82,6 @@ var Window = React.createClass({
             $content.style.height = e.height+"px";
             // resize完毕
             if(e.up==true && e.down==false){
-                console.log("onresize:"+e.position.y);
                 this.setState({
                     display:{
                         height:e.height,

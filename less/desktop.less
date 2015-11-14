@@ -50,6 +50,7 @@
          height: 100%;
          z-index: 1001;
          top: 0px;
+         cursor: default;
     }
     .snapshots{
         position: absolute;
@@ -62,7 +63,74 @@
         border-radius: 5px; 
         display: none; 
         box-sizing: border-box; 
-        background-color: rgba(0, 124, 240, 0.498039);
+        background-color: rgba(0, 124, 240, 0.5);
+        z-index: 3;
+        .snapshot{
+            background-color: transparent;
+            margin:10px 5px 5px 5px;
+            height:165px;
+            width:240px;
+            cursor: pointer;
+            bottom: 0px;
+            border-radius: 5px;
+            position: absolute;
+            
+            .snapshot-header{
+                height:28px;
+                padding:0px;
+                margin:0px;
+                color:#fff;
+                font-size:12px;
+                .header-img{
+                    height:20px;
+                    width:20px;
+                    margin:5px;
+                    float:left;
+                }
+                .header-title{
+                    line-height:30px;
+                    height:30px;
+                    width:180px;
+                    vertical-align:middle;
+                    display:inline;
+                    float:left;
+                }
+                .header-close{
+                    background-color:#B0171F;
+                    border:1px solid #333;
+                    box-shadow:inset 0px 0px 3px #fff,0px 0px 3px #fff;
+                    height:20px;
+                    width:20px;
+                    margin:5px;
+                    line-height:20px;
+                    border-radius:5px;
+                    float:right;
+                    vertical-align:middle;
+                    text-align:center;
+                    box-sizing:border-box;
+                    display:none;
+                }
+
+            }
+            .snapshot-body{
+                height:130px;
+                width:230px;
+                text-align:center;
+                vertical-align:middle;
+                .body-img{
+                    width:230px;
+                    height:135px;
+                    padding:0px 5px;
+                }
+            }
+            &:hover{
+                background-color: rgba(0,120,240,0.7);
+                box-shadow: inset 0px 0px 3px #fff;
+                .snapshot-header .header-close{
+                    display: inline;
+                }
+            }
+        }
     }
     .desktop-buttons{
             position:absolute;

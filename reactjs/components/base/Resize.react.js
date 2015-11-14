@@ -166,7 +166,6 @@ var Resize = React.createClass({
                     resizeEve.downClassName = "";
                     break;
             }
-            console.log("mousedown:"+this.state.position.y);
              this.setState({resizeEvent:resizeEve});
             this.stopPropagation(e);
         },
@@ -178,8 +177,6 @@ var Resize = React.createClass({
                     resizeEve.up = true;
                     resizeEve.downClassName = "";
                     $("#resize_mask").hide();
-                
-                    console.log("mouseup:"+this.state.position.y);
                     this.onResize();
                     this.setState({
                         position:{
@@ -199,7 +196,6 @@ var Resize = React.createClass({
             var resizeEve = this.state.resizeEvent;
             if( resizeEve.down){
                 this.moveToPositoin(e);
-                console.log("mousemove:"+this.state.position.y);
             }
             this.stopPropagation(e);
         },
@@ -213,7 +209,6 @@ var Resize = React.createClass({
         },
         render: function() {
                var resizeStyle = this.props.style?this.props.style:{};
-               console.log("render:"+this.state.position.y);
                return (<div style={resizeStyle}>
                         <div className="resize-drag" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ns-n"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>

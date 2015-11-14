@@ -42,7 +42,7 @@ var SnapShots = React.createClass({
     WinSettingsStore.addChangeListener(WinAppConstants.EventTypes.SNAPSHOTS,this._onChange);
     },
     componentWillUnmount: function() {
-    WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.SNAPSHOTS,this._onChange);
+            WinSettingsStore.removeChangeListener(WinAppConstants.EventTypes.SNAPSHOTS,this._onChange);
     },
     _onChange:function(){
         this.setTimeOut();
