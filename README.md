@@ -127,6 +127,11 @@
     exit
     # 修改bee-run.sh里的session和mongodb配置信息
 
+#### 安装数据库驱动
+
+    go get github.com/garyburd/redigo/redis
+    go get github.com/goinggo/beego-mgo
+
 #### 打包压缩js和less并运行
 
     # *打包JS*
