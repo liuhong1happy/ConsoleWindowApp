@@ -95,11 +95,18 @@
     
 应用截图
 
-    ![static/images/winapp.png](static/images/winapp.png)
+![static/images/winapp.png](static/images/winapp.png)
 
 ## 快速开始
 
-#### nodejs和golang安装
+#### 0.前提条件
+
+1. 操作系统要求是Ubuntu 14.04 TSL 操作系统。
+2. 需要安装nodejs>4.0.0和golang>1.2.0。
+3. 要求npm版本为>3.0.0
+
+
+#### 1.nodejs和golang安装
 
     # 安装GCCGO[这里只是简便安装的Go，推荐大家还是安装Golang]
     sudo apt-get install gccgo-go
@@ -114,27 +121,23 @@
     n 4.2.1
     npm install -g npm@3.3.12
 
-#### 前提条件
 
-1. 操作系统要求是Ubuntu 14.04 TSL 操作系统。
-2. 需要安装nodejs>4.0.0和golang>1.2.0。
-3. 要求npm版本为>3.0.0
 
-#### 安装beego
+#### 2.安装beego
 
     go get github.com/astaxie/beego
     go get github.com/beego/bee
     
-#### 克隆代码
+#### 3.克隆代码
 
     go get github.com/liuhong1happy/ConsoleWindowApp
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
     
-#### 安装npm包
+#### 4.安装npm包
 
     npm install & npm install -g
 
-#### 安装mongodb和redis
+#### 5.安装mongodb和redis
 
     # 安装docker
     wget -qO- https://get.docker.com/ | sh
@@ -154,12 +157,12 @@
     exit
     # 修改bee-run.sh里的session和mongodb配置信息
 
-#### 安装数据库驱动
+#### 6.安装数据库驱动
 
     go get github.com/garyburd/redigo/redis
     go get github.com/goinggo/beego-mgo
 
-#### 打包压缩js和less并运行
+#### 7.打包压缩js和less并运行
 
     # *打包JS*
     npm start
