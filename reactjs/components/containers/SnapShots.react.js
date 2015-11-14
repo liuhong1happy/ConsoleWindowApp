@@ -12,7 +12,6 @@ var SnapShots = React.createClass({
         snapshot:WinSettingsStore.getSnapShot(),
         display:{
             width:250,
-            height:180
         },
         position:{
             left:10,
@@ -78,22 +77,15 @@ var SnapShots = React.createClass({
        left = left<0?10:left;
       
         var divStyle = {
-            height:this.state.display.height,
             width:snapshots.length*this.state.display.width,
-            position:"absolute",
             left: left,
             bottom:this.state.position.bottom,
-            backgroundColor:"rgba(0,124,240,0.5)",
-            border:"1px solid #333",
-            boxShadow:"inset 0px 0px 3px #fff",
-            borderRadius:"5px",
             display:this.state.show?"block":"none",
-            boxSizing:"border-box"
         }
         var order = -1;
         var closeSnapShot = this.closeSnapShot;
         return (
-            <div style={divStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover}>
+            <div className="snapshots" style={divStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover}>
                 {
                     this.state.snapshot.snapshots.map(function(result) {
                         order+=1;

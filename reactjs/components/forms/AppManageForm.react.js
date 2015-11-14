@@ -11,7 +11,7 @@ var AppManageForm = React.createClass({
     },
     render: function() {
         var sysApps = this.state.SystemApps;
-        var cusApps = this.state.CustemApps;
+        var cusApps = this.state.CustomApps;
         return (
             <div className="appmanage-form">
                     <div className="system-apps">

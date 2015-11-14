@@ -21,6 +21,7 @@ var Desktop = React.createClass({
                 <DesktopButtons height={this.state.display.height} width={this.state.display.width} />
                 <Windows height={this.state.display.height} width={this.state.display.width} />
                 <SnapShots />
+                <div className="resize-mask" id="resize_mask" style={ {"display":"none"} }></div>
             </div>
         );
   }

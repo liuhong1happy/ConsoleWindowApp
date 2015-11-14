@@ -1,0 +1,77 @@
+/*desktop*/
+
+.desktop-button-container{
+    height: 100px;
+    width: 80px;
+    position: absolute;
+    z-index: 1;
+}
+.desktop-button{
+        margin:10px 4px;
+        cursor:pointer;
+        border-radius:3px;
+        background-color: transparent;
+        border:2px solid transparent;
+}
+.desktop-button:hover{
+    background-color:rgba(255,255,255,0.4);
+    border: 2px solid rgba(255,255,255,0.4);
+}
+.desktop-button-icon{
+            width:40px;
+            height:40px;
+            margin:0px 14px;
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+}
+.desktop-button-name{
+            margin:0px;
+            padding:0px;
+            text-align:center;
+            width:100%;
+            color:#fff;
+            margin-top:5px;
+            font-size:12px;
+}
+
+.desktop{
+    position:absolute;
+    left:0;
+    top:0;
+    overflow:hidden;
+    .windows-container{
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }   
+    .resize-mask{
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         z-index: 1001;
+         top: 0px;
+    }
+    .snapshots{
+        position: absolute;
+        height: 180px; 
+        position: absolute; 
+        left: 130px; 
+        bottom: 3px; 
+        border: 1px solid rgb(51, 51, 51); 
+        box-shadow: rgb(255, 255, 255) 0px 0px 3px inset; 
+        border-radius: 5px; 
+        display: none; 
+        box-sizing: border-box; 
+        background-color: rgba(0, 124, 240, 0.498039);
+    }
+    .desktop-buttons{
+            position:absolute;
+            left:0;
+            top:0;
+            margin:0px;
+            padding:0px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+    }
+}

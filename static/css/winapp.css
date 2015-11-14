@@ -1,0 +1,423 @@
+/*base*/
+.btn {
+  cursor: pointer;
+  border-radius: 5px;
+  background: linear-gradient(rgba(0, 120, 240, 0.4) 0%, rgba(0, 120, 240, 0.3) 40%, rgba(0, 120, 240, 0.6) 41%, rgba(0, 120, 240, 0.3) 100%);
+  height: 30px;
+  width: 120px;
+  padding: 0px;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 3px #fff,0px 0px 3px #fff;
+  overflow: hidden;
+  color: #fff;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+}
+/*buttons*/
+.btn-start-menu {
+  border-radius: 5px;
+  background: transparent;
+  width: 140px;
+  height: 30px;
+  padding: 0px;
+  border: 1px solid transparent;
+  box-shadow: 0px 0px 0px transparent;
+  overflow: hidden;
+  margin-bottom: 5px;
+  line-height: 30px;
+  text-align: left;
+}
+.btn-start-menu:hover {
+  background: linear-gradient(rgba(240, 240, 240, 0.3) 0%, rgba(240, 240, 240, 0.3) 45%, #0078f0 46%, rgba(0, 120, 240, 0.7) 96%, rgba(240, 240, 240, 0.4) 100%);
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 3px #fff,0px 0px 3px #fff;
+}
+.btn-close-system {
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+  width: 100px;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 3px #fff,0px 0px 3px #fff;
+  background: linear-gradient(rgba(240, 240, 240, 0.3) 0%, rgba(240, 240, 240, 0.3) 45%, #0078f0 46%, rgba(0, 120, 240, 0.7) 96%, rgba(240, 240, 240, 0.4) 100%);
+}
+.btn-close-system:hover {
+  box-shadow: inset 0px 0px 20px #fff,0px 0px 3px #fff;
+}
+.btn-icon {
+  width: 278px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 1px 2px;
+  text-align: left;
+}
+.btn-icon:hover {
+  background-color: rgba(0, 120, 240, 0.3);
+  background: linear-gradient(rgba(0, 120, 240, 0.4) 0%, rgba(0, 120, 240, 0.2) 45%, rgba(0, 120, 240, 0.5) 46%, rgba(0, 120, 240, 0.4) 96%, rgba(240, 240, 240, 0.3) 100%);
+  box-shadow: inset 0px 0px 3px #fff;
+  border: 1px solid rgba(0, 120, 240, 0.7);
+}
+/*window buttons*/
+.btn-win {
+  width: 35px;
+  line-height: 20px;
+  height: 20px;
+  padding: 0px;
+  border-top: 0px solid transparent;
+  border-radius: 0px;
+  box-shadow: 0px 0px 3px #fff,inset 0px 0px 3px #fff;
+  box-sizing: border-box;
+  background: linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(0, 120, 240, 0.7) 41%, rgba(0, 120, 240, 0.3) 100%);
+}
+.btn-win:hover {
+  box-shadow: 0px 0px 20px #fff,inset 0px 0px 10px #fff;
+  background: linear-gradient(rgba(0, 120, 240, 0.3) 0%, rgba(0, 120, 240, 0.1) 40%, #0078f0 41%, rgba(0, 120, 240, 0.6) 100%);
+}
+.btn-win-max {
+  border: 0px solid transparent;
+  border-bottom: 1px solid #333;
+}
+.btn-win-close {
+  width: 60px;
+  border-top: 0px solid transparent;
+  background: linear-gradient(rgba(240, 30, 40, 0.8) 0%, rgba(240, 30, 40, 0.6) 40%, #f01e28 41%, rgba(240, 30, 40, 0.6) 100%);
+}
+.btn-win-close:hover {
+  background: linear-gradient(rgba(240, 30, 40, 0.8) 0%, rgba(240, 30, 40, 0.6) 40%, #f01e28 41%, rgba(240, 30, 40, 0.6) 100%);
+}
+/*window*/
+.win {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgba(0, 120, 240, 0.5);
+  z-index: 999;
+  position: absolute;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 3px #fff;
+  overflow: hidden;
+  box-sizing: content-box;
+}
+.win-content {
+  background-color: #fff;
+  border: 1px solid #666;
+  box-shadow: 0px 0px 3px #fff;
+  box-sizing: border-box;
+}
+.win-btns {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background-color: rgba(0, 120, 240, 0.3);
+  height: 20px;
+}
+.win-btns .btn:first-child {
+  border-bottom-left-radius: 5px;
+}
+.win-btns .btn:last-child {
+  border-bottom-right-radius: 5px;
+}
+.widget {
+  padding: 10px;
+}
+.window,
+.dialog {
+  border-radius: 10px 10px 5px 5px;
+  padding: 40px 10px 10px 10px;
+}
+/*window resize*/
+.resize-ns-n {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 10px;
+  cursor: ns-resize;
+}
+.resize-ns-s {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 10px;
+  cursor: ns-resize;
+}
+.resize-ew-e {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.resize-ew-w {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 10px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.resize-ne {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 10px;
+  height: 10px;
+  cursor: nw-resize;
+}
+.resize-nw {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 10px;
+  height: 10px;
+  cursor: ne-resize;
+}
+.resize-se {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 10px;
+  height: 10px;
+  cursor: sw-resize;
+}
+.resize-sw {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 10px;
+  height: 10px;
+  cursor: se-resize;
+}
+.resize-drag {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  height: 30px;
+  left: 0px;
+  cursor: move;
+}
+/* taskbar */
+.taskbar {
+  background-color: rgba(0, 120, 240, 0.5);
+  height: 46px;
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  box-shadow: inset 0px 0px 2px #fff;
+  border-top: 1px solid #333;
+}
+.taskbar .taskbar-buttons {
+  position: absolute;
+  height: 46px;
+  left: 57px;
+  bottom: 0px;
+}
+.taskbar .startmenu {
+  height: 46px;
+  width: 57px;
+  background-position: 0 -6px;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  cursor: pointer;
+}
+.taskbar .startmenu:hover {
+  background-position: 0 -114px;
+}
+/*desktop*/
+.desktop-button-container {
+  height: 100px;
+  width: 80px;
+  position: absolute;
+  z-index: 1;
+}
+.desktop-button {
+  margin: 10px 4px;
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+.desktop-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+.desktop-button-icon {
+  width: 40px;
+  height: 40px;
+  margin: 0px 14px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.desktop-button-name {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  margin-top: 5px;
+  font-size: 12px;
+}
+.desktop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.desktop .windows-container {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.desktop .resize-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  top: 0px;
+}
+.desktop .snapshots {
+  height: 180px;
+  position: absolute;
+  left: 130px;
+  bottom: 3px;
+  border: 1px solid #333333;
+  box-shadow: #ffffff 0px 0px 3px inset;
+  border-radius: 5px;
+  display: none;
+  box-sizing: border-box;
+  background-color: rgba(0, 124, 240, 0.498039);
+}
+.desktop .desktop-buttons {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+/*app manage window*/
+.appmanage-form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/*login page*/
+.login-form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.login-form-user-image {
+  height: 90px;
+  width: 90px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  box-shadow: 0px 0px 10px #333;
+  margin: 0px 60px;
+}
+.login-form-image-container {
+  width: 90px;
+  height: 90px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+.login-form-container {
+  position: absolute;
+  left: 0px;
+  bottom: 55%;
+  height: 40px;
+  width: 100%;
+}
+.login-form-row {
+  width: 300px;
+  height: 40px;
+  margin: 0px auto;
+}
+.login-form-row.hight-row {
+  width: 300px;
+  height: 120px;
+  margin: 10px auto;
+}
+.login-form-user {
+  font-family: Arial;
+  font-size: 28px;
+  color: #fff;
+  text-align: center;
+  width: 240px;
+  display: inline-block;
+  font-weight: lighter;
+}
+.login-form-password {
+  box-sizing: border-box;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 2px #fff,0px 1px 5px #333;
+  width: 240px;
+  height: 28px;
+  margin: 6px 5px;
+  padding: 1px 5px;
+  display: inline-block;
+  float: left;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.login-form-submit {
+  height: 36px;
+  width: 36px;
+  margin: 2px 7px;
+  box-sizing: border-box;
+  float: left;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 10px #fff,0px 1px 5px #333;
+  background: linear-gradient(rgba(0, 120, 240, 0.1) 0%, rgba(0, 120, 240, 0.6) 45%, #0078f0 46%, rgba(0, 120, 240, 0.7) 96%, rgba(240, 240, 240, 0.4) 100%);
+  border-radius: 36px;
+  padding: 5px;
+}
+.login-form-submit:hover {
+  box-shadow: inset 0px 0px 10px #fff, 0px 2px 5px #333, inset 0px -2px 10px #fff;
+}
+/*widget startmenu*/
+.widget-startmenu {
+  cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
+  background-color: rgba(0, 120, 240, 0.9);
+  z-index: 1000;
+  position: absolute;
+  padding: 10px;
+  border: 1px solid #333;
+  box-shadow: inset 0px 0px 3px #fff;
+}
+.widget-startmenu .icon-buttons {
+  border: 1px solid #666;
+  box-shadow: 0px 0px 3px #fff;
+  display: inline-block;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+  width: 284px;
+  height: 540px;
+  position: absolute;
+}
+.widget-startmenu .startmenu-buttons {
+  background-color: transparent;
+  margin: 0px;
+  padding: 10px;
+  height: 100%;
+  display: inline-block;
+  position: absolute;
+  left: 297px;
+  width: 145px;
+  box-sizing: border-box;
+  top: 56px;
+}
