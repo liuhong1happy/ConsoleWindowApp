@@ -73,27 +73,44 @@
 
     http://localhost:8080
     
-## 快速部署开发环境
+## 快速开始
 
-#### Ubuntu
+#### nodejs和golang安装
 
     # 安装GCCGO[这里只是简便安装的Go，推荐大家还是安装Golang]
     sudo apt-get install gccgo-go
     echo PATH="$PATH:$HOME/golang/bin" >> /etc/environment
     echo GOPATH="$HOME/golang" >> /etc/environment
     # 注销后继续执行
-    # 克隆代码
+    
+    # 安装npm和nodejs
+    sudo apt-get install npm
+    npm config set registry "http://registry.npm.taobao.org"
+    npm install -g npm@3.3.12 n
+    n 4.2.1
+    npm install -g npm@3.3.12
+
+#### 前提条件
+
+1. 操作系统要求是Ubuntu 14.04 TSL 操作系统。
+2. 需要安装nodejs>4.0.0和golang>1.2.0。
+3. 要求npm版本为>3.0.0
+
+#### 安装beego
+
+    go get github.com/astaxie/beego
+    go get github.com/beego/bee
+    
+#### 克隆代码
+
     go get github.com/liuhong1happy/ConsoleWindowApp
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
     
-    # 安装npm包
-    npm install
-    # *打包JS*
-    npm start
-    # *压缩*
-    npm run build
-    # less转css
-    lessc less/winapp.less static/css/winapp.css
+#### 安装npm包
+
+    npm install & npm install -g
+
+#### 安装mongodb和redis
 
     # 安装docker
     wget -qO- https://get.docker.com/ | sh
@@ -107,12 +124,25 @@
     use admin
     db.createUser({user: "mongo",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
     db.auth("mongo","123456")
+    # 添加winapp应用管理员
+    use winapp
+    db.user_infos.insert({"user_name":"admin","user_pwd":"123456"})
     exit
-    
-    # 安装beego
-    go get github.com/astaxie/beego
-    go get github.com/beego/bee
     # 修改bee-run.sh里的session和mongodb配置信息
+
+#### 安装数据库驱动
+
+    go get github.com/garyburd/redigo/redis
+    go get github.com/goinggo/beego-mgo
+
+#### 打包压缩js和less并运行
+
+    # *打包JS*
+    npm start
+    # *压缩*
+    npm run build
+    # less转css
+    lessc less/winapp.less static/css/winapp.css
     # *运行*
     ./bee-run.sh
     
