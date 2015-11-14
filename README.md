@@ -61,11 +61,11 @@
 
 ## 快速部署
 
-#### 安装docker
+#### 0.安装docker
 
     wget -qO- https://get.docker.com/ | sh
     
-#### 安装mongodb和redis
+#### 1.安装mongodb和redis
 
     # 安装redis
     docker run -it -d --name redis --restart=always -p 6379:6379 liuhong1happy/docker-redis:pro
@@ -83,16 +83,20 @@
     exit
     # 修改bee-run.sh里的session和mongodb配置信息
     
-#### 运行容器
+#### 2.运行容器
 
     docker run -it -d --restart=always --name winapp \
         --link=redis:redis_server --link=mongodb:mongo_server \
         -p 8080:8080 liuhong1happy/docker-winapp:latest
 
-#### 访问网站
+#### 3.访问网站
 
     http://localhost:8080
     
+应用截图
+
+    ![static/images/winapp.png](static/images/winapp.png)
+
 ## 快速开始
 
 #### nodejs和golang安装
