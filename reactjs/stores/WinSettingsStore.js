@@ -7,6 +7,7 @@ var WinAppWebApiUtils = require('../utils/WinAppWebApiUtils');
 var WinAppObjectUtils = require('../utils/WinAppObjectUtils');
 var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
+var isNull = WinAppObjectUtils.isNull;
 
 var WinSettings = {
     UserInfos:[],
@@ -215,7 +216,7 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
     }
 });
 
-var isNull = WinAppObjectUtils.isNull;
+
 
 WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {

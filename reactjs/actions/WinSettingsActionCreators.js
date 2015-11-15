@@ -14,7 +14,6 @@ module.exports = {
       data: winSettings
     });
   },
-    
   openWindow:function(app){
     WinAppDispatcher.dispatch({
       type: ActionTypes.OPEN_WINDOW,

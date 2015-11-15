@@ -216,10 +216,11 @@ var Resize = React.createClass({
                 window.removeEventListener("mouseup",this.onMouseUp);
                 window.removeEventListener("mousemove",this.onMouseMove);
         },
+     
         render: function() {
                var resizeStyle = this.props.style?this.props.style:{};
                return (<div style={resizeStyle}>
-                        <div className="resize-drag" onDoubleClick={this.props.onDoubleClick} onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
+                        <div className="resize-drag" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ns-n"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ns-s"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ew-e" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
