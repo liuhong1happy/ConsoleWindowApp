@@ -1,0 +1,57 @@
+/*app store window*/
+.appstore-form{
+        position:relative;
+        width:100%;
+        height:100%;
+        background-color: #F3F9EE;
+        .appstore-category{
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            min-height: 200px;
+            .category-name{
+                background-color: cadetblue;
+                height: 32px;
+                line-height: 32px;
+                color: #fff;
+                padding-left: 20px;
+            }
+            .app-content{
+                display: inline-block;
+                width: 100px;
+                height: 120px;
+                margin: 20px;
+                background-color: rgba(245, 245, 220,0.7);
+                line-height: 32px;
+                text-align: center;
+                color:#555;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-shadow: 1px 1px 5px #555;
+                position: relative;
+
+                .app-item{
+                    border-top: 2px solid #f0f0f0;
+                    &.add-app{
+                        color: brown;
+                    }
+                }
+                .app-icon{
+                    width: 64px;
+                    height: 64px;
+                    margin: 10px auto;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;
+                }
+                &:hover{
+                    box-shadow: 3px 3px 10px #555;
+                    top: -2px;
+                    left: -2px;
+                    .app-item{
+                        &.add-app{
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+}

@@ -8,7 +8,10 @@ var WinAppObjectUtils = require('../utils/WinAppObjectUtils');
 var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
 
-var StoreApps = [];
+var StoreApps = {
+    storeApps:[],
+    myStoreApps:[]
+};
 var AppManageStore = assign({},EventEmitter.prototype,{
     emitChange: function(event) {
         this.emit(event);
@@ -18,18 +21,23 @@ var AppManageStore = assign({},EventEmitter.prototype,{
     },
     removeChangeListener: function(event,callback) {
         this.removeListener(event, callback);
+    },
+    getStoreApps:function(){
+        return StoreApps.storeApps;
+    },
+    getMyStoreApps:function(){
+        return StoreApps.myStoreApps;
     }
 });
-WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
+
+AppManageStore.dispatchToken = WinAppDispatcher.register(function(action) {
     switch(action.type) {
-        case ActionTypes.RECEIVE_WIN_SETTINGS:
-          WinSettings = action.data;
-            WinSettingsStore.emitChange(WinAppConstants.EventTypes.PAGES);
+        case ActionTypes.RECEIVE_STORE_APPS:
+            StoreApps.storeApps = action.data;
+            AppManageStore.emitChange(WinAppConstants.EventTypes.STORE_APPS);
           break;
         default:
           // do nothing
     }
-    
-    
 });
 module.exports = AppManageStore;

@@ -1,5 +1,6 @@
 
 var WinSettingsActionCreators = require('../actions/WinSettingsActionCreators');
+var AppManagerActionCreators = require('../actions/AppManagerActionCreators');
 module.exports = {
   getWinSettings: function() {
       $.ajax({
@@ -59,5 +60,9 @@ module.exports = {
               callback("error",e,err);
           }
       })
+  },
+  getStoreApps:function(){
+            var storeApps = JSON.parse(localStorage.getItem('storeApps'));
+            AppManagerActionCreators.receiveStoreApps(storeApps);
   }
 };

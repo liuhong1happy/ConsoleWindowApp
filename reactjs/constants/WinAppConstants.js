@@ -14,7 +14,11 @@ module.exports = {
         MAX_WINDOW:null,
       
         SHOW_SNAP_SHOT:null,
-        USER_LOGIN:null
+        USER_LOGIN:null,
+      
+        RECEIVE_STORE_APPS:null,
+        RECEIVE_MY_STORE_APPS:null,
+        ADD_STORE_APP:null,
   }),
   EventTypes:keyMirror({
     WIN_SETTINS: null,
@@ -25,6 +29,8 @@ module.exports = {
     WINDOWS:null,
     PAGES:null,
     APPS:null,
-    SNAPSHOTS:null
+    SNAPSHOTS:null,
+    STORE_APPS:null,
+    MY_STORE_APPS:null
   }),
 };

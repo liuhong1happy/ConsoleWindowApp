@@ -113,6 +113,65 @@ module.exports = {
                 { id:12,name:"关机",image:"static/images/start.png",where:["startmenu"],render:"CloseSystemButton",fixed:true,type:"StartMenuButton"}
             ],
         }));
-        }
+            
+            localStorage.setItem('storeApps',JSON.stringify([{
+                name:"2048",
+                image:"http://gabrielecirulli.github.io/2048/favicon.ico",
+                version:"1.0.0",
+                currentVersion:"1.0.0",
+                category:"game",
+                content:{
+                    render:"iframe",
+                    config:{
+                        src:"https://github.com/gabrielecirulli/2048",
+                        width:"100%",
+                        height:"100%",         
+                        style:{
+                            border:"0px solid transparent"
+                        }
+                    },
+                    children:null
+                }
+            },
+            {
+                name:"新浪新闻",
+                image:"http://www.sina.com.cn/favicon.svg",
+                version:"1.0.0",
+                currentVersion:"1.0.0",
+                category:"news",
+                content:{
+                    render:"iframe",
+                    config:{
+                        src:"http://news.sina.com.cn/",
+                        width:"100%",
+                        height:"100%",         
+                        style:{
+                            border:"0px solid transparent"
+                        }
+                    },
+                    children:null
+                }
+            },
+            {
+                name:"网易新闻",
+                image:"http://news.163.com/favicon.ico",
+                version:"1.0.0",
+                currentVersion:"1.0.0",
+                category:"news",
+                content:{
+                    render:"iframe",
+                    config:{
+                        src:"http://news.163.com",
+                        width:"100%",
+                        height:"100%",         
+                        style:{
+                            border:"0px solid transparent"
+                        }
+                    },
+                    children:null
+                }
+            },
+        ]))
+    }
   }
 };
