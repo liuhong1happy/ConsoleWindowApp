@@ -1,5 +1,6 @@
 module.exports = {
   init: function() {
+        if(window.Env =="dev") localStorage.clear();
         if(localStorage.getItem('winSettings')==null){
             localStorage.clear();
             localStorage.setItem('winSettings', JSON.stringify({
@@ -25,7 +26,20 @@ module.exports = {
                             }
                        }
                 },
-                { id:"app_store",name:"应用商店",image:"static/images/app_store.png", where:["desktop","taskbar","startmenu"],render:"Button",fixed:true,type:"SystemApp"},
+                { 
+                     id:"app_store",name:"应用商店",image:"static/images/app_store.png", where:["desktop","taskbar","startmenu"],render:"Button",fixed:true,type:"SystemApp",
+                     config:{ 
+                            render:"Window",position:{y:110,x:110}, width:1024,height:700, type:"SystemWin",                
+                            content:{ 
+                                render:"AppStoreForm",
+                                config:{ 
+                                    width:"100%",
+                                    height:"100%"
+                                },
+                                children:null 
+                            }
+                       }
+                },
                 { 
                     id:"StartMenu",name:"开始菜单",image:"static/images/start.png",
                     where:["taskbar"],render:"StartMenu",fixed:true,type:"SystemApp",

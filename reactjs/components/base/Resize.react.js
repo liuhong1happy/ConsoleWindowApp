@@ -52,6 +52,13 @@ var Resize = React.createClass({
               else
                     e.cancelBubble = true;
         },
+        clearSelect:function(e){
+            if(window.getSelection){
+                    window.getSelection().removeAllRanges();
+            }else{
+                document.selection.empty();
+            }
+        },
         moveToTop:function(offsetY){
             var resizeEve = this.state.resizeEvent;
             if(this.state.where[0]=="top"){
@@ -172,6 +179,7 @@ var Resize = React.createClass({
         onMouseUp:function(e){
             var resizeEve = this.state.resizeEvent;
             if( resizeEve.down){
+                    this.clearSelect(e);
                     this.moveToPositoin(e);
                     resizeEve.down = false;
                     resizeEve.up = true;
@@ -195,6 +203,7 @@ var Resize = React.createClass({
         onMouseMove:function(e){
             var resizeEve = this.state.resizeEvent;
             if( resizeEve.down){
+                this.clearSelect(e);
                 this.moveToPositoin(e);
             }
             this.stopPropagation(e);
@@ -210,7 +219,7 @@ var Resize = React.createClass({
         render: function() {
                var resizeStyle = this.props.style?this.props.style:{};
                return (<div style={resizeStyle}>
-                        <div className="resize-drag" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
+                        <div className="resize-drag" onDoubleClick={this.props.onDoubleClick} onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ns-n"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ns-s"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                         <div className="resize-ew-e" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>

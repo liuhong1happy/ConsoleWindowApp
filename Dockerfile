@@ -1,11 +1,10 @@
 # 基础镜像
 FROM docker-beego:pro
-
 # 维护人员
 MAINTAINER  liuhong1.happy@163.com
 
 # 环境变量
-ENV  MGO_HOSTS=mongo_server
+ENV MGO_HOSTS=mongo_server
 ENV MGO_DATABASE=admin
 ENV MGO_USERNAME=mongo
 ENV MGO_PASSWORD=123456
@@ -15,8 +14,8 @@ ENV SESSION_PROVIDER=redis
 ENV SESSION_SAVEPATH=redis_server:6379
 
 # 下载数据库驱动
-go get github.com/garyburd/redigo/redis
-go get github.com/goinggo/beego-mgo
+RUN go get github.com/garyburd/redigo/redis
+RUN go get github.com/goinggo/beego-mgo
 
 # 创建目录
 RUN mkdir -p $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp

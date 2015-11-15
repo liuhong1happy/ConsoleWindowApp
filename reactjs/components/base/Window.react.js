@@ -117,7 +117,7 @@ var Window = React.createClass({
             };
             return (
                 <div style={parentStyle} ref="winborder" className="win window">
-                    <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} where={this.state.where}/>
+                    <Resize style={resizeStyle} height={this.state.display.height} width={this.state.display.width} position={this.state.position} onResize={this.onResize} onDoubleClick={this.onToggleMax} where={this.state.where}/>
                     <div className="win-btns">
                         <div ref="minbutton" id="minbutton" className="btn btn-win btn-win-min" onClick={this.onClick}>一</div>
                         <div ref="maxbutton" id="maxbutton" className="btn btn-win btn-win-max" onClick={this.onToggleMax}>口</div>

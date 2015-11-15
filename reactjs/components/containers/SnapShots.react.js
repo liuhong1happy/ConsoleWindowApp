@@ -87,11 +87,24 @@ var SnapShots = React.createClass({
         return (
             <div className="snapshots" style={divStyle} onMouseEnter={this.handleHover}  onMouseLeave={this.handleUnhover}>
                 {
-                    this.state.snapshot.snapshots.map(function(result) {
+                    snapshots.map(function(result) {
                         order+=1;
-                        result.name = result.name?result.name:data.app.name;
-                        result.image = result.image?result.image:data.app.image;
-                        return <SnapShot key={ order+result.id }  order={order} snapshot={result}  closeSnapShot={closeSnapShot}
+                        var _window = WinSettingsStore.getWindowById(result.id);
+                        var snapshot = {
+                            type: _window.type,
+                            name : _window.name?_window.name:data.app.name,
+                            image :_window.image? _window.image:data.app.image,
+                            height: _window.height,
+                            width:_window.width,
+                            id:_window.id,
+                            app_id:_window.app_id,
+                            position:{
+                                x:_window.position.x,
+                                y:_window.position.y
+                            },
+                            snapshot:result.snapshot
+                        }
+                        return <SnapShot key={ "snapshot"+_window.id }  order={order} snapshot={snapshot}  closeSnapShot={closeSnapShot}
                         />;
                     })
                 }

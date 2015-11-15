@@ -183,7 +183,7 @@ var WinSettingsStore = assign({},EventEmitter.prototype,{
         }
     },
     addWindow:function(win){
-        win.id = win.app_id+"-"+Math.round(Math.random()*1000);
+        win.id = win.app_id+"-"+WinAppObjectUtils.genID();
         if(win.type=="CustomWin"){
             WinSettings.CustomWins.push(win);
             var CustomApps = WinSettings.CustomApps;
@@ -356,11 +356,22 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
         case ActionTypes.OPEN_WINDOW:
             var app = action.data;
             if(app.config){
-                var config = app.config;
-                config.app_id = app.id;
-                config.image = app.image;
-                config.show = true;
-                config.fixed = app.fixed;
+                var config =  {
+                    app_id : app.id,
+                    image : app.image,
+                    show : true,
+                    fixed : app.fixed,
+                    render:app.config.render,
+                    position:{
+                        x:app.config.position.x,
+                        y:app.config.position.y
+                    },
+                    where:app.config.where,
+                    width:app.config.width,
+                    type:app.config.type,
+                    height:app.config.height,
+                    content:app.config.content
+                };
                 WinSettingsStore.addWindow(config);
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
@@ -377,8 +388,10 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             }
             if(!isNull(windows)){
                 for(var w in windows){
-                    windows[w].id = w;
-                    snapShots.push(windows[w]);
+                    snapShots.push({
+                        id:w,
+                        snapshot:windows[w].snapshot
+                    });
                 }
             }
             WinSettings.SnapShot ={

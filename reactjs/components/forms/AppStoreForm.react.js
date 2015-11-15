@@ -1,7 +1,7 @@
 var React = require('react');
 var WinSettingsStore = require('../../stores/WinSettingsStore');
-var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-var AppManageForm = React.createClass({
+
+var AppStoreForm = React.createClass({
     getInitialState:function(){
         return {
             SystemApps:WinSettingsStore.getSystemApps(),
@@ -9,8 +9,7 @@ var AppManageForm = React.createClass({
         };
     },
     _openAppStore:function(){
-            var app = WinSettingsStore.getAppById('app_store');
-            if(app) WinSettingsActionCreators.openWindow(app);
+
     },
     _openAddApp:function(){
         alert("Demo 演示暂且不能发布应用");
@@ -62,4 +61,4 @@ var AppManageForm = React.createClass({
         );
   }
 });
-module.exports = AppManageForm;
+module.exports = AppStoreForm;

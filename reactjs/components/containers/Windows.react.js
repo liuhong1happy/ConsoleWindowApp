@@ -4,6 +4,7 @@ var WinSettingsStore =require('../../stores/WinSettingsStore');
 var Widget = require('../base/Widget.react');
 var Window = require('../base/Window.react');
 var AppManageForm = require('../forms/AppManageForm.react');
+var AppStoreForm = require('../forms/AppStoreForm.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
 var Windows = React.createClass({
   getInitialState: function() {
@@ -27,7 +28,8 @@ var Windows = React.createClass({
   render: function() {
        var supportForm = {
             "iframe":"iframe",
-            "AppManageForm":AppManageForm
+            "AppManageForm":AppManageForm,
+           "AppStoreForm":AppStoreForm
        };
       var supportWindow = {
           "Window":Window,
@@ -41,8 +43,7 @@ var Windows = React.createClass({
                     this.state.windows.map(function(result) {
                         var content = result.content;
                         var Child = result.content?React.createElement( supportForm[content.render] , content.config, content.children):null;
-                        return React.createElement(
-                               supportWindow[result.render],  {
+                        var _window = {
                                     position:result.position,
                                     where:result.where,
                                     height:result.height,
@@ -54,8 +55,8 @@ var Windows = React.createClass({
                                     image:result.image,
                                     name:result.name,
                                     type:result.type
-                                },  Child
-                        );
+                        }
+                        return React.createElement( supportWindow[result.render],  _window,  Child );
                     })
                 }
             </div>

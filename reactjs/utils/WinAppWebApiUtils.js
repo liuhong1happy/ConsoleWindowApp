@@ -8,8 +8,12 @@ module.exports = {
           dataType:"json",
           success:function(res){
               if(res && res.ID){
-                    var winSettings = JSON.parse(res.win_settings);
-                    WinSettingsActionCreators.receiveWinSettings(winSettings);
+                   if(window.Env =="dev"){
+                        var winSettings = JSON.parse(localStorage.getItem('winSettings'));
+                   }else{
+                       var winSettings = JSON.parse(res.win_settings);
+                   }    
+                   WinSettingsActionCreators.receiveWinSettings(winSettings);
               }else{
                     var winSettings = JSON.parse(localStorage.getItem('winSettings'));
                     WinSettingsActionCreators.receiveWinSettings(winSettings);
