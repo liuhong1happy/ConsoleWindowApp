@@ -103,25 +103,24 @@
 
 1. 操作系统要求是Ubuntu 14.04 TSL 操作系统。
 2. 需要安装nodejs>4.0.0和golang>1.2.0。
-3. 要求npm版本为>3.0.0
-
+3. 要求npm版本为>3.0.0。
+4. 需要安装lessc进行less编译。
 
 #### 1.nodejs和golang安装
 
     # 安装GCCGO[这里只是简便安装的Go，推荐大家还是安装Golang]
     sudo apt-get install gccgo-go
-    echo PATH="$PATH:$HOME/golang/bin" >> /etc/environment
-    echo GOPATH="$HOME/golang" >> /etc/environment
+    sudo echo PATH="$PATH:$HOME/golang/bin" > /etc/environment
+    sudo echo GOPATH="$HOME/golang" >> /etc/environment
     # 注销后继续执行
     
     # 安装npm和nodejs
+    # 注意请务必注意这里的npm安装的权限问题，要么修改npm安装路径的权限，亦或是npm命令添加sudo
     sudo apt-get install npm
     npm config set registry "http://registry.npm.taobao.org"
     npm install -g npm@3.3.12 n
     n 4.2.1
     npm install -g npm@3.3.12
-
-
 
 #### 2.安装beego
 
@@ -133,8 +132,9 @@
     go get github.com/liuhong1happy/ConsoleWindowApp
     cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
     
-#### 4.安装npm包
+#### 4.使用npm为项目安装js包
 
+    # 务必确保react flux等核心库正确安装
     npm install & npm install -g
 
 #### 5.安装mongodb和redis
@@ -173,5 +173,3 @@
     # *运行*
     ./bee-run.sh
     
-
-
