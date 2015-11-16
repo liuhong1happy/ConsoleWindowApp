@@ -160,8 +160,8 @@ var Resize = React.createClass({
                 case "resize-sw":
                 case "resize-ne":
                 case "resize-nw":
-                case "resize-drag":
                     $("#resize_mask").show();
+                case "resize-drag":
                     resizeEve.down = true;
                     resizeEve.up = false;
                     resizeEve.downClassName = target.className;
@@ -216,19 +216,21 @@ var Resize = React.createClass({
                 window.removeEventListener("mouseup",this.onMouseUp);
                 window.removeEventListener("mousemove",this.onMouseMove);
         },
-     
+        onDoubleClick:function(e){
+            if(this.props.onDoubleClick)
+                this.props.onDoubleClick(e);
+        },
         render: function() {
                var resizeStyle = this.props.style?this.props.style:{};
-               return (<div style={resizeStyle}>
-                        <div className="resize-drag" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-ns-n"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-ns-s"  onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-ew-e" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-ew-w" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-se" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-sw" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-ne" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
-                        <div className="resize-nw" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
+               var classArr = ["resize-ns-n","resize-ns-s","resize-ew-e","resize-ew-w","resize-se","resize-sw","resize-ne","resize-nw"];
+                var onMouseDown = this.onMouseDown,onMouseMove=this.onMouseMove,onMouseUp=this.onMouseUp;
+               return (<div>
+                        <div className="resize-drag" onDoubleClick={this.onDoubleClick} onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
+                       {
+                                classArr.map(function(cls){
+                                    return (<div style={resizeStyle} className={cls}  onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}></div>);
+                                })
+                        }
                  </div>)
         }
 });
