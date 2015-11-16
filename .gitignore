@@ -2,3 +2,4 @@ node_modules/
 *~
 ConsoleWindowApp
 static/js/app.js
+npm-debug.log
