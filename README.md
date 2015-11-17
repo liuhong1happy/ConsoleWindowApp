@@ -83,7 +83,6 @@
     use winapp
     db.user_infos.insert({"user_name":"admin","user_pwd":"123456"})
     exit
-    # 修改bee-run.sh里的session和mongodb配置信息
     
 #### 2.运行容器
 
@@ -139,39 +138,48 @@
     # 务必确保react flux等核心库正确安装
     npm install & npm install -g
 
-#### 5.安装mongodb和redis
+#### 5.安装redis
 
-    # 安装docker
-    wget -qO- https://get.docker.com/ | sh
-    # 安装redis
-    docker run -it -d --name redis --restart=always -p 6379:6379 liuhong1happy/docker-redis:pro
-    # 安装mongodb
-    docker run -it -d --name mongodb -v /var/data/mongodb:/data/db -p 27017:27017  liuhong1happy/docker-mongodb:pro
-    # 添加mongodb管理员
-    docker exec -it mongodb /bin/bash
+    sudo apt-get install redis
+
+#### 6.安装mongodb
+    
+6.1 安装
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+    echo "deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.0.list
+    sudo apt-get update
+    sudo apt-get install -y mongodb-org
+
+参考[这里](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
+
+6.2 配置
+
     mongo
     use admin
     db.createUser({user: "mongo",pwd: "123456",roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]})
     db.auth("mongo","123456")
+    exit
+    mongo admin -u mongo -p 123456
     # 添加winapp应用管理员
     use winapp
     db.user_infos.insert({"user_name":"admin","user_pwd":"123456"})
     exit
-    # 修改bee-run.sh里的session和mongodb配置信息
 
-#### 6.安装数据库驱动
+
+#### 7.安装数据库驱动
 
     go get github.com/garyburd/redigo/redis
     go get github.com/goinggo/beego-mgo
 
-#### 7.打包压缩js和less并运行
-
+#### 8.打包压缩js和less并运行
+    
     # *打包JS*
     npm start
     # *压缩*
     npm run build
     # less转css
     lessc less/winapp.less static/css/winapp.css
+    # 修改bee-run.sh文件中的配置
     # *运行*
     ./bee-run.sh
     
