@@ -246,19 +246,22 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             }
             break;
         case ActionTypes.SHOW_WINDOW:
-            var window = action.data;
-            if(window.type=="SystemWin"){
+            var _window = action.data;
+            if(_window.type==undefined){
+                _window = WinSettingsStore.getWindowById(_window.id);
+            }
+            if(_window.type=="SystemWin"){
                 var findWins = WinSettings.SystemWins.filter(function(ele,pos){
-                    return ele.id == window.id;
+                    return ele.id == _window.id;
                 });
                 if(findWins.length>0){
                     findWins[0].show = true;
                     WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
                 };
             }
-            if(window.type=="CustomWin"){
+            if(_window.type=="CustomWin"){
                 var findWins = WinSettings.CustomWins.filter(function(ele,pos){
-                    return ele.id == window.id;
+                    return ele.id == _window.id;
                 });
                 if(findWins.length>0){
                     findWins[0].show = true;

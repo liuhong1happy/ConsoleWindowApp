@@ -23,7 +23,20 @@ var TaskBarButtons = React.createClass({
   },
   handleClick:function(app_id){
       var app = WinSettingsStore.getAppById(app_id);
-      if(app) WinSettingsActionCreators.openWindow(app);
+      if(app.window){
+          WinSettingsActionCreators.showWindow(app.window);
+          return;
+      }
+      if(app.windows){
+          for(var w in app.windows){
+              var _window = app.windows[w];
+              _window.id = w;
+              WinSettingsActionCreators.showWindow(app.windows[w]);
+              break;
+          }
+          return;
+      } 
+      WinSettingsActionCreators.openWindow(app);
   },
   render: function() {
         var taskStyle = {width:this.state.display.width}
@@ -31,12 +44,13 @@ var TaskBarButtons = React.createClass({
         if(this.state.buttons.length==0){
             return (<div style={taskStyle}></div>);
         }
+        var handleClick = this.handleClick;
         return (
             <div className="taskbar-buttons" style={taskStyle}>
                 {
                     this.state.buttons.map(function(result) {
                         order+=1;
-                        return <TaskBarButton key={ result.id }  order={order} button={result} onClick={this.handleClick} />;
+                        return <TaskBarButton key={ result.id }  order={order} button={result} onClick={handleClick} />;
                     })
                 }
             </div>

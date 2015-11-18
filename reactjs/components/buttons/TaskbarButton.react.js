@@ -8,12 +8,12 @@ var TaskBarButton = React.createClass({
             button:this.props.button,
             hoverBackground:"url(static/images/taskbarhover.png)",
             display:{
-                height:41,
+                height:43,
                 width:57
             },
             position:{
                 left:this.props.order*65,
-                bottom:3
+                bottom:0
             }
         };
     },
@@ -36,7 +36,7 @@ var TaskBarButton = React.createClass({
     },
     handleFocus:function(){
         this.setState({focus: true});
-        if((this.state.button.window || this.state.button.windows) && this.props.onClick){
+        if(this.props.onClick){
             this.props.onClick(this.state.button.id)
         }
     },
