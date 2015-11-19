@@ -61,6 +61,8 @@
 
 ## 快速部署
 
+快速部署将通过docker的方式，请提前下载相应的只做好的docker镜像包：[docker-winapp|docker-redis|docker-mongodb](http://pan.baidu.com/s/1jGk3w3s)。
+
 #### 0.安装docker
 
     wget -qO- https://get.docker.com/ | sh
