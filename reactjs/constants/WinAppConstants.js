@@ -19,8 +19,11 @@ module.exports = {
         RECEIVE_STORE_APPS:null,
         RECEIVE_MY_STORE_APPS:null,
         ADD_STORE_APP:null,
+      
+        FETCH_FILE_SYSTEM:null,
+        RECEIVED_FILE_SYSTEM:null
   }),
-  EventTypes:keyMirror({
+  EventTypes:  keyMirror({
     WIN_SETTINS: null,
     DESKTOP_BUTTONS: null,
     TASK_BARS: null,
@@ -31,6 +34,7 @@ module.exports = {
     APPS:null,
     SNAPSHOTS:null,
     STORE_APPS:null,
-    MY_STORE_APPS:null
+    MY_STORE_APPS:null,
+    FILE_SYSTEM:null
   }),
 };

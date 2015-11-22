@@ -3,7 +3,8 @@ var WinAppDispatcher = require('../dispatcher/WinAppDispatcher');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
-var WinAppWebApiUtils = require('../utils/WinAppWebApiUtils');
+var WinAppServerActionCreators = require('../actions/WinAppServerActionCreators');
+
 var WinAppObjectUtils = require('../utils/WinAppObjectUtils');
 var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
@@ -355,7 +356,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                     WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
                 }
             }
-            WinAppWebApiUtils.saveWinSettings(WinSettings);
+            WinAppServerActionCreators.saveWinSettings(WinSettings);
             break;
         case ActionTypes.OPEN_WINDOW:
             var app = action.data;
@@ -380,7 +381,7 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.WINDOWS);
                 WinSettingsStore.emitChange(WinAppConstants.EventTypes.TASK_BARS);
             }
-            WinAppWebApiUtils.saveWinSettings(WinSettings);
+            WinAppServerActionCreators.saveWinSettings(WinSettings);
             break;
         case ActionTypes.SHOW_SNAP_SHOT:
             var snapShots = [];
@@ -405,12 +406,11 @@ WinSettingsStore.dispatchToken = WinAppDispatcher.register(function(action) {
             WinSettingsStore.emitChange(WinAppConstants.EventTypes.SNAPSHOTS);
             break;
         case ActionTypes.USER_LOGIN:
+            console.log(action.data);
             WinSettings.UserInfos.login = true;
             localStorage.setItem('winSettings',JSON.stringify(WinSettings));
-            WinAppWebApiUtils.saveWinSettings(WinSettings);
-//            WinSettingsStore.emitChange(WinAppConstants.EventTypes.USER);
+            WinAppServerActionCreators.saveWinSettings(WinSettings);
             WinSettingsStore.emitChange(WinAppConstants.EventTypes.PAGES);
-            
             break;
         default:
           // do nothing

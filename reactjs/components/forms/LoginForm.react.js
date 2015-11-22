@@ -1,7 +1,7 @@
 var React = require('react');
 var Button = require('../base/Button.react');
-var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
-var WinAppWebApiUtils = require('../../utils/WinAppWebApiUtils');
+var WinAppServerActionCreators = require('../../actions/WinAppServerActionCreators');
+
 
 var LoginForm = React.createClass({
   getInitialState: function() {
@@ -24,18 +24,11 @@ var LoginForm = React.createClass({
   },
   submitLoginForm:function(){
       var $password = this.refs.password.getDOMNode();
-      var $loading = $(this.refs.loading.getDOMNode());
-      WinAppWebApiUtils.userLogin("admin",$password.value,function(type,data,error){
-          if(type=="success" && data.ID){
-              WinSettingsActionCreators.loginToDesktop($password.value);
-          }else{
-              $loading.html("error user's password").show();
-              $loading.css({ color : "#881000"});
-              setTimeout(function(){
-                  $loading.hide();
-              },2000)
-          }
-      })
+      var formData = {
+          "user_name":"admin",
+          "user_pwd":$password.value
+      }
+      WinAppServerActionCreators.submitLoginForm(formData);
   },
   render: function() {
         var loadingStyle = {

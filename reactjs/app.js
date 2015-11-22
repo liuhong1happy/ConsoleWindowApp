@@ -1,9 +1,13 @@
 var WinApp = require('./components/WinApp.react');
-var WinAppWebApiUtils = require('./utils/WinAppWebApiUtils');
+var WinAppServerActionCreators = require('./actions/WinAppServerActionCreators');
+
 var WinAppLocalStorage = require('./WinAppLocalStorage');
 var React = require('react');
 window.Env = "dev";
 WinAppLocalStorage.init();
-WinAppWebApiUtils.getWinSettings();
-WinAppWebApiUtils.getStoreApps();
+
+WinAppServerActionCreators.fetchWinSettings();
+WinAppServerActionCreators.fetchStoreApps();
+WinAppServerActionCreators.fetchFileSystem();
+
 React.render( <WinApp />, document.body);

@@ -2,6 +2,10 @@
 var WinAppDispatcher = require('../dispatcher/WinAppDispatcher');
 var WinAppConstants = require('../constants/WinAppConstants');
 var ActionTypes = WinAppConstants.ActionTypes;
+
+
+// ActionCreators是WebAPI和Store之间沟通的桥梁
+
 module.exports = {
       receiveStoreApps: function(storeApps) {
             WinAppDispatcher.dispatch({
