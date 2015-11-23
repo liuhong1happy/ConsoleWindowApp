@@ -5,6 +5,7 @@ var Widget = require('../base/Widget.react');
 var Window = require('../base/Window.react');
 var AppManageForm = require('../forms/AppManageForm.react');
 var AppStoreForm = require('../forms/AppStoreForm.react');
+var FileManageForm = require('../forms/FileManageForm.react');
 var WinAppConstants = require('../../constants/WinAppConstants');
 var Windows = React.createClass({
   getInitialState: function() {
@@ -29,7 +30,8 @@ var Windows = React.createClass({
        var supportForm = {
             "iframe":"iframe",
             "AppManageForm":AppManageForm,
-           "AppStoreForm":AppStoreForm
+           "AppStoreForm":AppStoreForm,
+           "FileManageForm":FileManageForm
        };
       var supportWindow = {
           "Window":Window,
@@ -54,7 +56,8 @@ var Windows = React.createClass({
                                     app_id:result.app_id,
                                     image:result.image,
                                     name:result.name,
-                                    type:result.type
+                                    type:result.type,
+                                    className: (content && content.render=="FileManageForm")?"filemanage-window":""
                         }
                         return React.createElement( supportWindow[result.render],  _window,  Child );
                     })

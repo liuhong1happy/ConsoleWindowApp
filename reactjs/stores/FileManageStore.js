@@ -41,4 +41,4 @@ FileManageStore.dispatchToken = WinAppDispatcher.register(function(action) {
           // do nothing
     }
 });
-module.exports = AppManageStore;
+module.exports = FileManageStore;

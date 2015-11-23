@@ -11,7 +11,18 @@ module.exports = {
                 user_mobile:"12345678910"
             },
             SystemApps:[
-                { id:0,name:"计算机",image:"static/images/computer.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp" },
+                { id:0,name:"计算机",image:"static/images/computer.ico", where:["desktop"],render:"Button",fixed:true,type:"SystemApp",                     config:{ 
+                            render:"Window",position:{y:110,x:110}, width:1024,height:700, type:"SystemWin",                
+                            content:{ 
+                                render:"FileManageForm",
+                                config:{ 
+                                    width:"100%",
+                                    height:"100%"
+                                },
+                                children:null 
+                            }
+                       }
+                },
                 { id:1,name:"回收站",image:"static/images/recycle.png", where:["desktop"],render:"Button",fixed:true,type:"SystemApp"},
                 { id:"app_manage",name:"我的应用",image:"static/images/app_manage.png", where:["desktop","taskbar","startmenu"],render:"Button",fixed:true,type:"SystemApp",
                     config:{ 
