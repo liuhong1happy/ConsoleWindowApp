@@ -35,6 +35,17 @@ var FileManageForm = React.createClass({
                             <div className="menu">编辑(E)</div>
                             <div className="menu">视图(V)</div>
                     </div>
+                    <div className="toolbar">
+                            <div className="tool-button">属性</div>
+                            <div className="tool-button">系统属性</div>
+                            <div className="tool-button">控制面板</div>
+                    </div>
+                    <div className="main-content">
+                            <div className="dir-tree"></div>
+                            <div className="dir-content"></div>
+                    </div>
+                    <div className="statusbar">
+                    </div>
                 </div>
         );
   }

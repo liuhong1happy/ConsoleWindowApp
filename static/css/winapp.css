@@ -605,16 +605,19 @@
 .filemanage-window {
   padding: 80px 10px 10px 10px;
 }
-.filemanage-window .resize-drag {
+.filemanage-window .filemanage-form {
+  height: 100%;
+}
+.filemanage-window .filemanage-form .resize-drag {
   height: 70px;
 }
-.filemanage-window .input-group {
+.filemanage-window .filemanage-form .input-group {
   position: absolute;
   top: 44px;
   width: 100%;
 }
-.filemanage-window .input-group .arrow-left,
-.filemanage-window .input-group .arrow-right {
+.filemanage-window .filemanage-form .input-group .arrow-left,
+.filemanage-window .filemanage-form .input-group .arrow-right {
   height: 28px;
   width: 32px;
   margin: 2px 2px;
@@ -627,16 +630,16 @@
   padding: 5px;
   text-align: center;
 }
-.filemanage-window .input-group .arrow-left:hover,
-.filemanage-window .input-group .arrow-right:hover {
+.filemanage-window .filemanage-form .input-group .arrow-left:hover,
+.filemanage-window .filemanage-form .input-group .arrow-right:hover {
   box-shadow: inset 0px -5px 20px #fff, 0px 1px 5px #333;
 }
-.filemanage-window .input-group .arrow-left img,
-.filemanage-window .input-group .arrow-right img {
+.filemanage-window .filemanage-form .input-group .arrow-left img,
+.filemanage-window .filemanage-form .input-group .arrow-right img {
   height: 18px;
   width: 18px;
 }
-.filemanage-window .input-group .nav-input {
+.filemanage-window .filemanage-form .input-group .nav-input {
   position: absolute;
   left: 80px;
   height: 28px;
@@ -644,20 +647,22 @@
   background-color: #C5D4E4;
   width: auto;
   overflow: hidden;
-  border: 1px solid #999;
-  box-shadow: 0px 0px 1px #fff,inset 0px 0px 1px #fff;
+  border: 1px solid #333;
+  box-shadow: 0px 0px 1px #fff,inset 0px 0px 3px #fff;
+  border-radius: 3px;
 }
-.filemanage-window .input-group .nav-input:hover,
-.filemanage-window .input-group .nav-input:focus {
-  border: 1px solid #C5D4E4;
+.filemanage-window .filemanage-form .input-group .nav-input:hover,
+.filemanage-window .filemanage-form .input-group .nav-input:focus {
+  border: 1px solid #555;
   background-color: #fff;
+  box-shadow: 0px 0px 1px #999,inset 0px 0px 3px #999;
 }
-.filemanage-window .input-group .nav-input img {
+.filemanage-window .filemanage-form .input-group .nav-input img {
   height: 24px;
   width: 24px;
   margin: 2px;
 }
-.filemanage-window .input-group .nav-input input {
+.filemanage-window .filemanage-form .input-group .nav-input input {
   position: absolute;
   top: 1px;
   left: 28px;
@@ -671,22 +676,24 @@
   color: #333;
   outline: none;
 }
-.filemanage-window .input-group .search-input {
+.filemanage-window .filemanage-form .input-group .search-input {
   position: absolute;
   right: 21px;
   width: 130px;
   height: 28px;
   background-color: #C5D4E4;
   overflow: hidden;
-  border: 1px solid #999;
-  box-shadow: 0px 0px 1px #fff,inset 0px 0px 1px #fff;
+  border: 1px solid #333;
+  box-shadow: 0px 0px 1px #fff,inset 0px 0px 3px #fff;
+  border-radius: 3px;
 }
-.filemanage-window .input-group .search-input:hover,
-.filemanage-window .input-group .search-input:focus {
-  border: 1px solid #C5D4E4;
+.filemanage-window .filemanage-form .input-group .search-input:hover,
+.filemanage-window .filemanage-form .input-group .search-input:focus {
+  border: 1px solid #555;
   background-color: #fff;
+  box-shadow: 0px 0px 1px #999,inset 0px 0px 3px #999;
 }
-.filemanage-window .input-group .search-input input {
+.filemanage-window .filemanage-form .input-group .search-input input {
   position: absolute;
   top: 1px;
   right: 28px;
@@ -699,22 +706,22 @@
   color: #333;
   outline: none;
 }
-.filemanage-window .input-group .search-input img {
+.filemanage-window .filemanage-form .input-group .search-input img {
   height: 24px;
   width: 24px;
   margin: 2px;
   float: right;
 }
-.filemanage-window .menu-bar {
+.filemanage-window .filemanage-form .menu-bar {
   background: linear-gradient(#FFFFFF 0%, #E5EAF5 40%, #D4DBEE 41%, #E1E6F6 96%, #E1E6F6 100%);
-  border: 1px solid #B6BCCC;
+  border-bottom: 1px solid #B6BCCC;
   height: 26px;
   width: 100%;
   box-sizing: border-box;
 }
-.filemanage-window .menu-bar .menu {
-  height: 22px;
-  line-height: 22px;
+.filemanage-window .filemanage-form .menu-bar .menu {
+  height: 23px;
+  line-height: 23px;
   margin-top: 1px;
   margin-right: 4px;
   float: left;
@@ -722,6 +729,61 @@
   font-size: 14px;
   padding: 0px 8px;
 }
-.filemanage-window .menu-bar .menu:hover {
+.filemanage-window .filemanage-form .menu-bar .menu:first-child {
+  margin-left: 2px;
+}
+.filemanage-window .filemanage-form .menu-bar .menu:hover {
   background-color: #0078f0;
+}
+.filemanage-window .filemanage-form .toolbar {
+  background: linear-gradient(#FAFCFD 0%, #E6F0FA 50%, #DCE6F4 51%, #CDDAEA 96%, #CDDAEA 100%);
+  border-bottom: 1px solid #A0AFC3;
+  height: 33px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #1E395B;
+}
+.filemanage-window .filemanage-form .toolbar .tool-button {
+  border: 1px solid transparent;
+  padding: 0px 15px;
+  margin: 3px 0px;
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.filemanage-window .filemanage-form .toolbar .tool-button:first-child {
+  margin-left: 3px;
+}
+.filemanage-window .filemanage-form .toolbar .tool-button:hover {
+  border: 1px solid #A0AFC3;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0px 0px 3px #fff;
+}
+.filemanage-window .filemanage-form .main-content {
+  width: auto;
+  position: absolute;
+  height: auto;
+  top: 140px;
+  bottom: 60px;
+  left: 11px;
+  right: 11px;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree {
+  width: 220px;
+  border-right: 1px solid #D6E5F5;
+  height: 100%;
+  display: inline-block;
+}
+.filemanage-window .filemanage-form .statusbar {
+  position: absolute;
+  bottom: 10px;
+  height: 50px;
+  border-top: 1px solid #E3E9F2;
+  width: auto;
+  box-shadow: inset 0px 2px 6px #C8D6E9;
+  left: 11px;
+  right: 11px;
+  background-color: #F1F5FB;
 }
