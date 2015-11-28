@@ -57,7 +57,7 @@
 
 ## Demo
 
-访问[Demo](http://liuhong1happy.github.io/ConsoleWindowApp/demo.html)
+访问[Demo](http://121.42.137.58:8080/)
 
 ## 快速部署
 
