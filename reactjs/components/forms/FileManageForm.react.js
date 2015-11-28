@@ -10,8 +10,67 @@ var FileManageForm = React.createClass({
             FavoriteTree:FileManageStore.getFavoriteTree()
         };
     },
+    genFileTree:function(){
+        var tree = this.state.FileSystemTree,favorite = this.state.FavoriteTree;
+        var root = {
+            name:"Root",label:"文件系统",image:"",type:"root",children:[
+                {
+                    name:"Favorite",label:"收藏夹",image:"/static/images/store.ico",type:"favorite",children:favorite,
+                }
+            ]
+        }
+        root.children = root.children.concat([tree]);
+        var   genTree = function(root){
+            var imgStyle = {
+                    "backgroundImage":"url("+root.image+")",
+            }    
+            if(root.children){
+                    return (<div className={"tree-root "+root.type}>
+                            <div className="tree-name">
+                                <span className="toggle-show"></span>
+                                <span className="tree-img" style={imgStyle}></span>
+                                <span>{root.label}</span>
+                            </div>
+                            <div className="tree-children">
+                            {
+                                root.children.map(function(ele){
+                                    var tree = genTree(ele);
+                                    return tree;
+                                })
+                            }
+                            </div>
+                    </div>)
+            }else{
+                return (<div className={root.name}>
+                                <div className="tree-name">
+                                    <span className="toggle-show"></span>
+                                    <span className="tree-img" style={imgStyle}></span>
+                                    <span>{root.label}</span>
+                                </div>
+                        </div>)
+            }
+        };
+        
+        var imgStyle = {
+                "width":"22px",
+                "height":"22px",
+                "backgroundImage":"url("+root.image+")",
+                "display": "inline-block",
+                "backgroundSize": "cover"
+        }                
+        return (<div className={root.type}>
+                            {
+                                root.children.map(function(ele){
+                                    var tree = genTree(ele);
+                                    return tree;
+                                })
+                            }
+                    </div>)
+    },
     render: function() {
-
+        
+        var fileTree = this.genFileTree();
+        
         return (
                 <div className="filemanage-form">
                     <div className="input-group">
@@ -41,7 +100,9 @@ var FileManageForm = React.createClass({
                             <div className="tool-button">控制面板</div>
                     </div>
                     <div className="main-content">
-                            <div className="dir-tree"></div>
+                            <div className="dir-tree">
+                                    {fileTree}
+                            </div>
                             <div className="dir-content"></div>
                     </div>
                     <div className="statusbar">

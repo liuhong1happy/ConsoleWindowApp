@@ -776,10 +776,92 @@
   height: 100%;
   display: inline-block;
 }
+.filemanage-window .filemanage-form .main-content .dir-tree:hover .tree-name .toggle-show {
+  opacity: 1;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree:hover .toggle-hide {
+  opacity: 0;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .root {
+  height: 100%;
+  width: 100%;
+  padding-top: 15px;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .root .desktop {
+  position: static;
+  clear: both;
+  padding-top: 15px;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-root {
+  margin-top: 5px;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name {
+  height: 24px;
+  line-height: 24px;
+  color: #333;
+  font-weight: lighter;
+  font-size: 12px;
+  clear: both;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover {
+  background-color: rgba(0, 120, 240, 0.2);
+  border: 1px solid rgba(0, 120, 240, 0.7);
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover .toggle-show {
+  border-left: 9px solid #aaa;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover .toggle-hide {
+  border-top: 8px solid #ccc;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name span {
+  display: inline-block;
+  float: left;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-show {
+  height: 0px;
+  width: 0px;
+  margin: 7px 3px;
+  box-sizing: border-box;
+  border-top: 5px solid transparent;
+  border-left: 9px solid #888;
+  border-bottom: 5px solid transparent;
+  opacity: 0;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-show:hover {
+  border-left: 9px solid #ccc;
+  box-shadow: inset 0px 0px 3px #fff;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-hide {
+  height: 0px;
+  width: 0px;
+  margin: 8px 3x;
+  box-sizing: border-box;
+  border-left: 5px solid transparent;
+  border-top: 8px solid #888;
+  border-right: 5px solid transparent;
+  opacity: 0;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-hide:hover {
+  border-top: 8px solid #ccc;
+  box-shadow: inset 0px 0px 3px #fff;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .tree-img {
+  width: 22px;
+  height: 22px;
+  margin: 1px 6px;
+  display: inline-block;
+  background-size: cover;
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-children {
+  clear: both;
+  padding-left: 14px;
+}
 .filemanage-window .filemanage-form .statusbar {
   position: absolute;
-  bottom: 10px;
-  height: 50px;
+  bottom: 11px;
+  height: 52px;
   border-top: 1px solid #E3E9F2;
   width: auto;
   box-shadow: inset 0px 2px 6px #C8D6E9;

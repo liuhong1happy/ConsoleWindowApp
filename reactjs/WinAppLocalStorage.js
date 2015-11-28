@@ -186,8 +186,30 @@ module.exports = {
             ]))
             
             localStorage.setItem('fileSystem',JSON.stringify({
-                tree:{},
-                favorite:[]
+                tree:{
+                    "name":"Desktop","label":"桌面", "image":"/static/images/desktop.ico",type:"desktop",
+                     children:[
+                        { 
+                            "name":"Computer","label":"计算机","image":"/static/images/computer.ico",type:"computer",
+                             children:[
+                                {"name":"C:\\","label":"C盘","image":"/static/images/disk.ico",type:"disk",children:null},
+                                {"name":"D:\\","label":"D盘","image":"/static/images/disk.ico",type:"disk",children:null}
+                            ]
+                        },
+                        {
+                            "name":"Library","label":"库","image":"/static/images/library.png",type:"library",
+                             children:[
+                                {"name":"LibMusic","label":"音乐","image":"/static/images/lib_music.ico",type:"libdir",children:null},
+                                {"name":"LibVideo","label":"视频","image":"/static/images/lib_video.ico",type:"libdir",children:null},
+                            ]
+                        }
+                    ]
+                },
+                favorite:[
+                    {"name":"LastVisite","label":"最近访问位置","image":"/static/images/lastvisite.ico",type:"link",children:null},
+                    {"name":"LibMusic","label":"音乐","image":"/static/images/lib_music.ico",type:"link",children:null},
+                    {"name":"LibVideo","label":"视频","image":"/static/images/lib_video.ico",type:"link",children:null},
+                ]
             }))
         }
   }
