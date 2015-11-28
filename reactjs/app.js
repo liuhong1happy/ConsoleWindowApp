@@ -3,6 +3,7 @@ var WinAppServerActionCreators = require('./actions/WinAppServerActionCreators')
 
 var WinAppLocalStorage = require('./WinAppLocalStorage');
 var React = require('react');
+var ReactDOM = require('react-dom');
 window.Env = "dev";
 WinAppLocalStorage.init();
 
@@ -10,4 +11,4 @@ WinAppServerActionCreators.fetchWinSettings();
 WinAppServerActionCreators.fetchStoreApps();
 WinAppServerActionCreators.fetchFileSystem();
 
-React.render( <WinApp />, document.body);
+ReactDOM.render( <WinApp />, document.getElementById("react"));

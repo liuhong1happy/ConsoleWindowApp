@@ -228,7 +228,7 @@ var Resize = React.createClass({
                         <div className="resize-drag" onDoubleClick={this.onDoubleClick} onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseUp={this.onMouseUp}></div>
                        {
                                 classArr.map(function(cls){
-                                    return (<div style={resizeStyle} className={cls}  onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}></div>);
+                                    return (<div key={cls} style={resizeStyle} className={cls}  onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp}></div>);
                                 })
                         }
                  </div>)

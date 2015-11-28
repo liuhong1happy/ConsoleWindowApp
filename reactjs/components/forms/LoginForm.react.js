@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Button = require('../base/Button.react');
 var WinAppServerActionCreators = require('../../actions/WinAppServerActionCreators');
 
@@ -23,7 +24,8 @@ var LoginForm = React.createClass({
     }
   },
   submitLoginForm:function(){
-      var $password = this.refs.password.getDOMNode();
+      
+      var $password = ReactDOM.findDOMNode(this.refs.password);
       var formData = {
           "user_name":"admin",
           "user_pwd":$password.value
