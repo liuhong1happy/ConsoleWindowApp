@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var WinSettingsActionCreators = require('../../actions/WinSettingsActionCreators');
 var Resize = require('./Resize.react');
 var Window = React.createClass({
@@ -73,8 +74,8 @@ var Window = React.createClass({
         onResize:function(e){
             if(!this.state.resize) return;
             
-            var $window = this.refs.winborder.getDOMNode();
-            var $content = this.refs.wincontent.getDOMNode();
+            var $window = ReactDOM.findDOMNode(this.refs.winborder);
+            var $content = ReactDOM.findDOMNode(this.refs.wincontent);
             $window.style.width = e.width+"px";
             $window.style.height = e.height+"px";
             $window.style[this.state.where[1]] = e.position.x+"px";

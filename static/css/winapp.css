@@ -776,11 +776,11 @@
   height: 100%;
   display: inline-block;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree:hover .tree-name .toggle-show {
+.filemanage-window .filemanage-form .main-content .dir-tree:hover .tree-view .tree-name .toggle-show {
   opacity: 1;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree:hover .toggle-hide {
-  opacity: 0;
+.filemanage-window .filemanage-form .main-content .dir-tree:hover .tree-view .tree-name .toggle-hidden {
+  opacity: 1;
 }
 .filemanage-window .filemanage-form .main-content .dir-tree .root {
   height: 100%;
@@ -795,7 +795,7 @@
 .filemanage-window .filemanage-form .main-content .dir-tree .tree-root {
   margin-top: 5px;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name {
   height: 24px;
   line-height: 24px;
   color: #333;
@@ -805,21 +805,25 @@
   border: 1px solid transparent;
   border-radius: 4px;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name.active {
+  background-color: rgba(0, 120, 240, 0.1);
+  border: 1px solid rgba(0, 120, 240, 0.5);
+}
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name:hover {
   background-color: rgba(0, 120, 240, 0.2);
   border: 1px solid rgba(0, 120, 240, 0.7);
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover .toggle-show {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name:hover .toggle-show {
   border-left: 9px solid #aaa;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name:hover .toggle-hide {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name:hover .toggle-hidden {
   border-top: 8px solid #ccc;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name span {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name span {
   display: inline-block;
   float: left;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-show {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name .toggle-show {
   height: 0px;
   width: 0px;
   margin: 7px 3px;
@@ -829,32 +833,32 @@
   border-bottom: 5px solid transparent;
   opacity: 0;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-show:hover {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name .toggle-show:hover {
   border-left: 9px solid #ccc;
   box-shadow: inset 0px 0px 3px #fff;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-hide {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name .toggle-hidden {
   height: 0px;
   width: 0px;
-  margin: 8px 3x;
+  margin: 8px 3px;
   box-sizing: border-box;
   border-left: 5px solid transparent;
   border-top: 8px solid #888;
   border-right: 5px solid transparent;
   opacity: 0;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .toggle-hide:hover {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name .toggle-hidden:hover {
   border-top: 8px solid #ccc;
   box-shadow: inset 0px 0px 3px #fff;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-name .tree-img {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-name .tree-img {
   width: 22px;
   height: 22px;
   margin: 1px 6px;
   display: inline-block;
   background-size: cover;
 }
-.filemanage-window .filemanage-form .main-content .dir-tree .tree-children {
+.filemanage-window .filemanage-form .main-content .dir-tree .tree-view .tree-children {
   clear: both;
   padding-left: 14px;
 }

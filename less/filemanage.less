@@ -165,11 +165,11 @@
                 display: inline-block;
                 
                 &:hover{
-                    .tree-name .toggle-show{
+                    .tree-view .tree-name .toggle-show{
                         opacity: 1;
                     }
-                    .toggle-hide{
-                        opacity: 0;
+                    .tree-view .tree-name .toggle-hidden{
+                        opacity: 1;
                     }
                 }
                 
@@ -186,69 +186,76 @@
                 .tree-root{
                     margin-top: 5px;
                 }
-                .tree-name{
-                    height: 24px;
-                    line-height: 24px;
-                    color: #333;
-                    font-weight: lighter;
-                    font-size: 12px;
-                    clear: both;
-                    border:1px solid transparent;
-                    border-radius: 4px;
-                    &:hover{
-                        background-color: rgba(0,120,240,0.2);
-                        border:1px solid rgba(0,120,240,0.7);
+                .tree-view{
+                    .tree-name{
+                        height: 24px;
+                        line-height: 24px;
+                        color: #333;
+                        font-weight: lighter;
+                        font-size: 12px;
+                        clear: both;
+                        border:1px solid transparent;
+                        border-radius: 4px;
+                        &.active{
+                            background-color: rgba(0,120,240,0.1);
+                            border:1px solid rgba(0,120,240,0.5);
+                        }
+                        &:hover{
+                            background-color: rgba(0,120,240,0.2);
+                            border:1px solid rgba(0,120,240,0.7);
+                            .toggle-show{
+                                border-left: 9px solid #aaa;
+                            }
+                            .toggle-hidden{
+                                border-top: 8px solid #ccc;
+                            }
+                        }
+                        span{
+                            display: inline-block;
+                            float: left;
+                        }
                         .toggle-show{
-                            border-left: 9px solid #aaa;
+                            height: 0px;
+                            width: 0px;
+                            margin: 7px 3px;
+                            box-sizing: border-box;
+                            border-top: 5px solid transparent;
+                            border-left: 9px solid #888;
+                            border-bottom: 5px solid transparent;
+                            opacity: 0;
+                            &:hover{
+                                border-left: 9px solid #ccc;
+                                box-shadow: inset 0px 0px 3px #fff;
+                            }
                         }
-                        .toggle-hide{
-                            border-top: 8px solid #ccc;
+                        .toggle-hidden{
+                            height: 0px;
+                            width: 0px;
+                            margin: 8px 3px;
+                            box-sizing: border-box;
+                            border-left: 5px solid transparent;
+                            border-top: 8px solid #888;
+                            border-right: 5px solid transparent;
+                            opacity: 0;
+                            &:hover{
+                                border-top: 8px solid #ccc;
+                                box-shadow: inset 0px 0px 3px #fff;
+                            }
                         }
-                    }
-                    span{
-                        display: inline-block;
-                        float: left;
-                    }
-                    .toggle-show{
-                        height: 0px;
-                        width: 0px;
-                        margin: 7px 3px;
-                        box-sizing: border-box;
-                        border-top: 5px solid transparent;
-                        border-left: 9px solid #888;
-                        border-bottom: 5px solid transparent;
-                        opacity: 0;
-                        &:hover{
-                            border-left: 9px solid #ccc;
-                            box-shadow: inset 0px 0px 3px #fff;
-                        }
-                    }
-                    .toggle-hide{
-                        height: 0px;
-                        width: 0px;
-                        margin: 8px 3x;
-                        box-sizing: border-box;
-                        border-left: 5px solid transparent;
-                        border-top: 8px solid #888;
-                        border-right: 5px solid transparent;
-                        opacity: 0;
-                        &:hover{
-                            border-top: 8px solid #ccc;
-                            box-shadow: inset 0px 0px 3px #fff;
+                        .tree-img{
+                            width:22px;
+                            height:22px;
+                            margin: 1px 6px;
+                            display:inline-block;
+                            background-size: cover;
                         }
                     }
-                    .tree-img{
-                        width:22px;
-                        height:22px;
-                        margin: 1px 6px;
-                        display:inline-block;
-                        background-size: cover;
+                    .tree-children{
+                        clear: both;
+                        padding-left: 14px;
                     }
                 }
-                .tree-children{
-                    clear: both;
-                    padding-left: 14px;
-                }
+
             }
         }
         .statusbar{

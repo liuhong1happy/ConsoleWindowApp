@@ -9,7 +9,9 @@ var FileManageForm = React.createClass({
     getInitialState:function(){
         return {
             FileSystemTree:FileManageStore.getFileSystemTree(),
-            FavoriteTree:FileManageStore.getFavoriteTree()
+            FavoriteTree:FileManageStore.getFavoriteTree(),
+            lastActive:null,
+            curActive:null
         };
     },
     getTreeData:function(){
@@ -24,11 +26,25 @@ var FileManageForm = React.createClass({
         root.children = root.children.concat([tree]);
         return root;
     },
+    handleFocus:function(item,target){
+        var lastActive = this.state.curActive;
+        var curActive = item;
+
+        this.setState({
+            lastActive:lastActive,
+            curActive:curActive
+        })
+        console.log(target);
+    },
     genFileTree:function(root){
+        var handleFocus = this.handleFocus,lastActive = this.state.lastActive,curActive = this.state.curActive;
+        
         return (<div className={root.type}>
                             {
                                 root.children.map(function(ele){
-                                    return (<TreeView root={ele} />);
+                                    if(lastActive && lastActive.name==ele.name)  ele.active = false;
+                                    if(curActive && curActive.name==ele.name) ele.active = true;
+                                    return (<TreeView key={ele.name} ref={ele.name} root={ele} active={ele.active} onFocus={handleFocus}/>);
                                 })
                             }
                     </div>)
