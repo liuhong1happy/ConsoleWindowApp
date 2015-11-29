@@ -257,6 +257,42 @@
                 }
 
             }
+            .dir-content{
+                position: absolute;
+                left: 220px;
+                right:0px;
+                height: 100%;
+                top: 0px;
+                .dir-list{
+                    .list-item{
+                        display: inline-block;
+                        width: 120px;
+                        margin: 10px;
+                        border: 1px solid transparent;
+                        border-radius: 5px;
+                        &.active{
+                            background-color: rgba(0,120,240,0.1);
+                            border: 1px solid rgba(0,120,240,0.5);
+                        }
+                        &:hover{
+                             background-color: rgba(0,120,240,0.3);
+                             border: 1px solid rgba(0,120,240,0.7);
+                        }
+                        .item-img{
+                            width: 80px;
+                            height: 80px;
+                            margin: 0px 20px;
+                        }
+                        .item-label{
+                            width: 100%;
+                            text-align: center;
+                            font-size: 12px;
+                            color: #333;
+                            
+                        }
+                    }
+                }
+            }
         }
         .statusbar{
                 position: absolute;

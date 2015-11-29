@@ -11,7 +11,8 @@ var FileManageForm = React.createClass({
             FileSystemTree:FileManageStore.getFileSystemTree(),
             FavoriteTree:FileManageStore.getFavoriteTree(),
             lastActive:null,
-            curActive:null
+            curActive:null,
+            targetItem:null
         };
     },
     getTreeData:function(){
@@ -32,9 +33,30 @@ var FileManageForm = React.createClass({
 
         this.setState({
             lastActive:lastActive,
-            curActive:curActive
+            curActive:curActive,
+            targetItem:target
         })
-        console.log(target);
+    },
+    genDirContent:function(){
+      var targetItem = this.state.targetItem;
+        if(targetItem && targetItem.children){
+            return (<div className="dir-list">
+                            {
+                                    targetItem.children.map(function(ele){
+                                            return (<div className="list-item">
+                                                            <div className="item-img">
+                                                                <img src={ele.image} width={80} height={80}/>
+                                                            </div>
+                                                            <div className="item-label">
+                                                                {ele.label}
+                                                            </div>
+                                                    </div>)
+                                    })
+                    }
+                    </div>)
+        }else{
+                     return (<div></div>)
+        }
     },
     genFileTree:function(root){
         var handleFocus = this.handleFocus,lastActive = this.state.lastActive,curActive = this.state.curActive;
@@ -52,7 +74,7 @@ var FileManageForm = React.createClass({
     render: function() {
         var root = this.getTreeData();
         var fileTree = this.genFileTree(root);
-        
+        var dirContent = this.genDirContent();
         return (
                 <div className="filemanage-form">
                     <div className="input-group">
@@ -85,7 +107,9 @@ var FileManageForm = React.createClass({
                             <div className="dir-tree">
                                     {fileTree}
                             </div>
-                            <div className="dir-content"></div>
+                            <div className="dir-content">
+                                {dirContent}
+                            </div>
                     </div>
                     <div className="statusbar">
                     </div>
