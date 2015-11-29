@@ -5,6 +5,26 @@ var FileManageActionCreators = require('../../actions/FileManageActionCreators')
 
 var TreeView = require('../base/TreeView.react');
 
+
+var DirFileItem = React.createClass({
+    handleDoubleClick:function(){
+        if(this.props.onDoubleClick){
+            this.props.onDoubleClick(this.props.item);
+        }
+    },
+    render:function(){
+        var item = this.props.item;
+                return (<div className="list-item" onDoubleClick={this.handleDoubleClick}>
+                                                            <div className="item-img">
+                                                                <img src={item.image} width={80} height={80}/>
+                                                            </div>
+                                                            <div className="item-label">
+                                                                {item.label}
+                                                            </div>
+                    </div>)
+    }
+})
+
 var FileManageForm = React.createClass({
     getInitialState:function(){
         return {
@@ -37,20 +57,17 @@ var FileManageForm = React.createClass({
             targetItem:target
         })
     },
+    openDir:function(item){
+        this.setState({targetItem:item});
+    },
     genDirContent:function(){
-      var targetItem = this.state.targetItem;
+       var targetItem = this.state.targetItem;
+        var openDir = this.openDir;
         if(targetItem && targetItem.children){
             return (<div className="dir-list">
                             {
                                     targetItem.children.map(function(ele){
-                                            return (<div className="list-item">
-                                                            <div className="item-img">
-                                                                <img src={ele.image} width={80} height={80}/>
-                                                            </div>
-                                                            <div className="item-label">
-                                                                {ele.label}
-                                                            </div>
-                                                    </div>)
+                                            return (<DirFileItem item={ele} onDoubleClick={openDir} />)
                                     })
                     }
                     </div>)
