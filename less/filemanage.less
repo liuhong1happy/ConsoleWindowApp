@@ -293,15 +293,42 @@
             }
         }
         .statusbar{
+            position: absolute;
+            bottom: 11px;
+            height: 52px;
+            border-top: 1px solid #E3E9F2;
+            width: auto;
+            box-shadow: inset 0px 2px 6px #C8D6E9;
+            left: 11px;
+            right: 11px;
+            background-color: #F1F5FB;
+            .target-item{
+                height: 100%;
+                width: 230px;
+                position: relative;
+                .item-img{
+                    position: absolute;
+                    left: 3px;
+                    top:11px;
+                }
+                .item-content{
+                    position: absolute;
+                    left: 56px;
+                    top:11px;
+                    color:#333;
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+            }
+            .progress{
                 position: absolute;
-                bottom: 11px;
-                height: 52px;
-                border-top: 1px solid #E3E9F2;
-                width: auto;
-                box-shadow: inset 0px 2px 6px #C8D6E9;
-                left: 11px;
-                right: 11px;
-                background-color: #F1F5FB;
+                height: 100%;
+                left: 56px;
+                top: 10px;
+                line-height: 22px;
+                color: #333;
+                font-size: 14px;
+            }
         }
     }
 }

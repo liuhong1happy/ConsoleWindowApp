@@ -2,9 +2,9 @@
 var React = require('react');
 var FileManageStore = require('../../stores/FileManageStore');
 var FileManageActionCreators = require('../../actions/FileManageActionCreators');
+var FileUploadUtils = require('../../utils/FileUploadUtils');
 
 var TreeView = require('../base/TreeView.react');
-
 
 var DirFileItem = React.createClass({
     handleDoubleClick:function(){
@@ -32,7 +32,8 @@ var FileManageForm = React.createClass({
             FavoriteTree:FileManageStore.getFavoriteTree(),
             lastActive:null,
             curActive:null,
-            targetItem:null
+            targetItem:null,
+            statusTool:null
         };
     },
     getTreeData:function(){
@@ -88,10 +89,79 @@ var FileManageForm = React.createClass({
                             }
                     </div>)
     },
+    genStatus:function(){
+        var targetItem = this.state.targetItem;
+        var statusTool = this.state.statusTool;
+        
+        if(targetItem){
+            if(statusTool){
+                    return (<div className="statusbar">
+                            <div className="target-item">
+                                <div className="item-img">
+                                        <img src={targetItem.image} width={40} height={40}/>
+                                </div>
+                            </div>
+                            <div className="progress">
+                                    <div className="label">{statusTool.label}</div>
+                                    <div className="percent">{statusTool.percent+"%"}</div>
+                            </div>
+                    </div>)
+            }else{
+                    return (<div className="statusbar">
+                            <div className="target-item">
+                                <div className="item-img">
+                                        <img src={targetItem.image} width={40} height={40}/>
+                                </div>
+                                <div className="item-content">
+                                    <div className="item-type">{targetItem.type}</div>
+                                    <div className="item-label">{targetItem.label}</div>
+                                </div>
+                            </div>
+                    </div>)   
+            }
+        }else{
+            return (<div className="statusbar"></div>)
+        }
+    },
+    handleDragOver:function(e){
+        e = e || event;
+        e.preventDefault();
+    },
+    handleDrop:function(e){
+        e = e || event;
+        e.preventDefault();
+        var fileList = e.dataTransfer.files;
+        console.log(fileList);
+        var _self = this;
+        FileUploadUtils.uploadFileList(fileList,function(status,percent){
+            _self.setState({
+                statusTool:{
+                    percent:percent,
+                    label:status
+                }
+            });
+        },function(status,filesResult){
+            var result = "[";
+            for(var i=0;i<filesResult.length;i++){
+                var fileRes = filesResult[i];
+                result += "{"+fileRes.file.name+":"+fileRes.result+"},";
+            }
+            result += "]";
+            
+            _self.setState({
+                statusTool:{
+                    percent:100,
+                    label:status+":"+result
+                }
+            });
+        });
+        return false;
+    },
     render: function() {
         var root = this.getTreeData();
         var fileTree = this.genFileTree(root);
         var dirContent = this.genDirContent();
+        var statusContent = this.genStatus();
         return (
                 <div className="filemanage-form">
                     <div className="input-group">
@@ -124,12 +194,11 @@ var FileManageForm = React.createClass({
                             <div className="dir-tree">
                                     {fileTree}
                             </div>
-                            <div className="dir-content">
+                            <div className="dir-content" onDragOver={this.handleDragOver} onDrop={this.handleDrop}>
                                 {dirContent}
                             </div>
                     </div>
-                    <div className="statusbar">
-                    </div>
+                    {statusContent}
                 </div>
         );
   }

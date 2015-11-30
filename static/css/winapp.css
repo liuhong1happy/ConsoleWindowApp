@@ -906,3 +906,30 @@
   right: 11px;
   background-color: #F1F5FB;
 }
+.filemanage-window .filemanage-form .statusbar .target-item {
+  height: 100%;
+  width: 230px;
+  position: relative;
+}
+.filemanage-window .filemanage-form .statusbar .target-item .item-img {
+  position: absolute;
+  left: 3px;
+  top: 11px;
+}
+.filemanage-window .filemanage-form .statusbar .target-item .item-content {
+  position: absolute;
+  left: 56px;
+  top: 11px;
+  color: #333;
+  font-size: 14px;
+  line-height: 22px;
+}
+.filemanage-window .filemanage-form .statusbar .progress {
+  position: absolute;
+  height: 100%;
+  left: 56px;
+  top: 10px;
+  line-height: 22px;
+  color: #333;
+  font-size: 14px;
+}
