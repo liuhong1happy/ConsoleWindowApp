@@ -19,7 +19,7 @@ type UploadFileController struct {
 }
 
 
-func (controller *BuoyController) GetHashFile() {
+func (controller *UploadFileController) GetHashFile() {
 	// The call to ParseForm inside of ParseAndValidate is failing. This is a BAD FIX
 	params := struct {
 		Hash string `form:":hash" valid:"Required; MinSize(4)" error:"not hash"`
@@ -40,7 +40,7 @@ func (controller *BuoyController) GetHashFile() {
 	controller.ServeJson()
 }
 
-func (controller *BuoyController) GetHashFiles() {
+func (controller *UploadFileController) GetHashFiles() {
 	// The call to ParseForm inside of ParseAndValidate is failing. This is a BAD FIX
 	params := struct {
 		HashArray string `form:":hash_array" valid:"Required; MinSize(4)" error:"not hash array"`
@@ -59,5 +59,28 @@ func (controller *BuoyController) GetHashFiles() {
 
 	controller.Data["json"] = filesInfo
 	controller.ServeJson()
+}
+
+func (controller *UploadFileController) UploadFile(){
+	var params struct {
+		FileName string `form:"file_name" valid:"Required; MinSize(4)" error:"invalid_file_name"`
+        FileHash string `form:"file_hash" valid:"Required; MinSize(6)" error:"invalid_file_hash"`
+		FileSize string `form:"file_size" valid:"Required;" error:"invalid_file_size"`
+        Start string `form:"start" valid:"Required;" error:"invalid_start"`
+        Length string `form:"length" valid:"Required;" error:"invalid_length"`
+        LastModifiedDate string `form:"last_modified_date" valid:"Required;" error:"invalid_last_modified_date"`
+        VisualPath  string `form:"visual_path" valid:"Required;" error:"invalid_visual_path"`
+	}
+
+	if controller.ParseAndValidate(&params) == false {
+		return
+	}
+    var file_path = "/var/files/"+params.lastModifiedDate+"/"+params.FileHash;
+    
+    File,FileHeader,error = this.GetFile("file")
+    // 做后续的处理
+    
+    
+    
 }
 
