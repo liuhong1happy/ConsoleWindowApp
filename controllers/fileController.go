@@ -75,12 +75,33 @@ func (controller *UploadFileController) UploadFile(){
 	if controller.ParseAndValidate(&params) == false {
 		return
 	}
-    var file_path = "/var/files/"+params.lastModifiedDate+"/"+params.FileHash;
+    var tofile = "/var/files/"+params.lastModifiedDate+"/"+params.FileHash;
     
-    File,FileHeader,error = this.GetFile("file")
+    file,_,err = this.GetFile("file")
     // 做后续的处理
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	f, err := os.OpenFile(tofile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
     
+    buf := make([]byte, params.Length)
+    n,err := file.Read(buf)
+	if err != nil {
+		return err
+	}
+    n,err := f.WriteAt(buf,params.Start)
+	if err != nil {
+		return err
+	}
+    // 成功保存过后返回结果
+    filesInfo, err := fileService.saveFile(&controller.Service, params)
     
-    
+	controller.Data["json"] = filesInfo
+	controller.ServeJson()
 }
 
