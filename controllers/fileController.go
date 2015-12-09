@@ -65,9 +65,9 @@ func (controller *UploadFileController) UploadFile(){
 	var params struct {
 		FileName string `form:"file_name" valid:"Required; MinSize(4)" error:"invalid_file_name"`
         FileHash string `form:"file_hash" valid:"Required; MinSize(6)" error:"invalid_file_hash"`
-		FileSize string `form:"file_size" valid:"Required;" error:"invalid_file_size"`
-        Start string `form:"start" valid:"Required;" error:"invalid_start"`
-        Length string `form:"length" valid:"Required;" error:"invalid_length"`
+		FileSize int `form:"file_size" valid:"Required;" error:"invalid_file_size"`
+        Start int `form:"start" valid:"Required;" error:"invalid_start"`
+        Length int `form:"length" valid:"Required;" error:"invalid_length"`
         LastModifiedDate string `form:"last_modified_date" valid:"Required;" error:"invalid_last_modified_date"`
         VisualPath  string `form:"visual_path" valid:"Required;" error:"invalid_visual_path"`
 	}
@@ -99,7 +99,7 @@ func (controller *UploadFileController) UploadFile(){
 		return err
 	}
     // 成功保存过后返回结果
-    filesInfo, err := fileService.saveFile(&controller.Service, params)
+    filesInfo, err := fileService.saveFile(&controller.Service, params, tofile)
     
 	controller.Data["json"] = filesInfo
 	controller.ServeJson()
