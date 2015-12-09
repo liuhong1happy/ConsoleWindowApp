@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE handle.
 
 // Package buoyModels contains the models for the buoy service.
-package buoyModels
+package fileModels
 
 import (
 	"fmt"
@@ -15,35 +15,15 @@ import (
 
 type (
 	// BuoyCondition contains information for an individual station.
-	BuoyCondition struct {
-		WindSpeed     float64 `bson:"wind_speed_milehour" json:"wind_speed_milehour"`
-		WindDirection int     `bson:"wind_direction_degnorth" json:"wind_direction_degnorth"`
-		WindGust      float64 `bson:"gust_wind_speed_milehour" json:"gust_wind_speed_milehour"`
-	}
-
-	// BuoyLocation contains the buoys location.
-	BuoyLocation struct {
-		Type        string    `bson:"type" json:"type"`
-		Coordinates []float64 `bson:"coordinates" json:"coordinates"`
-	}
-
-	// BuoyStation contains information for an individual station.
-	BuoyStation struct {
-		ID        bson.ObjectId `bson:"_id,omitempty"`
-		StationID string        `bson:"station_id" json:"station_id"`
-		Name      string        `bson:"name" json:"name"`
-		LocDesc   string        `bson:"location_desc" json:"location_desc"`
-		Condition BuoyCondition `bson:"condition" json:"condition"`
-		Location  BuoyLocation  `bson:"location" json:"location"`
+	FileInfo struct {
+		FileName string `bson:"file_name" json:"file_name"`
+		FileSize int `bson:"file_size" json:"file_size"`
+		FileHash string `bson:"file_hash" json:"file_hash"`
+		Start  	int `bson:"start" json:"start"`
+		Length  int `bson:"length" json:"length"`
+		LastModifiedDate string `bson:"last_modified_date" json:"last_modified_date"`
+		VisualPath  string `bson:"visual_path" json:"visual_path"`
+		RealPath  string `bson:"real_path" json:"real_path"`
 	}
 )
 
-// DisplayWindSpeed pretty prints wind speed.
-func (buoyCondition *BuoyCondition) DisplayWindSpeed() string {
-	return fmt.Sprintf("%.2f", buoyCondition.WindSpeed)
-}
-
-// DisplayWindGust pretty prints wind gust.
-func (buoyCondition *BuoyCondition) DisplayWindGust() string {
-	return fmt.Sprintf("%.2f", buoyCondition.WindGust)
-}
