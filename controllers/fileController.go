@@ -104,4 +104,3 @@ func (controller *UploadFileController) UploadFile(){
 	controller.Data["json"] = filesInfo
 	controller.ServeJson()
 }
-

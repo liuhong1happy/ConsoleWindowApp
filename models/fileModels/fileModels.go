@@ -6,8 +6,6 @@
 package fileModels
 
 import (
-	"fmt"
-
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -16,6 +14,7 @@ import (
 type (
 	// BuoyCondition contains information for an individual station.
 	FileInfo struct {
+        ID        bson.ObjectId `bson:"_id,omitempty"`
 		FileName string `bson:"file_name" json:"file_name"`
 		FileSize int `bson:"file_size" json:"file_size"`
 		FileHash string `bson:"file_hash" json:"file_hash"`
