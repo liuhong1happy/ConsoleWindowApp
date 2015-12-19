@@ -6,9 +6,11 @@
 package controllers
 
 import (
+	log "github.com/goinggo/tracelog"
 	bc "github.com/liuhong1happy/ConsoleWindowApp/controllers/baseController"
 	"github.com/liuhong1happy/ConsoleWindowApp/services/fileService"
-	log "github.com/goinggo/tracelog"
+    "github.com/liuhong1happy/ConsoleWindowApp/models/fileModels"
+    "os"
 )
 
 //** TYPES
@@ -17,7 +19,6 @@ import (
 type UploadFileController struct {
 	bc.BaseController
 }
-
 
 func (controller *UploadFileController) GetHashFile() {
 	// The call to ParseForm inside of ParseAndValidate is failing. This is a BAD FIX
@@ -29,7 +30,7 @@ func (controller *UploadFileController) GetHashFile() {
 		return
 	}
 
-	fileInfo, err := fileService.findFileByHash(&controller.Service, params.Hash)
+	fileInfo, err := fileService.FindFileByHash(&controller.Service, params.Hash)
 	if err != nil {
 		log.CompletedErrorf(err, controller.UserID, "File", "Hash[%s]", params.Hash)
 		controller.ServeError(err)
@@ -50,7 +51,7 @@ func (controller *UploadFileController) GetHashFiles() {
 		return
 	}
 
-	filesInfo, err := fileService.findFilesByHash(&controller.Service, params.HashArray)
+	filesInfo, err := fileService.FindFilesByHash(&controller.Service, params.HashArray)
 	if err != nil {
 		log.CompletedErrorf(err, controller.UserID, "Files", "HashArray[%s]", params.HashArray)
 		controller.ServeError(err)
@@ -61,46 +62,47 @@ func (controller *UploadFileController) GetHashFiles() {
 	controller.ServeJson()
 }
 
-func (controller *UploadFileController) UploadFile(){
+func (controller *UploadFileController) UploadFile() {
 	var params struct {
-		FileName string `form:"file_name" valid:"Required; MinSize(4)" error:"invalid_file_name"`
-        FileHash string `form:"file_hash" valid:"Required; MinSize(6)" error:"invalid_file_hash"`
-		FileSize int `form:"file_size" valid:"Required;" error:"invalid_file_size"`
-        Start int `form:"start" valid:"Required;" error:"invalid_start"`
-        Length int `form:"length" valid:"Required;" error:"invalid_length"`
-        LastModifiedDate string `form:"last_modified_date" valid:"Required;" error:"invalid_last_modified_date"`
-        VisualPath  string `form:"visual_path" valid:"Required;" error:"invalid_visual_path"`
+		FileName         string `form:"file_name" valid:"Required; MinSize(4)" error:"invalid_file_name"`
+		FileHash         string `form:"file_hash" valid:"Required; MinSize(6)" error:"invalid_file_hash"`
+		FileSize         int    `form:"file_size" valid:"Required;" error:"invalid_file_size"`
+		Start            int64    `form:"start" valid:"Required;" error:"invalid_start"`
+		Length           int    `form:"length" valid:"Required;" error:"invalid_length"`
+		LastModifiedDate string `form:"last_modified_date" valid:"Required;" error:"invalid_last_modified_date"`
+		VisualPath       string `form:"visual_path" valid:"Required;" error:"invalid_visual_path"`
 	}
 
 	if controller.ParseAndValidate(&params) == false {
 		return
 	}
-    var tofile = "/var/files/"+params.lastModifiedDate+"/"+params.FileHash;
-    
-    file,_,err = this.GetFile("file")
-    // 做后续的处理
+    fileInfo := fileModels.FileInfo{}
+    if err := controller.ParseForm(&fileInfo); err != nil {
+        return
+    }
+	var tofile = "/var/files/" + params.LastModifiedDate + "/" + params.FileHash
+
+    file, _, err := controller.GetFile("file")
+	// 做后续的处理
 	if err != nil {
-		return err
+		return
 	}
 	defer file.Close()
 	f, err := os.OpenFile(tofile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
-		return err
+		return
 	}
 	defer f.Close()
-    
-    buf := make([]byte, params.Length)
-    n,err := file.Read(buf)
-	if err != nil {
-		return err
+
+	buf := make([]byte, params.Length)
+	n, err := file.Read(buf)
+	if err != nil && n==0 {
+		return
 	}
-    n,err := f.WriteAt(buf,params.Start)
-	if err != nil {
-		return err
-	}
-    // 成功保存过后返回结果
-    filesInfo, err := fileService.saveFile(&controller.Service, params, tofile)
-    
-	controller.Data["json"] = filesInfo
+	f.WriteAt(buf, params.Start)
+	// 成功保存过后返回结果
+	finfo, err := fileService.SaveFile(&controller.Service, fileInfo)
+
+	controller.Data["json"] = finfo
 	controller.ServeJson()
 }
