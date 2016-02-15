@@ -33,5 +33,5 @@ func (controller *UserController) UserLogin() {
         controller.SetSession("UserID", userInfo.ID.Hex())
     }
 	controller.Data["json"] = userInfo
-	controller.ServeJson()
+	controller.ServeJSON()
 }

@@ -7,7 +7,6 @@ import (
 	"github.com/liuhong1happy/ConsoleWindowApp/utilities/helper"
 	"github.com/liuhong1happy/ConsoleWindowApp/utilities/mongo"
 	_ "github.com/astaxie/beego/session/redis" 
-	"github.com/liuhong1happy/ConsoleWindowApp/utilities/session"
     	"github.com/goinggo/tracelog"
 	"os"
 )
@@ -26,16 +25,6 @@ func main() {
 
         // Load message strings
         localize.Init("en-US")
-    
-    	SessionConfig,err := session.GetSessionConfig("session")
-    
-        tracelog.Trace("main", "SessionConfig", "Session : On[%v]", SessionConfig.On)
-        tracelog.Trace("main", "SessionConfig", "Session : On[%v]", SessionConfig.Provider)
-        tracelog.Trace("main", "SessionConfig", "Session : On[%v]", SessionConfig.SavePath)
-    
-    	beego.SessionOn = SessionConfig.On
-    	beego.SessionProvider = SessionConfig.Provider
-    	beego.SessionSavePath = SessionConfig.SavePath
     
         beego.Run()
 

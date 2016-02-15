@@ -12,6 +12,6 @@ type HomeController struct {
 }
 
 func (c *HomeController) Get() {
-	c.TplNames = "index.html"
+	c.TplName = "index.html"
     c.Render()
 }

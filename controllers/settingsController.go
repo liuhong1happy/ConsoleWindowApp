@@ -33,7 +33,7 @@ func (controller *SettingsController) FindWinSettings() {
 	}
     
 	controller.Data["json"] = settings
-	controller.ServeJson()
+	controller.ServeJSON()
 }
 
 
@@ -73,6 +73,6 @@ func (controller *SettingsController) SaveWinSettings() {
     }
     
 	controller.Data["json"] = resData
-	controller.ServeJson()
+	controller.ServeJSON()
 }
 

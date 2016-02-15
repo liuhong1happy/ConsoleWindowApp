@@ -38,7 +38,7 @@ func (controller *UploadFileController) GetHashFile() {
 	}
 
 	controller.Data["json"] = fileInfo
-	controller.ServeJson()
+	controller.ServeJSON()
 }
 
 func (controller *UploadFileController) GetHashFiles() {
@@ -59,7 +59,7 @@ func (controller *UploadFileController) GetHashFiles() {
 	}
 
 	controller.Data["json"] = filesInfo
-	controller.ServeJson()
+	controller.ServeJSON()
 }
 
 func (controller *UploadFileController) UploadFile() {
@@ -104,5 +104,5 @@ func (controller *UploadFileController) UploadFile() {
 	finfo, err := fileService.SaveFile(&controller.Service, fileInfo)
 
 	controller.Data["json"] = finfo
-	controller.ServeJson()
+	controller.ServeJSON()
 }
