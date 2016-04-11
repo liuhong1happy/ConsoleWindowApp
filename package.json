@@ -25,6 +25,7 @@
   "scripts": {
     "start": "watchify -o static/js/app.js -v -d reactjs/app.js",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > static/js/app.min.js",
+    "less":"less less/winapp.less static/css/winapp.css",
     "test": "jest"
   },
   "author": "Bill Fisher",
