@@ -36,7 +36,6 @@ func (controller *SettingsController) FindWinSettings() {
 	controller.ServeJSON()
 }
 
-
 func (controller *SettingsController) SaveWinSettings() {
 	var params struct {
         Settings string `form:"win_settings" valid:"Required; MinSize(6)" error:"invalid_win_settings"`
@@ -75,4 +74,3 @@ func (controller *SettingsController) SaveWinSettings() {
 	controller.Data["json"] = resData
 	controller.ServeJSON()
 }
-
