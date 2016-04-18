@@ -4,7 +4,7 @@ export SESSION_ON=true
 export SESSION_PROVIDER=redis
 export SESSION_SAVEPATH=127.0.0.1:6379
 
-cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp
+cd $GOPATH/src/github.com/liuhong1happy/ConsoleWindowApp/src
 go clean -i
 go build
 

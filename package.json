@@ -23,9 +23,9 @@
     "less":"^2.5.3"
   },
   "scripts": {
-    "start": "watchify -o static/js/app.js -v -d reactjs/app.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > static/js/app.min.js",
-    "less":"less less/winapp.less static/css/winapp.css",
+    "start": "watchify -o src/static/js/app.js -v -d reactjs/app.js",
+    "build": "browserify reactjs/app.js -t [envify --NODE_ENV production] | uglifyjs -cm > src/static/js/app.min.js",
+    "less":"less less/winapp.less src/static/css/winapp.css",
     "test": "jest"
   },
   "author": "Bill Fisher",
